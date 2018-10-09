@@ -129,7 +129,7 @@ class JsonDataset(object):
             'Crowd filter threshold must be 0 if ground-truth annotations ' \
             'are not included.'
         image_ids = self.COCO.getImgIds()
-        image_ids.sort()
+        # image_ids.sort()
         if cfg.DEBUG:
             roidb = copy.deepcopy(self.COCO.loadImgs(image_ids))[:100]
         else:
