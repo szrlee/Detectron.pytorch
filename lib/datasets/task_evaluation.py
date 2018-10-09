@@ -45,6 +45,8 @@ from utils.logging import send_email
 import datasets.cityscapes_json_dataset_evaluator as cs_json_dataset_evaluator
 import datasets.json_dataset_evaluator as json_dataset_evaluator
 import datasets.voc_dataset_evaluator as voc_dataset_evaluator
+import datasets.cross_voc_dataset_evaluator as cross_voc_dataset_evaluator
+
 
 logger = logging.getLogger(__name__)
 
@@ -89,6 +91,13 @@ def evaluate_boxes(dataset, all_boxes, output_dir, use_matlab=False):
         # For VOC, always use salt and always cleanup because results are
         # written to the shared VOCdevkit results directory
         voc_eval = voc_dataset_evaluator.evaluate_boxes(
+            dataset, all_boxes, output_dir, use_matlab=use_matlab
+        )
+        box_results = _voc_eval_to_box_results(voc_eval)
+    elif _use_cross_voc_evaluator(dataset):
+        # For VOC, always use salt and always cleanup because results are
+        # written to the shared VOCdevkit results directory
+        voc_eval = cross_voc_dataset_evaluator.evaluate_boxes(
             dataset, all_boxes, output_dir, use_matlab=use_matlab
         )
         box_results = _voc_eval_to_box_results(voc_eval)
@@ -255,6 +264,10 @@ def _use_cityscapes_evaluator(dataset):
 def _use_voc_evaluator(dataset):
     """Check if the dataset uses the PASCAL VOC dataset evaluator."""
     return dataset.name[:4] == 'voc_'
+
+def _use_cross_voc_evaluator(dataset):
+    """Check if the dataset uses the PASCAL VOC dataset evaluator."""
+    return dataset.name[:6] == 'cross_'
 
 
 # Indices in the stats array for COCO boxes and masks

@@ -241,7 +241,7 @@ DATASETS = {
         DEVKIT_DIR:
             _DATA_DIR + '/VOC2012/VOCdevkit2012'
     },
-    'voc_clipart_train': {
+    'cross_clipart_train': {
         IM_DIR:
             _DATA_DIR + '/clipart/JPEGImages',
         ANN_FN:
@@ -249,7 +249,7 @@ DATASETS = {
         DEVKIT_DIR:
             _DATA_DIR + '/clipart/VOCdevkit'
     },
-    'voc_clipart_test': {
+    'cross_clipart_test': {
         IM_DIR:
             _DATA_DIR + '/clipart/JPEGImages',
         ANN_FN:
