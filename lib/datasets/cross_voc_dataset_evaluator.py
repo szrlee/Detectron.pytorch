@@ -108,7 +108,7 @@ def _do_python_eval(json_dataset, salt, output_dir='output'):
     anno_path = info['anno_path']
     image_set_path = info['image_set_path']
     devkit_path = info['devkit_path']
-    cachedir = os.path.join(devkit_path, 'annotations_cache')
+    cachedir = os.path.join(devkit_path, domain, 'annotations_cache')
     aps = []
     # The PASCAL VOC metric changed in 2010
     use_07_metric = True
