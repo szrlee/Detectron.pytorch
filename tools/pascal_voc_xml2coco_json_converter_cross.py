@@ -11,7 +11,7 @@ def _isArrayLike(obj):
 
 
 class voc2coco:
-    def __init__(self, dataset_path=None, year=None):
+    def __init__(self, dataset_path=None):
         self.classes = (
             '__background__',  # always index 0
             'aeroplane',
@@ -45,7 +45,6 @@ class voc2coco:
         self.data_path = os.path.join(dataset_path)
         self.annotaions_path = os.path.join(self.data_path, 'Annotations')
         self.image_set_path = os.path.join(self.data_path, 'ImageSets')
-        self.year = year
         self.categories_to_ids_map = self._get_categories_to_ids_map()
         self.categories_msg = self._categories_msg_generator()
 
@@ -268,18 +267,17 @@ class voc2coco:
                 "annotations": ann_msg,
                 "categories": self.categories_msg
             }
-            self._save_json_file('voc_' + self.year + '_' + img_set,
+            self._save_json_file('voc_' + img_set,
                                  result_json)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) <= 1:
-        print('2 arguments are needed')
-        print('Usage: python {0} $VOCdevkitPATH $year'.format(sys.argv[0]))
+    if len(sys.argv) < 1:
+        print('1 arguments are needed')
+        print('Usage: python {0} $cross-domain-dataset_PATH'.format(sys.argv[0]))
         exit(1)
 
     dataset_path = sys.argv[1]
-    year = sys.argv[2]
     
-    converter = voc2coco(dataset_path, year)
+    converter = voc2coco(dataset_path)
     converter.voc_to_coco_converter()
