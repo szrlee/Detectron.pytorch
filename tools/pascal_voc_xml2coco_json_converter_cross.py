@@ -256,7 +256,7 @@ class voc2coco:
         """
         Convert voc dataset to coco dataset
         """
-        img_sets = ['train', 'val', 'trainval', 'test']
+        img_sets = ['train', 'test']
 
         for img_set in img_sets:
             ids = self._get_indexs_by_image_set(img_set)
