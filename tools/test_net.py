@@ -103,6 +103,9 @@ if __name__ == '__main__':
     elif args.dataset == "voc2007":
         cfg.TEST.DATASETS = ('voc_2007_test',)
         cfg.MODEL.NUM_CLASSES = 21
+    elif args.dataset == "clipart":
+        cfg.TEST.DATASETS = ('voc_clipart_test',)
+        cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "custom_dataset":
         cfg.TEST.DATASETS = ('custom_data_test',)
         cfg.MODEL.NUM_CLASSES = args.num_classes

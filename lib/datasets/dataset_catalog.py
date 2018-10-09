@@ -233,6 +233,30 @@ DATASETS = {
         DEVKIT_DIR:
             _DATA_DIR + '/VOC2012/VOCdevkit2012'
     },
+    'voc_2012_trainval': {
+        IM_DIR:
+            _DATA_DIR + '/VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/VOC2012/annotations/trainval.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/VOC2012/VOCdevkit2012'
+    },
+    'voc_clipart_train': {
+        IM_DIR:
+            _DATA_DIR + '/clipart/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/clipart/annotations/train.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/clipart/VOCdevkit'
+    },
+    'voc_clipart_test': {
+        IM_DIR:
+            _DATA_DIR + '/clipart/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/clipart/annotations/test.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/clipart/VOCdevkit'
+    },
     'custom_data_train': {
         IM_DIR:
             _DATA_DIR + '/CustomData/JPEGImages',
