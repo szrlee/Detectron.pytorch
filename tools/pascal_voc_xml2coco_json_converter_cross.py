@@ -204,9 +204,12 @@ class voc2coco:
         else:
             image_set_path = os.path.join(self.image_set_path, 'Main',
                                           image_set + '.txt')
-            assert os.path.exists(
-                image_set_path), 'Path does not exist: {}'.format(
-                    image_set_path)
+            if not os.path.exists(image_set_path):
+                print('Path does not exist: {}'.format(image_set_path))
+                return None
+            else:
+                print('Path exists: {}'.format(image_set_path))
+
             with open(image_set_path) as f:
                 ids = [x.strip() for x in f.readlines()]
             return ids
@@ -256,10 +259,12 @@ class voc2coco:
         """
         Convert voc dataset to coco dataset
         """
-        img_sets = ['train', 'test']
+        img_sets = ['train', 'test', 'trainval', 'val']
 
         for img_set in img_sets:
             ids = self._get_indexs_by_image_set(img_set)
+            if ids is None:
+                continue
             img_msg, ann_msg = self._load_annotation(ids)
             result_json = {
                 "images": img_msg,
