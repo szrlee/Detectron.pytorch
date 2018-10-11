@@ -172,6 +172,9 @@ def main():
     elif args.dataset == "voc0712":
         cfg.TRAIN.DATASETS = ('voc_2007_trainval', 'voc_2012_trainval',)
         cfg.MODEL.NUM_CLASSES = 21
+    elif args.dataset == "clipart":
+        cfg.TRAIN.DATASETS = ('cross_clipart_train',)
+        cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "custom_dataset":
         cfg.TRAIN.DATASETS = ('custom_data_train',)
         cfg.MODEL.NUM_CLASSES = args.num_classes
