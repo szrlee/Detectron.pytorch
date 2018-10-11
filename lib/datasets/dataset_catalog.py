@@ -259,59 +259,59 @@ DATASETS = {
     },
     'cross_dt-clipart-VOC2007_train': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2007/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2007/annotations/train.json',
+            _DATA_DIR + '/dt-clipart-VOC2007/annotations/train.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2007/VOCdevkit'
     },
     'cross_dt-clipart-VOC2007_trainval': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2007/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2007/annotations/trainval.json',
+            _DATA_DIR + '/dt-clipart-VOC2007/annotations/trainval.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2007/VOCdevkit'
     },
     'cross_dt-clipart-VOC2007_val': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2007/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2007/annotations/val.json',
+            _DATA_DIR + '/dt-clipart-VOC2007/annotations/val.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2007/VOCdevkit'
     },
     'cross_dt-clipart-VOC2007_test': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2007/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2007/annotations/test.json',
+            _DATA_DIR + '/dt-clipart-VOC2007/annotations/test.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2007/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2007/VOCdevkit'
     },
     'cross_dt-clipart-VOC2012_train': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2012/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2012/annotations/train.json',
+            _DATA_DIR + '/dt-clipart-VOC2012/annotations/train.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2012/VOCdevkit'
     },
     'cross_dt-clipart-VOC2012_trainval': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2012/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2012/annotations/trainval.json',
+            _DATA_DIR + '/dt-clipart-VOC2012/annotations/trainval.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2012/VOCdevkit'
     },
     'cross_dt-clipart-VOC2012_val': {
         IM_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/JPEGImages',
+            _DATA_DIR + '/dt-clipart-VOC2012/JPEGImages',
         ANN_FN:
-            _DATA_DIR + '/dt_clipart_VOC2012/annotations/val.json',
+            _DATA_DIR + '/dt-clipart-VOC2012/annotations/val.json',
         DEVKIT_DIR:
-            _DATA_DIR + '/dt_clipart_VOC2012/VOCdevkit'
+            _DATA_DIR + '/dt-clipart-VOC2012/VOCdevkit'
     },
     'custom_data_train': {
         IM_DIR:
