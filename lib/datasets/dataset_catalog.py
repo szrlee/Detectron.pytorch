@@ -257,6 +257,7 @@ DATASETS = {
         DEVKIT_DIR:
             _DATA_DIR + '/clipart/VOCdevkit'
     },
+    # dt-clipart-VOC2007
     'cross_dt-clipart-VOC2007_train': {
         IM_DIR:
             _DATA_DIR + '/dt-clipart-VOC2007/JPEGImages',
@@ -289,6 +290,7 @@ DATASETS = {
         DEVKIT_DIR:
             _DATA_DIR + '/dt-clipart-VOC2007/VOCdevkit'
     },
+    # dt-clipart-VOC2012
     'cross_dt-clipart-VOC2012_train': {
         IM_DIR:
             _DATA_DIR + '/dt-clipart-VOC2012/JPEGImages',
@@ -312,6 +314,122 @@ DATASETS = {
             _DATA_DIR + '/dt-clipart-VOC2012/annotations/val.json',
         DEVKIT_DIR:
             _DATA_DIR + '/dt-clipart-VOC2012/VOCdevkit'
+    },
+    # dt-comic-VOC2007
+    'cross_dt-comic-VOC2007_train': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2007/annotations/train.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/VOCdevkit'
+    },
+    'cross_dt-comic-VOC2007_trainval': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2007/annotations/trainval.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/VOCdevkit'
+    },
+    'cross_dt-comic-VOC2007_val': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2007/annotations/val.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/VOCdevkit'
+    },
+    'cross_dt-comic-VOC2007_test': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2007/annotations/test.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2007/VOCdevkit'
+    },
+    # dt-comic-VOC2012
+    'cross_dt-comic-VOC2012_train': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2012/annotations/train.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/VOCdevkit'
+    },
+    'cross_dt-comic-VOC2012_trainval': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2012/annotations/trainval.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/VOCdevkit'
+    },
+    'cross_dt-comic-VOC2012_val': {
+        IM_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-comic-VOC2012/annotations/val.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-comic-VOC2012/VOCdevkit'
+    },
+    # dt-watercolor-VOC2007
+    'cross_dt-watercolor-VOC2007_train': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2007/annotations/train.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/VOCdevkit'
+    },
+    'cross_dt-watercolor-VOC2007_trainval': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2007/annotations/trainval.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/VOCdevkit'
+    },
+    'cross_dt-watercolor-VOC2007_val': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2007/annotations/val.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/VOCdevkit'
+    },
+    'cross_dt-watercolor-VOC2007_test': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2007/annotations/test.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2007/VOCdevkit'
+    },
+    # dt-watercolor-VOC2012
+    'cross_dt-watercolor-VOC2012_train': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2012/annotations/train.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/VOCdevkit'
+    },
+    'cross_dt-watercolor-VOC2012_trainval': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2012/annotations/trainval.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/VOCdevkit'
+    },
+    'cross_dt-watercolor-VOC2012_val': {
+        IM_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/JPEGImages',
+        ANN_FN:
+            _DATA_DIR + '/dt-watercolor-VOC2012/annotations/val.json',
+        DEVKIT_DIR:
+            _DATA_DIR + '/dt-watercolor-VOC2012/VOCdevkit'
     },
     'custom_data_train': {
         IM_DIR:
