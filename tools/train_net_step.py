@@ -178,6 +178,12 @@ def main():
     elif args.dataset == "dt_clipart_voc0712":
         cfg.TRAIN.DATASETS = ('cross_dt-clipart-VOC2007_trainval', 'cross_dt-clipart-VOC2012_trainval',)
         cfg.MODEL.NUM_CLASSES = 21
+    elif args.dataset == "dt_comic_voc0712":
+        cfg.TRAIN.DATASETS = ('cross_dt-comic-VOC2007_trainval', 'cross_dt-comic-VOC2012_trainval',)
+        cfg.MODEL.NUM_CLASSES = 21
+    elif args.dataset == "dt_watercolor_voc0712":
+        cfg.TRAIN.DATASETS = ('cross_dt-watercolor-VOC2007_trainval', 'cross_dt-watercolor-VOC2012_trainval',)
+        cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "custom_dataset":
         cfg.TRAIN.DATASETS = ('custom_data_train',)
         cfg.MODEL.NUM_CLASSES = args.num_classes
