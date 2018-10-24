@@ -452,7 +452,7 @@ def main():
                 for key in input_data:
                     if key != 'roidb': # roidb is a list of ndarrays with inconsistent length
                         input_data[key] = list(map(Variable, input_data[key]))
-                print(f"roidb keys : {input_data['roidb'][0].keys()}")
+                print(f"roidb keys : {input_data['roidb']}")
 
                 net_outputs = maskRCNN(**input_data)
                 training_stats.UpdateIterStats(net_outputs, inner_iter)
