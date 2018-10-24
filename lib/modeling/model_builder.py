@@ -72,6 +72,9 @@ class Generalized_RCNN(nn.Module):
     def __init__(self):
         super().__init__()
 
+        # Weakly supervision
+        self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
+
         # For cache
         self.mapping_to_detectron = None
         self.orphans_in_detectron = None
@@ -178,7 +181,7 @@ class Generalized_RCNN(nn.Module):
             # TODO: complete the returns for RPN only situation
             pass
 
-        if self.training:
+        if self.training and not self.weak_supervise:
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
             # rpn loss
@@ -240,6 +243,10 @@ class Generalized_RCNN(nn.Module):
                 return_dict['losses'][k] = v.unsqueeze(0)
             for k, v in return_dict['metrics'].items():
                 return_dict['metrics'][k] = v.unsqueeze(0)
+
+        elif self.training and self.weak_supervise:
+            # Weak supervision loss
+            logging.info(f"image-level labels: {rpn_ret['image_labels_vec'}")
 
         else:
             # Testing

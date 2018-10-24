@@ -33,6 +33,9 @@ cfg = __C
 # ---------------------------------------------------------------------------- #
 __C.TRAIN = AttrDict()
 
+# Weak supervision
+__C.TRAIN.WEAK_SUPERVISE = False
+
 # Datasets to train on
 # Available dataset list: datasets.dataset_catalog.DATASETS.keys()
 # If multiple datasets are listed, the model is trained on their union
