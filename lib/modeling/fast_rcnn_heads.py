@@ -121,7 +121,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
-            cls_probs = torch.cat((cls_probs, [cls_prob].unsqueeze(dim=0)), dim=0)
+            cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
 
         print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
         # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
