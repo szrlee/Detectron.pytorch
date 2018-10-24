@@ -292,7 +292,7 @@ class JsonDataset(object):
         entry['box_to_gt_ind_map'] = np.append(
             entry['box_to_gt_ind_map'], box_to_gt_ind_map
         )
-        entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+        entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec, axis=0)
         # print(f"gt_labels_vec : {entry['gt_labels_vec']}")
         if self.keypoints is not None:
             entry['gt_keypoints'] = np.append(
@@ -326,7 +326,7 @@ class JsonDataset(object):
             entry['box_to_gt_ind_map'] = np.append(
                 entry['box_to_gt_ind_map'], box_to_gt_ind_map
             )
-            entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+            entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec, axis=0)
 
             if self.keypoints is not None:
                 entry['gt_keypoints'] = np.append(
