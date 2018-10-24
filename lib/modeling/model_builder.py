@@ -176,7 +176,10 @@ class Generalized_RCNN(nn.Module):
                 box_feat, res5_feat = self.Box_Head(blob_conv, rpn_ret)
             else:
                 box_feat = self.Box_Head(blob_conv, rpn_ret)
-            cls_score, bbox_pred = self.Box_Outs(box_feat)
+            if self.weak_supervise:
+                cls_score, det_score, bbox_pred = self.Box_Outs(box_feat)
+            else:
+                cls_score, bbox_pred = self.Box_Outs(box_feat)
         else:
             # TODO: complete the returns for RPN only situation
             pass
@@ -247,6 +250,8 @@ class Generalized_RCNN(nn.Module):
         elif self.training and self.weak_supervise:
             # Weak supervision loss
             logging.info(f"image-level labels: {rpn_ret['image_labels_vec']}")
+            logging.info(f"cls score: {cls_score}")
+            logging.info(f"det score: {det_score}")
 
         else:
             # Testing

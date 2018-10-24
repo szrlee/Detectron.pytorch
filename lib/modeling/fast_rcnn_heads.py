@@ -12,7 +12,11 @@ import utils.net as net_utils
 class fast_rcnn_outputs(nn.Module):
     def __init__(self, dim_in):
         super().__init__()
+        self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
         self.cls_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
+        if self.weak_supervise:
+            self.det_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
+
         if cfg.MODEL.CLS_AGNOSTIC_BBOX_REG:  # bg and fg
             self.bbox_pred = nn.Linear(dim_in, 4 * 2)
         else:
@@ -23,16 +27,32 @@ class fast_rcnn_outputs(nn.Module):
     def _init_weights(self):
         init.normal_(self.cls_score.weight, std=0.01)
         init.constant_(self.cls_score.bias, 0)
+
+        if self.weak_supervise:
+            init.normal_(self.det_score.weight, std=0.01)
+            init.constant_(self.det_score.bias, 0)
+
         init.normal_(self.bbox_pred.weight, std=0.001)
         init.constant_(self.bbox_pred.bias, 0)
 
     def detectron_weight_mapping(self):
-        detectron_weight_mapping = {
-            'cls_score.weight': 'cls_score_w',
-            'cls_score.bias': 'cls_score_b',
-            'bbox_pred.weight': 'bbox_pred_w',
-            'bbox_pred.bias': 'bbox_pred_b'
-        }
+        if not self.weak_supervise:
+            detectron_weight_mapping = {
+                'cls_score.weight': 'cls_score_w',
+                'cls_score.bias': 'cls_score_b',
+                'bbox_pred.weight': 'bbox_pred_w',
+                'bbox_pred.bias': 'bbox_pred_b'
+            }
+        else:
+            # initialize det weight as the same of pretrained cls
+            detectron_weight_mapping = {
+                'cls_score.weight': 'cls_score_w',
+                'cls_score.bias': 'cls_score_b',
+                'det_score.weight': 'cls_score_w',
+                'det_score.bias': 'cls_score_b',                
+                'bbox_pred.weight': 'bbox_pred_w',
+                'bbox_pred.bias': 'bbox_pred_b'
+            }
         orphan_in_detectron = []
         return detectron_weight_mapping, orphan_in_detectron
 
@@ -44,7 +64,11 @@ class fast_rcnn_outputs(nn.Module):
             cls_score = F.softmax(cls_score, dim=1)
         bbox_pred = self.bbox_pred(x)
 
-        return cls_score, bbox_pred
+        if not self.weak_supervise:
+            return cls_score, bbox_pred
+        else:
+            det_score = self.det_score(x)
+            return cls_score, det_score, bbox_pred
 
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
