@@ -160,7 +160,10 @@ def load_ckpt(model, ckpt):
     for name in ckpt:
         if mapping[name]:
             state_dict[name] = ckpt[name]
-    logging.info(f"state_dict:\n {state_dict}")
+    # logging.info(f"state_dict:\n {state_dict}")
+    if cfg.TRAIN.COPY_CLS_TO_DET:
+        state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
+        state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
     model.load_state_dict(state_dict, strict=False)
 
 

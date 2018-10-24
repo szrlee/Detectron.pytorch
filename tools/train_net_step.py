@@ -113,6 +113,11 @@ def parse_args():
         '--weak_supervise_with_pretrain', help='Using fully supervised pretrained\
          object detector to initialize weights of weakly supervision network',
         action='store_true')
+    parser.add_argument(
+        '--copy_cls_to_det', help='Using fully supervised pretrained\
+         object detector to initialize weights of weakly supervision network\
+         and copt cls linear layer to det linear layer',
+        action='store_true')
 
     parser.add_argument(
         '--load_detectron', help='path to the detectron weight pickle file')
@@ -259,7 +264,8 @@ def main():
 
     if args.weak_supervise_with_pretrain:
         cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = True
-        
+    if args.copy_cls_to_det:
+        cfg.TRAIN.COPY_CLS_TO_DET = True
     assert_and_infer_cfg()
 
     timers = defaultdict(Timer)

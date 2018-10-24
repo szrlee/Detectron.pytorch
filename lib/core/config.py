@@ -37,7 +37,7 @@ __C.TRAIN = AttrDict()
 # 
 __C.TRAIN.WEAK_SUPERVISE = False
 __C.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = False
-
+__C.TRAIN.COPY_CLS_TO_DET = False
 # Datasets to train on
 # Available dataset list: datasets.dataset_catalog.DATASETS.keys()
 # If multiple datasets are listed, the model is trained on their union
