@@ -159,8 +159,8 @@ class Generalized_RCNN(nn.Module):
 
         rpn_ret = self.RPN(blob_conv, im_info, roidb)
         rois_batch_idx = rpn_ret['rois'][:, 0]
-        logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
-         \n {rpn_ret['rois'][:, 0]}")
+        # logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
+        #  \n {rpn_ret['rois'][:, 0]}")
         # if self.training:
         #     # can be used to infer fg/bg ratio
         #     return_dict['rois_label'] = rpn_ret['labels_int32']
@@ -251,9 +251,9 @@ class Generalized_RCNN(nn.Module):
 
         elif self.training and self.weak_supervise:
             # Weak supervision image-level loss
-            logging.info(f"image-level labels: shape {rpn_ret['image_labels_vec'].shape}\n {rpn_ret['image_labels_vec']}")
-            logging.info(f"cls score: shape {cls_score.shape}\n {cls_score}")
-            logging.info(f"det score: shape {det_score.shape}\n {det_score}")
+            # logging.info(f"image-level labels: shape {rpn_ret['image_labels_vec'].shape}\n {rpn_ret['image_labels_vec']}")
+            # logging.info(f"cls score: shape {cls_score.shape}\n {cls_score}")
+            # logging.info(f"det score: shape {det_score.shape}\n {det_score}")
             # 
             loss_cls, accuracy_cls = fast_rcnn_heads.image_level_loss(
                 cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'])

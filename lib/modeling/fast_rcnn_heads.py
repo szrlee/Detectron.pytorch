@@ -95,14 +95,17 @@ class fast_rcnn_outputs(nn.Module):
             return cls_score, det_score, bbox_pred
 
 def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
-    batch_idx_list = np.unique(rois_batch_idx).tolist()
     device_id = cls_score.get_device()
+
+    assert device_id == det_score.get_device()
+    batch_idx_list = np.unique(rois_batch_idx).tolist()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
 
     # print(f"batch_idx_list: {batch_idx_list}")
+    cls_probs = None
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero().squeeze()
@@ -113,8 +116,15 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         softmax_cls = F.softmax(cls_ind, dim=1)
         softmax_det = F.softmax(det_ind, dim=0)
 
-        print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
-        \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
+        cls_prob = torch.sum(softmax_cls * softmax_det, dim=0)
+        if cls_probs is None:
+            cls_probs = cls_prob.unsqueeze(dim=0)
+        else:
+            cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
+
+        print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
+        # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
+        # \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
 
 
         # print(f"cls_score[ind]: shape {cls_ind.shape}")
