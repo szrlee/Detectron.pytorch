@@ -99,7 +99,6 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     device_id = cls_score.get_device()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
-    input()
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
 
@@ -110,7 +109,6 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         print(ind.shape, ind[-1,:])
         cls_ind = torch.index_select(cls_score, 0, ind)
         print(f"cls_score[ind]: shape {cls_ind.shape}")
-        input()
     loss_cls = F.cross_entropy(cls_score, rois_label)
 
 
