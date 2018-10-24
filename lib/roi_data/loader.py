@@ -27,6 +27,7 @@ class RoiDataLoader(data.Dataset):
         blobs, valid = get_minibatch(single_db)
         #TODO: Check if minibatch is valid ? If not, abandon it.
         # Need to change _worker_loop in torch.utils.data.dataloader.py.
+        print(f"key = {entry,keys()}")
 
         # Squeeze batch dim
         for key in blobs:
@@ -44,7 +45,6 @@ class RoiDataLoader(data.Dataset):
                 for key in ['boxes', 'gt_classes', 'seg_areas', 'gt_overlaps', 'is_crowd',
                             'box_to_gt_ind_map', 'gt_keypoints', 'gt_labels_vec']:
                     if key in entry:
-                        print(f"key = {key}")
                         entry[key] = entry[key][valid_inds]
                 entry['segms'] = [entry['segms'][ind] for ind in valid_inds]
 
