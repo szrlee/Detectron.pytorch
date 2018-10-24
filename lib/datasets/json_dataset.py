@@ -282,9 +282,7 @@ class JsonDataset(object):
         # entry['boxes'] = np.append(
         #     entry['boxes'], boxes.astype(np.int).astype(np.float), axis=0)
         entry['gt_classes'] = np.append(entry['gt_classes'], gt_classes)
-        print(f"gt_classes : {entry['gt_classes']}")     
-        entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
-        print(f"gt_labels_vec : {entry['gt_labels_vec']}")     
+        print(f"gt_classes : {entry['gt_classes']}")       
         entry['seg_areas'] = np.append(entry['seg_areas'], seg_areas)
         entry['gt_overlaps'] = np.append(
             entry['gt_overlaps'].toarray(), gt_overlaps, axis=0
@@ -294,6 +292,8 @@ class JsonDataset(object):
         entry['box_to_gt_ind_map'] = np.append(
             entry['box_to_gt_ind_map'], box_to_gt_ind_map
         )
+        entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+        print(f"gt_labels_vec : {entry['gt_labels_vec']}")   
         if self.keypoints is not None:
             entry['gt_keypoints'] = np.append(
                 entry['gt_keypoints'], gt_keypoints, axis=0
@@ -320,13 +320,14 @@ class JsonDataset(object):
             # entry['boxes'] = np.append(
             #     entry['boxes'], boxes.astype(np.int).astype(np.float), axis=0)
             entry['gt_classes'] = np.append(entry['gt_classes'], gt_classes)
-            entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
             entry['seg_areas'] = np.append(entry['seg_areas'], seg_areas)
             entry['gt_overlaps'] = scipy.sparse.csr_matrix(gt_overlaps)
             entry['is_crowd'] = np.append(entry['is_crowd'], is_crowd)
             entry['box_to_gt_ind_map'] = np.append(
                 entry['box_to_gt_ind_map'], box_to_gt_ind_map
             )
+            entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+
             if self.keypoints is not None:
                 entry['gt_keypoints'] = np.append(
                     entry['gt_keypoints'], gt_keypoints, axis=0
