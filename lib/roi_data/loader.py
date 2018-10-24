@@ -27,7 +27,6 @@ class RoiDataLoader(data.Dataset):
         blobs, valid = get_minibatch(single_db)
         #TODO: Check if minibatch is valid ? If not, abandon it.
         # Need to change _worker_loop in torch.utils.data.dataloader.py.
-        print(f"key = {entry,keys()}")
 
         # Squeeze batch dim
         for key in blobs:
@@ -38,6 +37,8 @@ class RoiDataLoader(data.Dataset):
             self.crop_data(blobs, ratio)
             # Check bounding box
             entry = blobs['roidb'][0]
+            print(f"key = {entry.keys()}")
+
             boxes = entry['boxes']
             invalid = (boxes[:, 0] == boxes[:, 2]) | (boxes[:, 1] == boxes[:, 3])
             valid_inds = np.nonzero(~ invalid)[0]
