@@ -250,9 +250,9 @@ class Generalized_RCNN(nn.Module):
 
         elif self.training and self.weak_supervise:
             # Weak supervision loss
-            logging.info(f"image-level labels: {rpn_ret['image_labels_vec']}")
-            logging.info(f"cls score: {cls_score}")
-            logging.info(f"det score: {det_score}")
+            logging.info(f"image-level labels: shape {rpn_ret['image_labels_vec'].shape}\n {rpn_ret['image_labels_vec']}")
+            logging.info(f"cls score: shape {cls_score.shape}\n {cls_score}")
+            logging.info(f"det score: shape {det_score.shape}\n {det_score}")
 
         else:
             # Testing
