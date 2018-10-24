@@ -114,7 +114,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         softmax_det = F.softmax(det_ind, dim=0)
 
         print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
-        \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_cls.sum(dim=0)}")
+        \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
 
 
         # print(f"cls_score[ind]: shape {cls_ind.shape}")
