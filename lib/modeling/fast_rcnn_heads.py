@@ -8,6 +8,8 @@ from core.config import cfg
 import nn as mynn
 import utils.net as net_utils
 
+import numpy as np
+
 
 class fast_rcnn_outputs(nn.Module):
     def __init__(self, dim_in):
@@ -92,6 +94,24 @@ class fast_rcnn_outputs(nn.Module):
             det_score = self.det_score(x)
             return cls_score, det_score, bbox_pred
 
+def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
+    device_id = cls_score.get_device()
+    image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
+
+    batch_idx_list = np.unique(rois_batch_idx).tolist()
+    assert len(batch_idx_list) == image_labels_vec.shape[0]
+    for idx in batch_idx_list:
+        ind = np.where(rois_batch_idx == idx)
+        print(ind)
+        input()
+    loss_cls = F.cross_entropy(cls_score, rois_label)
+
+
+    # class accuracy
+    cls_preds = cls_score.max(dim=1)[1].type_as(rois_label)
+    accuracy_cls = cls_preds.eq(rois_label).float().mean(dim=0)
+
+    return loss_cls, loss_bbox, accuracy_cls
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
                      bbox_inside_weights, bbox_outside_weights):
