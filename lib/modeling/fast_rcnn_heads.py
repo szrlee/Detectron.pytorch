@@ -127,7 +127,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         else:
             cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
 
-        print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
+        # print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
         # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
         # \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
 
@@ -136,7 +136,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
 
     # multi label class accuracy
     ap_score = average_precision_score(image_labels.cpu().numpy(), cls_probs.cpu().numpy())
-    print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
+    # print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
     return loss_cls, ap_score
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
