@@ -107,8 +107,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero()
-        print(ind.shape)
-        input()
+        print(ind.shape, ind[-1,:])
         cls_ind = torch.index_select(cls_score, 0, ind)
         print(f"cls_score[ind]: shape {cls_ind.shape}")
         input()
