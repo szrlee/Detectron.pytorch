@@ -261,8 +261,8 @@ class JsonDataset(object):
             cls = self.json_category_id_to_contiguous_id[obj['category_id']]
             boxes[ix, :] = obj['clean_bbox']
             gt_classes[ix] = cls
-            assert(cls < self.num_classes)
-            gt_labels_vec[1, cls] = 1
+            assert cls < self.num_classes
+            gt_labels_vec[0, cls] = 1
             seg_areas[ix] = obj['area']
             is_crowd[ix] = obj['iscrowd']
             box_to_gt_ind_map[ix] = ix
