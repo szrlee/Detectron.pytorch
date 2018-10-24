@@ -102,10 +102,10 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
 
-    batch_idx_list = np.unique(rois_batch_idx).tolist()
+    batch_idx_list = torch.unique(rois_batch_idx).numpy().tolist()
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
-        ind = torch.from_numpy(np.where(rois_batch_idx == idx))
+        ind = (rois_batch_idx == idx).nonzero()
         print(ind)
         input()
         cls_ind = torch.index_select(cls_score, 0, ind)
