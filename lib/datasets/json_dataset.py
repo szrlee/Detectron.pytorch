@@ -497,6 +497,10 @@ def _merge_proposal_boxes_into_roidb(roidb, box_list):
                 entry['box_to_gt_ind_map'].dtype, copy=False
             )
         )
+        entry['gt_labels_vec'] = np.append(
+            entry['gt_labels_vec'],
+            np.zeros((num_boxes, entry['gt_labels_vec'].shape[1]), dtype=entry['gt_classes'].dtype)
+        )
 
 
 def _filter_crowd_proposals(roidb, crowd_thresh):
