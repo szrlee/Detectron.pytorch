@@ -106,7 +106,7 @@ class JsonDataset(object):
         so we don't need to overwrite it again.
         """
         keys = ['boxes', 'segms', 'gt_classes', 'seg_areas', 'gt_overlaps',
-                'is_crowd', 'box_to_gt_ind_map']
+                'is_crowd', 'box_to_gt_ind_map', 'gt_labels_vec']
         if self.keypoints is not None:
             keys += ['gt_keypoints', 'has_visible_keypoints']
         return keys
@@ -188,6 +188,7 @@ class JsonDataset(object):
         entry['boxes'] = np.empty((0, 4), dtype=np.float32)
         entry['segms'] = []
         entry['gt_classes'] = np.empty((0), dtype=np.int32)
+        entry['gt_labels_vec'] = np.empty((0, self.num_classes), dtype=np.int32)
         entry['seg_areas'] = np.empty((0), dtype=np.float32)
         entry['gt_overlaps'] = scipy.sparse.csr_matrix(
             np.empty((0, self.num_classes), dtype=np.float32)
@@ -239,6 +240,7 @@ class JsonDataset(object):
 
         boxes = np.zeros((num_valid_objs, 4), dtype=entry['boxes'].dtype)
         gt_classes = np.zeros((num_valid_objs), dtype=entry['gt_classes'].dtype)
+        gt_labels_vec = np.zeros((1, self.num_classes), dtype=entry['gt_labels_vec'].dtype)
         gt_overlaps = np.zeros(
             (num_valid_objs, self.num_classes),
             dtype=entry['gt_overlaps'].dtype
@@ -259,6 +261,8 @@ class JsonDataset(object):
             cls = self.json_category_id_to_contiguous_id[obj['category_id']]
             boxes[ix, :] = obj['clean_bbox']
             gt_classes[ix] = cls
+            assert(cls < self.num_classes)
+            gt_labels_vec[1, cls] = 1
             seg_areas[ix] = obj['area']
             is_crowd[ix] = obj['iscrowd']
             box_to_gt_ind_map[ix] = ix
@@ -278,6 +282,9 @@ class JsonDataset(object):
         # entry['boxes'] = np.append(
         #     entry['boxes'], boxes.astype(np.int).astype(np.float), axis=0)
         entry['gt_classes'] = np.append(entry['gt_classes'], gt_classes)
+        print(f"gt_classes : {entry['gt_classes']}")     
+        entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+        print(f"gt_labels_vec : {entry['gt_labels_vec']}")     
         entry['seg_areas'] = np.append(entry['seg_areas'], seg_areas)
         entry['gt_overlaps'] = np.append(
             entry['gt_overlaps'].toarray(), gt_overlaps, axis=0
@@ -304,15 +311,16 @@ class JsonDataset(object):
         for entry, cached_entry in zip(roidb, cached_roidb):
             values = [cached_entry[key] for key in self.valid_cached_keys]
             boxes, segms, gt_classes, seg_areas, gt_overlaps, is_crowd, \
-                box_to_gt_ind_map = values[:7]
+                box_to_gt_ind_map, gt_labels_vec = values[:8]
             if self.keypoints is not None:
-                gt_keypoints, has_visible_keypoints = values[7:]
+                gt_keypoints, has_visible_keypoints = values[8:]
             entry['boxes'] = np.append(entry['boxes'], boxes, axis=0)
             entry['segms'].extend(segms)
             # To match the original implementation:
             # entry['boxes'] = np.append(
             #     entry['boxes'], boxes.astype(np.int).astype(np.float), axis=0)
             entry['gt_classes'] = np.append(entry['gt_classes'], gt_classes)
+            entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
             entry['seg_areas'] = np.append(entry['seg_areas'], seg_areas)
             entry['gt_overlaps'] = scipy.sparse.csr_matrix(gt_overlaps)
             entry['is_crowd'] = np.append(entry['is_crowd'], is_crowd)
