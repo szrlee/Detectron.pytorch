@@ -96,7 +96,7 @@ class fast_rcnn_outputs(nn.Module):
 
 def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     device_id = cls_score.get_device()
-    rois_batch_idx = torch.from_numpy(rois_batch_idx)
+    rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
     input()
 
