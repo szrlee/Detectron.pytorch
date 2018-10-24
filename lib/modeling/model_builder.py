@@ -255,10 +255,10 @@ class Generalized_RCNN(nn.Module):
             # logging.info(f"cls score: shape {cls_score.shape}\n {cls_score}")
             # logging.info(f"det score: shape {det_score.shape}\n {det_score}")
             # 
-            loss_cls, accuracy_cls = fast_rcnn_heads.image_level_loss(
+            image_loss_cls, ap_score = fast_rcnn_heads.image_level_loss(
                 cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'])
-            return_dict['losses']['loss_cls'] = loss_cls
-            return_dict['metrics']['accuracy_cls'] = accuracy_cls            
+            return_dict['losses']['image_loss_cls'] = image_loss_cls
+            return_dict['metrics']['ap_score'] = ap_score            
 
         else:
             # Testing

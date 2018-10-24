@@ -9,6 +9,8 @@ import nn as mynn
 import utils.net as net_utils
 
 import numpy as np
+from sklearn.metrics import average_precision_score
+
 
 
 class fast_rcnn_outputs(nn.Module):
@@ -103,6 +105,8 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
+    # exclude background class
+    image_labels = image_labels[:, 1:]
 
     # print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
@@ -127,16 +131,13 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
         # \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
 
-
         # print(f"cls_score[ind]: shape {cls_ind.shape}")
-    loss_cls = F.cross_entropy(cls_score, rois_label)
+    loss_cls = F.binary_cross_entropy(cls_probs, image_labels)
 
-
-    # class accuracy
-    cls_preds = cls_score.max(dim=1)[1].type_as(rois_label)
-    accuracy_cls = cls_preds.eq(rois_label).float().mean(dim=0)
-
-    return loss_cls, loss_bbox, accuracy_cls
+    # multi label class accuracy
+    ap_score = average_precision_score(image_labels.cpu().numpy(), cls_probs.cpu().numpy())
+    print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
+    return loss_cls, ap_score
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
                      bbox_inside_weights, bbox_outside_weights):
