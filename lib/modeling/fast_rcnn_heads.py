@@ -101,8 +101,11 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     batch_idx_list = np.unique(rois_batch_idx).tolist()
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
-        ind = np.where(rois_batch_idx == idx)
-        print(f"cls_score[ind]: shape {cls_score[ind].shape}\n {cls_score[ind]}")
+        ind = torch.from_numpy(np.where(rois_batch_idx == idx))
+        print(ind)
+        input()
+        cls_ind = torch.index_select(cls_score, 0, ind)
+        print(f"cls_score[ind]: shape {cls_ind.shape}")
         input()
     loss_cls = F.cross_entropy(cls_score, rois_label)
 
