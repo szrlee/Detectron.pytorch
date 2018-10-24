@@ -104,7 +104,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
 
-    image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
+    image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
     # exclude background class
     image_labels = image_labels[:, 1:]
 
