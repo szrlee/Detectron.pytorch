@@ -327,6 +327,7 @@ class JsonDataset(object):
                 entry['box_to_gt_ind_map'], box_to_gt_ind_map
             )
             entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
+            print(f"gt_labels_vec from cache: {entry['gt_labels_vec']}")
 
             if self.keypoints is not None:
                 entry['gt_keypoints'] = np.append(
@@ -497,10 +498,7 @@ def _merge_proposal_boxes_into_roidb(roidb, box_list):
                 entry['box_to_gt_ind_map'].dtype, copy=False
             )
         )
-        entry['gt_labels_vec'] = np.append(
-            entry['gt_labels_vec'],
-            np.zeros((num_boxes, entry['gt_labels_vec'].shape[1]), dtype=entry['gt_classes'].dtype)
-        )
+        print(f"gt_labels_vec test for key: {entry['gt_labels_vec']}")
 
 
 def _filter_crowd_proposals(roidb, crowd_thresh):
