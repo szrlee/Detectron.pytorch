@@ -33,8 +33,10 @@ cfg = __C
 # ---------------------------------------------------------------------------- #
 __C.TRAIN = AttrDict()
 
-# Weak supervision
+# Weak supervision off
+# 
 __C.TRAIN.WEAK_SUPERVISE = False
+__C.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = False
 
 # Datasets to train on
 # Available dataset list: datasets.dataset_catalog.DATASETS.keys()

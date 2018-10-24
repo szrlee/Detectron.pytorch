@@ -110,6 +110,11 @@ def parse_args():
     parser.add_argument(
         '--load_ckpt', help='checkpoint path to load')
     parser.add_argument(
+        '--weak_supervise_with_pretrain', help='Using fully supervised pretrained\
+         object detector to initialize weights of weakly supervision network',
+        action='store_true')
+
+    parser.add_argument(
         '--load_detectron', help='path to the detectron weight pickle file')
 
     parser.add_argument(
@@ -340,6 +345,8 @@ def main():
 
     ### Load checkpoint
     if args.load_ckpt:
+        if args.weak_supervise_with_pretrain:
+            cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = True
         load_name = args.load_ckpt
         logging.info("loading checkpoint %s", load_name)
         checkpoint = torch.load(load_name, map_location=lambda storage, loc: storage)

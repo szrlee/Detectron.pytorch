@@ -160,6 +160,7 @@ def load_ckpt(model, ckpt):
     for name in ckpt:
         if mapping[name]:
             state_dict[name] = ckpt[name]
+    logging.info(f"state_dict:\n {state_dict}")
     model.load_state_dict(state_dict, strict=False)
 
 

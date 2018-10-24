@@ -13,6 +13,7 @@ class fast_rcnn_outputs(nn.Module):
     def __init__(self, dim_in):
         super().__init__()
         self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
+        self.weak_supervise_with_pretrain = cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN
         self.cls_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
         if self.weak_supervise:
             self.det_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
@@ -43,13 +44,23 @@ class fast_rcnn_outputs(nn.Module):
                 'bbox_pred.weight': 'bbox_pred_w',
                 'bbox_pred.bias': 'bbox_pred_b'
             }
-        else:
+        elif self.weak_supervise_with_pretrain:
             # initialize det weight as the same of pretrained cls
             detectron_weight_mapping = {
                 'cls_score.weight': 'cls_score_w',
                 'cls_score.bias': 'cls_score_b',
                 'det_score.weight': 'cls_score_w',
                 'det_score.bias': 'cls_score_b',                
+                'bbox_pred.weight': 'bbox_pred_w',
+                'bbox_pred.bias': 'bbox_pred_b'
+            }
+        else:
+            # initialize det weight with det
+            detectron_weight_mapping = {
+                'cls_score.weight': 'cls_score_w',
+                'cls_score.bias': 'cls_score_b',
+                'det_score.weight': 'det_score_w',
+                'det_score.bias': 'det_score_b',                
                 'bbox_pred.weight': 'bbox_pred_w',
                 'bbox_pred.bias': 'bbox_pred_b'
             }
