@@ -95,6 +95,7 @@ class fast_rcnn_outputs(nn.Module):
             return cls_score, det_score, bbox_pred
 
 def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
+    batch_idx_list = np.unique(rois_batch_idx).tolist()
     device_id = cls_score.get_device()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
@@ -102,7 +103,6 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
 
-    batch_idx_list = torch.unique(rois_batch_idx).numpy().tolist()
     print(f"batch_idx_list: {batch_idx_list}")
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
