@@ -98,17 +98,26 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     batch_idx_list = np.unique(rois_batch_idx).tolist()
     device_id = cls_score.get_device()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
-    print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
+    # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
 
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('int64'))).cuda(device_id)
 
-    print(f"batch_idx_list: {batch_idx_list}")
+    # print(f"batch_idx_list: {batch_idx_list}")
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero().squeeze()
-        print(ind.shape, ind[-1])
+        # print(ind.shape, ind[-1])
         cls_ind = torch.index_select(cls_score, 0, ind)
-        print(f"cls_score[ind]: shape {cls_ind.shape}")
+        det_ind = torch.index_select(det_score, 0, ind)
+
+        softmax_cls = F.softmax(cls_ind, dim=1)
+        softmax_det = F.softmax(det_ind, dim=0)
+
+        print(f"softmax_cls shape: {softmax_cls.shape} \n \
+         softmax_det shape: {softmax_det.shape}")
+
+
+        # print(f"cls_score[ind]: shape {cls_ind.shape}")
     loss_cls = F.cross_entropy(cls_score, rois_label)
 
 
