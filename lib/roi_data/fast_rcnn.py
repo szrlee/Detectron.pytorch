@@ -108,13 +108,13 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
     for im_i, entry in enumerate(roidb):
         frcn_blobs = _sample_rois(entry, im_scales[im_i], im_i)
         for k, v in frcn_blobs.items():
-            print(f"{k} : {v}")
+            print(f"frcn_blobs {k} : {v}")
             blobs[k].append(v)
     # Concat the training blob lists into tensors
     for k, v in blobs.items():
         if isinstance(v, list) and len(v) > 0:
             blobs[k] = np.concatenate(v)
-            print(f"{k} : {blobs[k]}")
+            print(f"blobs{k} : {blobs[k]}")
 
     # Add FPN multilevel training RoIs, if configured
     if cfg.FPN.FPN_ON and cfg.FPN.MULTILEVEL_ROIS:
@@ -188,6 +188,7 @@ def _sample_rois(roidb, im_scale, batch_idx):
     # Base Fast R-CNN blobs
     blob_dict = dict(
         labels_int32=sampled_labels.astype(np.int32, copy=False),
+        image_labels_vec=roidb['gt_labels_vec'],
         rois=sampled_rois,
         bbox_targets=bbox_targets,
         bbox_inside_weights=bbox_inside_weights,
