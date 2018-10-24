@@ -102,7 +102,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = np.where(rois_batch_idx == idx)
-        print(ind)
+        print(f"cls_score[ind]: shape {cls_score[ind].shape}\n {cls_score[ind]}")
         input()
     loss_cls = F.cross_entropy(cls_score, rois_label)
 
