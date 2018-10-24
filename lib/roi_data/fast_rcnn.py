@@ -43,6 +43,9 @@ def get_fast_rcnn_blob_names(is_training=True):
         # labels_int32 blob: R categorical labels in [0, ..., K] for K
         # foreground classes plus background
         blob_names += ['labels_int32']
+        # image_labels_vec blob: 1 image-level ground truth labels vector 
+        # [1/0, 1/0, 1/0, ..., 1/0] length of total classes
+        blob_names += ['image_labels_vec']
     if is_training:
         # bbox_targets blob: R bounding-box regression targets with 4
         # targets per class

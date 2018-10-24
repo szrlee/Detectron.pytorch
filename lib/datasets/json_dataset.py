@@ -282,7 +282,7 @@ class JsonDataset(object):
         # entry['boxes'] = np.append(
         #     entry['boxes'], boxes.astype(np.int).astype(np.float), axis=0)
         entry['gt_classes'] = np.append(entry['gt_classes'], gt_classes)
-        print(f"gt_classes : {entry['gt_classes']}")       
+        # print(f"gt_classes : {entry['gt_classes']}")       
         entry['seg_areas'] = np.append(entry['seg_areas'], seg_areas)
         entry['gt_overlaps'] = np.append(
             entry['gt_overlaps'].toarray(), gt_overlaps, axis=0
@@ -293,7 +293,7 @@ class JsonDataset(object):
             entry['box_to_gt_ind_map'], box_to_gt_ind_map
         )
         entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
-        print(f"gt_labels_vec : {entry['gt_labels_vec']}")   
+        # print(f"gt_labels_vec : {entry['gt_labels_vec']}")
         if self.keypoints is not None:
             entry['gt_keypoints'] = np.append(
                 entry['gt_keypoints'], gt_keypoints, axis=0
@@ -327,7 +327,6 @@ class JsonDataset(object):
                 entry['box_to_gt_ind_map'], box_to_gt_ind_map
             )
             entry['gt_labels_vec'] = np.append(entry['gt_labels_vec'], gt_labels_vec)
-            print(f"gt_labels_vec from cache: {entry['gt_labels_vec']}")
 
             if self.keypoints is not None:
                 entry['gt_keypoints'] = np.append(
@@ -498,7 +497,6 @@ def _merge_proposal_boxes_into_roidb(roidb, box_list):
                 entry['box_to_gt_ind_map'].dtype, copy=False
             )
         )
-        print(f"gt_labels_vec test for key: {entry['gt_labels_vec']}")
 
 
 def _filter_crowd_proposals(roidb, crowd_thresh):
