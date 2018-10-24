@@ -113,14 +113,15 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         cls_ind = torch.index_select(cls_score, 0, ind)
         det_ind = torch.index_select(det_score, 0, ind)
 
-        softmax_cls = F.softmax(cls_ind, dim=1)
-        softmax_det = F.softmax(det_ind, dim=0)
+        # exclude background
+        softmax_cls = F.softmax(cls_ind[:, 1:], dim=1)
+        softmax_det = F.softmax(det_ind[:, 1:], dim=0)
 
         cls_prob = torch.sum(softmax_cls * softmax_det, dim=0)
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
-            cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
+            cls_probs = torch.cat((cls_probs, [cls_prob].unsqueeze(dim=0)), dim=0)
 
         print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
         # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
