@@ -107,13 +107,13 @@ if __name__ == '__main__':
         cfg.TEST.DATASETS = ('cross_clipart_test',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "dt_clipart_voc0712":
-        cfg.TRAIN.DATASETS = ('cross_dt-clipart-VOC2007_test',)
+        cfg.TEST.DATASETS = ('cross_dt-clipart-VOC2007_test',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "dt_comic_voc0712":
-        cfg.TRAIN.DATASETS = ('cross_dt-comic-VOC2007_test',)
+        cfg.TEST.DATASETS = ('cross_dt-comic-VOC2007_test',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "dt_watercolor_voc0712":
-        cfg.TRAIN.DATASETS = ('cross_dt-watercolor-VOC2007_test',)
+        cfg.TEST.DATASETS = ('cross_dt-watercolor-VOC2007_test',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "custom_dataset":
         cfg.TEST.DATASETS = ('custom_data_test',)
