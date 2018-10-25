@@ -262,6 +262,12 @@ class Generalized_RCNN(nn.Module):
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['metrics']['ap_score_in_minibatch'] = ap_score            
 
+            # pytorch0.4 bug on gathering scalar(0-dim) tensors
+            for k, v in return_dict['losses'].items():
+                return_dict['losses'][k] = v.unsqueeze(0)
+            for k, v in return_dict['metrics'].items():
+                return_dict['metrics'][k] = v.unsqueeze(0)
+
         else:
             # Testing
             return_dict['rois'] = rpn_ret['rois']
