@@ -74,6 +74,7 @@ class Generalized_RCNN(nn.Module):
 
         # Weakly supervision
         self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
+        self.bceloss = nn.BCELoss()
 
         # For cache
         self.mapping_to_detectron = None
@@ -258,7 +259,7 @@ class Generalized_RCNN(nn.Module):
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
             image_loss_cls, acc_score = fast_rcnn_heads.image_level_loss(
-                cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'])
+                cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'], self.bceloss)
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['metrics']['accuracy_cls'] = acc_score            
 

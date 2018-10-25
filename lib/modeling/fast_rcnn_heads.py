@@ -93,7 +93,7 @@ class fast_rcnn_outputs(nn.Module):
             det_score = self.det_score(x)
             return cls_score, det_score, bbox_pred
 
-def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
+def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec, bceloss):
     device_id = cls_score.get_device()
 
     assert device_id == det_score.get_device()
@@ -129,7 +129,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
         # \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
 
         # print(f"cls_score[ind]: shape {cls_ind.shape}")
-    loss_cls = F.binary_cross_entropy(cls_probs, image_labels)
+    loss_cls = bceloss(cls_probs, image_labels)
 
     # multi label class accuracy
     acc_score = cls_probs.round().eq(image_labels).float().mean()
