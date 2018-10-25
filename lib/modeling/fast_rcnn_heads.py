@@ -132,7 +132,7 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     loss_cls = F.binary_cross_entropy(cls_probs, image_labels)
 
     # multi label class accuracy
-    acc_score = cls_probs.round().eq(image_labels).float.mean()
+    acc_score = cls_probs.round().eq(image_labels).float().mean()
     # print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
     return loss_cls, acc_score
 
