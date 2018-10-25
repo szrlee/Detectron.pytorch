@@ -9,9 +9,6 @@ import nn as mynn
 import utils.net as net_utils
 
 import numpy as np
-from sklearn.metrics import average_precision_score
-
-
 
 class fast_rcnn_outputs(nn.Module):
     def __init__(self, dim_in):
@@ -135,9 +132,9 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec):
     loss_cls = F.binary_cross_entropy(cls_probs, image_labels)
 
     # multi label class accuracy
-    ap_score = average_precision_score(image_labels.detach().cpu().numpy(), cls_probs.detach().cpu().numpy())
+    acc_score = cls_probs.round().eq(image_labels).float.mean()
     # print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
-    return loss_cls, ap_score
+    return loss_cls, acc_score
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
                      bbox_inside_weights, bbox_outside_weights):
