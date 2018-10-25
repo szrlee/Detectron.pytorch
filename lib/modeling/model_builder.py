@@ -258,7 +258,7 @@ class Generalized_RCNN(nn.Module):
             image_loss_cls, ap_score = fast_rcnn_heads.image_level_loss(
                 cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'])
             return_dict['losses']['image_loss_cls'] = image_loss_cls
-            return_dict['metrics']['ap_score'] = ap_score            
+            return_dict['metrics']['ap_score_in_minibatch'] = ap_score            
 
         else:
             # Testing
