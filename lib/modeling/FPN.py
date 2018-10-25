@@ -402,7 +402,7 @@ class fpn_rpn_outputs(nn.Module):
                         fpn_rpn_cls_score.view(B, 2, C // 2, H, W), dim=1)
                     fpn_rpn_cls_probs = fpn_rpn_cls_probs[:, 1].squeeze(dim=1)
                 else:  # sigmoid
-                    fpn_rpn_cls_probs = F.sigmoid(fpn_rpn_cls_score)
+                    fpn_rpn_cls_probs = torch.sigmoid(fpn_rpn_cls_score)
 
                 fpn_rpn_rois, fpn_rpn_roi_probs = self.GenerateProposals_modules[lvl - k_min](
                     fpn_rpn_cls_probs, fpn_rpn_bbox_pred, im_info)

@@ -274,7 +274,7 @@ def main():
     timers['roidb'].tic()
     roidb, ratio_list, ratio_index = combined_roidb_for_training(
         cfg.TRAIN.DATASETS, cfg.TRAIN.PROPOSAL_FILES)
-    print(f"roidb keys : {roidb[0].keys()}")
+    # print(f"roidb keys : {roidb[0].keys()}")
     timers['roidb'].toc()
     roidb_size = len(roidb)
     logger.info('{:d} roidb entries'.format(roidb_size))

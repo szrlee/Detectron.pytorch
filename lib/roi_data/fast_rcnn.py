@@ -189,7 +189,7 @@ def _sample_rois(roidb, im_scale, batch_idx):
     sampled_rois = np.hstack((repeated_batch_idx, sampled_rois))
 
     # Base Fast R-CNN blobs
-    print(f"roidb keys :{roidb.keys()}")
+    # print(f"roidb keys :{roidb.keys()}")
     blob_dict = dict(
         labels_int32=sampled_labels.astype(np.int32, copy=False),
         image_labels_vec=roidb['gt_labels_vec'],

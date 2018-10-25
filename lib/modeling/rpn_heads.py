@@ -1,6 +1,7 @@
 from torch import nn
 from torch.nn import init
 import torch.nn.functional as F
+import torch
 
 from core.config import cfg
 from modeling.generate_anchors import generate_anchors
@@ -107,7 +108,7 @@ class single_scale_rpn_outputs(nn.Module):
                     rpn_cls_logits.view(B, 2, C // 2, H, W), dim=1)
                 rpn_cls_prob = rpn_cls_prob[:, 1].squeeze(dim=1)
             else:
-                rpn_cls_prob = F.sigmoid(rpn_cls_logits)
+                rpn_cls_prob = torch.sigmoid(rpn_cls_logits)
 
             rpn_rois, rpn_rois_prob = self.RPN_GenerateProposals(
                 rpn_cls_prob, rpn_bbox_pred, im_info)
