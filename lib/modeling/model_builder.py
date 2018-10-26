@@ -159,7 +159,7 @@ class Generalized_RCNN(nn.Module):
         blob_conv = self.Conv_Body(im_data)
 
         rpn_ret = self.RPN(blob_conv, im_info, roidb)
-        rois_batch_idx = rpn_ret['rois'][:, 0]
+        rois = rpn_ret['rois']
         # logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
         #  \n {rpn_ret['rois'][:, 0]}")
         # if self.training:
@@ -259,7 +259,7 @@ class Generalized_RCNN(nn.Module):
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
             image_loss_cls, acc_score = fast_rcnn_heads.image_level_loss(
-                cls_score, det_score, rois_batch_idx, rpn_ret['image_labels_vec'], self.bceloss)
+                cls_score, det_score, rois, rpn_ret['image_labels_vec'], self.bceloss)
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['metrics']['accuracy_cls'] = acc_score            
 

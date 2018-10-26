@@ -93,13 +93,15 @@ class fast_rcnn_outputs(nn.Module):
             det_score = self.det_score(x)
             return cls_score, det_score, bbox_pred
 
-def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec, bceloss):
+def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
     device_id = cls_score.get_device()
 
     assert device_id == det_score.get_device()
+
+    rois_batch_idx = rois[:, 0]
     batch_idx_list = np.unique(rois_batch_idx).tolist()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
-    # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
+    print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
     # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
     # exclude background class
@@ -117,8 +119,12 @@ def image_level_loss(cls_score, det_score, rois_batch_idx, image_labels_vec, bce
         # exclude background
         softmax_cls = F.softmax(cls_ind[:, 1:], dim=1)
         softmax_det = F.softmax(det_ind[:, 1:], dim=0)
+        region_cls_probs = softmax_cls * softmax_det
 
-        cls_prob = torch.sum(softmax_cls * softmax_det, dim=0)
+        if cfg.TRAIN.SPATIAL_REG:
+            print( (image_labels[idx,:] == 1).nonzero() )
+
+        cls_prob = torch.sum(region_cls_probs, dim=0)
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
