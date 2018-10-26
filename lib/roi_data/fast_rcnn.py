@@ -39,13 +39,11 @@ def get_fast_rcnn_blob_names(is_training=True):
     # (batch_idx, x1, y1, x2, y2) specifying an image batch index and a
     # rectangle (x1, y1, x2, y2)
     blob_names = ['rois']
+
     if is_training:
         # labels_int32 blob: R categorical labels in [0, ..., K] for K
         # foreground classes plus background
         blob_names += ['labels_int32']
-        # image_labels_vec blob: 1 image-level ground truth labels vector 
-        # [1/0, 1/0, 1/0, ..., 1/0] length of total classes
-        blob_names += ['image_labels_vec']
     if is_training:
         # bbox_targets blob: R bounding-box regression targets with 4
         # targets per class
@@ -93,6 +91,11 @@ def get_fast_rcnn_blob_names(is_training=True):
         for lvl in range(k_min, k_max + 1):
             blob_names += ['rois_fpn' + str(lvl)]
         blob_names += ['rois_idx_restore_int32']
+
+        # image_labels_vec blob: 1 image-level ground truth labels vector 
+        # [1/0, 1/0, 1/0, ..., 1/0] length of total classes
+        blob_names += ['image_labels_vec']
+        
         if is_training:
             if cfg.MODEL.MASK_ON:
                 for lvl in range(k_min, k_max + 1):
