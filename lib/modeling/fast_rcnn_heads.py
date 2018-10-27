@@ -112,6 +112,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
+    reg = None
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero().squeeze()
@@ -134,39 +135,58 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # gt_classes_ind = (image_labels[idx].detach() == 1).nonzero()
             # print(f"no squeeze gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
             gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze(dim=1)
-            print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
+            # print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
 
             roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
             max_roi_pos_cls_scores_ind = torch.argmax(roi_pos_cls_scores, dim=0)
+            max_roi_pos_cls_scores = torch.max(roi_pos_cls_scores, dim=0)
+
             # print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
             max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind]
-            print(f"max ind after \n {max_roi_pos_cls_scores_ind}")
+            # print(f"max ind after \n {max_roi_pos_cls_scores_ind}")
             # bugs on indexing max_roi_pos_cls_scores_ind is torch.Size(1)
             roi_max_in_cls = rois[max_roi_pos_cls_scores_ind.cpu().numpy(), 1:5]
             roi_in_one_image = rois[ind, 1:5]
-            print(f"roi_max_in_cls \n {roi_max_in_cls}")
+            # print(f"roi_max_in_cls \n {roi_max_in_cls}")
             # print(f"roi_in_one_image \n {roi_in_one_image}")
 
             roi_overlaps_with_max = box_utils.bbox_overlaps(
                 roi_in_one_image.astype(dtype=np.float32, copy=False),
                 roi_max_in_cls.astype(dtype=np.float32, copy=False)
             )
-            print(f"roi_overlaps_with_max shape \n {roi_overlaps_with_max.shape}")
+            # print(f"roi_overlaps_with_max shape \n {roi_overlaps_with_max.shape}")
             pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)
-            print(f"index of roi_overlaps_with_max > 0.6 \n {pos_roi_overlaps_with_max_ind}")
-            print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
+            # print(f"index of roi_overlaps_with_max > 0.6 \n {pos_roi_overlaps_with_max_ind}")
+            # print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
             selected_overlap_roi_ind  = ind[pos_roi_overlaps_with_max_ind[0]]
             max_roi_ind = max_roi_pos_cls_scores_ind[pos_roi_overlaps_with_max_ind[1]]
-            print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
-            print(f"box_feat corresbonding ind shape: {box_feat[max_roi_ind]}")
+            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
+            # print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
+            print(f"box_feat corresbonding ind: {max_roi_ind}")
+            print(f"box_feat corresbonding scores: {max_roi_scores}")
             diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
-            print(torch.mean(diff_box_feat * diff_box_feat, dim = 0))
+            # print(torch.sum(diff_box_feat * diff_box_feat))
+            # weighted spatial regularization
+            if reg is None:
+                reg = torch.sum(max_roi_scores * torch.sum(diff_box_feat * diff_box_feat, dim=1), keepdim=True)/ image_labels.shape[1]
+            else:
+                reg_new = torch.sum(max_roi_scores * torch.sum(diff_box_feat * diff_box_feat, dim=1), keepdim=True)/ image_labels.shape[1]
+                reg = torch.cat((reg, reg_new), dim=0)
+
+            print(f"reg shape: {reg.shape}\n {reg}")
+
+
 
         cls_prob = torch.sum(roi_cls_scores, dim=0)
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
             cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
+        print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}"})
+
+    
+    # spatial regularization
+    reg = reg / len(batch_idx_list)
 
     # if cls_probs.max() > 1 or cls_probs.min() < 0:
     #     print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
@@ -177,7 +197,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
     # multi label class accuracy
     acc_score = cls_probs.round().eq(image_labels).float().mean()
     # print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
-    return loss_cls, acc_score
+    return loss_cls, acc_score, reg
 
 def fast_rcnn_losses(cls_score, bbox_pred, label_int32, bbox_targets,
                      bbox_inside_weights, bbox_outside_weights):

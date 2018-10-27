@@ -257,9 +257,11 @@ class Generalized_RCNN(nn.Module):
             # 
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
-            image_loss_cls, acc_score = fast_rcnn_heads.image_level_loss(
+            image_loss_cls, acc_score, reg = fast_rcnn_heads.image_level_loss(
                 cls_score, det_score, rpn_ret['rois'], rpn_ret['image_labels_vec'], self.bceloss, box_feat)
             return_dict['losses']['image_loss_cls'] = image_loss_cls
+            return_dict['losses']['spatial_reg'] = reg
+
             return_dict['metrics']['accuracy_cls'] = acc_score            
 
             # pytorch0.4 bug on gathering scalar(0-dim) tensors
