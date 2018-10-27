@@ -102,15 +102,15 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
     rois_batch_idx = rois[:, 0]
     batch_idx_list = np.unique(rois_batch_idx).astype('int32').tolist()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
-    print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
-    print(f"box_feat: shape {box_feat.shape}\n {box_feat}")
+    # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
+    # print(f"box_feat: shape {box_feat.shape}\n {box_feat}")
 
     # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
     # exclude background class
     image_labels = image_labels[:, 1:]
 
-    print(f"batch_idx_list: {batch_idx_list}")
+    # print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
     reg = 0
     assert len(batch_idx_list) == image_labels_vec.shape[0]
@@ -159,14 +159,14 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
             selected_overlap_roi_ind  = ind[pos_roi_overlaps_with_max_ind[0]]
             max_roi_ind = max_roi_pos_cls_scores_ind[pos_roi_overlaps_with_max_ind[1]]
-            print(f"pos_roi_overlaps_with_max_ind[1] : {pos_roi_overlaps_with_max_ind[1]}")
-            print(f"max_roi_pos_cls_scores_ind : {max_roi_pos_cls_scores_ind}")
-            print(f"max_roi_pos_cls_scores : {max_roi_pos_cls_scores}")
+            # print(f"pos_roi_overlaps_with_max_ind[1] : {pos_roi_overlaps_with_max_ind[1]}")
+            # print(f"max_roi_pos_cls_scores_ind : {max_roi_pos_cls_scores_ind}")
+            # print(f"max_roi_pos_cls_scores : {max_roi_pos_cls_scores}")
 
             max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
             # print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
             # print(f"box_feat corresbonding ind: {max_roi_ind}")
-            print(f"box_feat corresbonding max scores: {max_roi_scores}")
+            # print(f"box_feat corresbonding max scores: {max_roi_scores}")
             diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
             # print(torch.sum(diff_box_feat * diff_box_feat))
             # weighted spatial regularization
@@ -181,12 +181,11 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             #     reg = torch.cat((reg, reg_new), dim=0)
             feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
             weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
+            # divided by number of non-background classes
             reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
-
-
-            print(f"feat_dis: {feat_dis}")
-            print(f"weighted_feat_dis: {weighted_feat_dis}")
-            print(f"reg: {reg}")
+            # print(f"feat_dis: {feat_dis}")
+            # print(f"weighted_feat_dis: {weighted_feat_dis}")
+            # print(f"reg: {reg}")
 
 
 
@@ -198,8 +197,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
         # print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}")
 
     
-    # spatial regularization
-    reg = reg / image_labels.shape[1]
+    # spatial regularization 
+    # divided by number of images
+    reg = reg / image_labels.shape[0]
     # if cls_probs.max() > 1 or cls_probs.min() < 0:
     #     print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
     # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
