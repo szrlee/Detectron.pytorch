@@ -178,6 +178,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
                 feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1, keepdim=True)
                 weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
                 reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True)/ image_labels.shape[1]
+                print(f"reg_new: {reg_new}")
+
                 reg = torch.cat((reg, reg_new), dim=0)
             
             print(f"weighted_feat_dis: {weighted_feat_dis}")
@@ -195,7 +197,6 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     
     # spatial regularization
-    reg = reg / len(batch_idx_list)
 
     # if cls_probs.max() > 1 or cls_probs.min() < 0:
     #     print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
