@@ -182,7 +182,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
             cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
-        print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}"})
+        print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}")
 
     
     # spatial regularization
