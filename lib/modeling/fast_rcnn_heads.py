@@ -173,11 +173,11 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             if reg is None:
                 feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
                 weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg = torch.sum(weighted_feat_dis, keepdim=True)/ image_labels.shape[1]
+                reg = torch.sum(weighted_feat_dis, dim=0, keepdim=True)/ image_labels.shape[1]
             else:
                 feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
                 weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg_new = torch.sum(weighted_feat_dis, keepdim=True)/ image_labels.shape[1]
+                reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True)/ image_labels.shape[1]
                 reg = torch.cat((reg, reg_new), dim=0)
 
             print(f"reg shape: {reg.shape}\n {reg}")
