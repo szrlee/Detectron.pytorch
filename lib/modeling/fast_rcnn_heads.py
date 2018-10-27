@@ -141,6 +141,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
             max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind]
             print(f"max ind after \n {max_roi_pos_cls_scores_ind}")
+            # bugs on indexing max_roi_pos_cls_scores_ind is torch.Size(1)
             roi_max_in_cls = rois[max_roi_pos_cls_scores_ind.cpu().numpy(), 1:5]
             roi_in_one_image = rois[ind, 1:5]
             print(f"roi_max_in_cls \n {roi_max_in_cls}")
@@ -150,7 +151,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
                 roi_in_one_image.astype(dtype=np.float32, copy=False),
                 roi_max_in_cls.astype(dtype=np.float32, copy=False)
             )
-            print(f"roi_overlaps_with_max \n {roi_overlaps_with_max}")
+            print(f"roi_overlaps_with_max shape \n {roi_overlaps_with_max.shape}")
+            pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)[0]
+            print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
 
 
 
