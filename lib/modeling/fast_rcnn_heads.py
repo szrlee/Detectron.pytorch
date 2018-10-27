@@ -99,7 +99,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
     assert device_id == det_score.get_device()
 
     rois_batch_idx = rois[:, 0]
-    batch_idx_list = np.unique(rois_batch_idx).tolist().astype('int32')
+    batch_idx_list = np.unique(rois_batch_idx).astype('int32').tolist()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
     # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
