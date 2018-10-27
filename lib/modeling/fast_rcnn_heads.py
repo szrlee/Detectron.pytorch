@@ -112,7 +112,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
-    reg = None
+    reg = 0
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero().squeeze()
@@ -199,7 +199,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     
     # spatial regularization
-
+    reg = reg / image_labels.shape[1]
     # if cls_probs.max() > 1 or cls_probs.min() < 0:
     #     print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
     # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
