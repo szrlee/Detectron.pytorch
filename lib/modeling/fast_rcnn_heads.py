@@ -93,7 +93,7 @@ class fast_rcnn_outputs(nn.Module):
             det_score = self.det_score(x)
             return cls_score, det_score, bbox_pred
 
-def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
+def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_feat):
     device_id = cls_score.get_device()
 
     assert device_id == det_score.get_device()
@@ -102,6 +102,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
     batch_idx_list = np.unique(rois_batch_idx).astype('int32').tolist()
     rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
     print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
+    print(f"box_feat: shape {box_feat.shape}\n {box_feat}")
+
     # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
     # exclude background class
@@ -119,7 +121,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
         # exclude background
         softmax_cls = F.softmax(cls_ind[:, 1:], dim=1)
         softmax_det = F.softmax(det_ind[:, 1:], dim=0)
-        region_cls_probs = softmax_cls * softmax_det
+        roi_cls_scores = softmax_cls * softmax_det
 
         if cfg.TRAIN.SPATIAL_REG:
             print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
@@ -127,8 +129,16 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
             print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
             print((image_labels[idx].detach() == 1).nonzero())
+            
+            # find positive classes for one image
+            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze()
+            roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
+            max_roi_pos_cls_scores_ind = ind(torch.argmax(roi_pos_cls_scores, dim=0)).cpu().numpy()
+            print(max_roi_pos_cls_scores_ind)
+            print(rois[max_roi_pos_cls_scores_ind, :])
 
-        cls_prob = torch.sum(region_cls_probs, dim=0)
+
+        cls_prob = torch.sum(roi_cls_scores, dim=0)
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
