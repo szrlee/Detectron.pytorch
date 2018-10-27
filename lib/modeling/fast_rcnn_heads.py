@@ -159,7 +159,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             max_roi_ind = max_roi_pos_cls_scores_ind[pos_roi_overlaps_with_max_ind[1]]
             print(box_feat[selected_overlap_roi_ind])
             print(box_feat[max_roi_ind])
-            
+            diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
+            print(torch.mean(diff_box_feat * diff_box_feat))
+
         cls_prob = torch.sum(roi_cls_scores, dim=0)
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
