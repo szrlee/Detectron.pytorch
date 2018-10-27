@@ -155,7 +155,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)
             print(f"index of roi_overlaps_with_max > 0.6 \n {pos_roi_overlaps_with_max_ind}")
             print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
-            print(ind(pos_roi_overlaps_with_max_ind[0]))
+            print(ind[pos_roi_overlaps_with_max_ind[0]])
             print(max_roi_pos_cls_scores_ind(pos_roi_overlaps_with_max_ind[1]))
 
 
