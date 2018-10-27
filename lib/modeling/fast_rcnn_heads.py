@@ -181,7 +181,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
                 print(f"reg_new: {reg_new}")
 
                 reg = torch.cat((reg, reg_new), dim=0)
-            
+            print(f"feat_dis: {feat_dis}")
+
             print(f"weighted_feat_dis: {weighted_feat_dis}")
 
             print(f"reg: {reg}")
