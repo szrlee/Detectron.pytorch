@@ -152,7 +152,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
                 roi_max_in_cls.astype(dtype=np.float32, copy=False)
             )
             print(f"roi_overlaps_with_max shape \n {roi_overlaps_with_max.shape}")
-            pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)[0]
+            pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)
             print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
 
 
