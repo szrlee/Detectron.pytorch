@@ -128,12 +128,13 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
             print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
-            print((image_labels[idx].detach() == 1).nonzero())
             
             # find positive classes for one image
             gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze()
+            print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
+
             roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
-            max_roi_pos_cls_scores_ind = ind(torch.argmax(roi_pos_cls_scores, dim=0)).cpu().numpy()
+            max_roi_pos_cls_scores_ind = ind(torch.argmax(roi_pos_cls_scores, dim=0).cpu().numpy())
             print(max_roi_pos_cls_scores_ind)
             print(rois[max_roi_pos_cls_scores_ind, :])
 
