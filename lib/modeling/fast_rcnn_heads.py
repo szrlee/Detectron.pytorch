@@ -166,25 +166,26 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
             # print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
             # print(f"box_feat corresbonding ind: {max_roi_ind}")
-            print(f"box_feat corresbonding scores: {max_roi_scores}")
+            print(f"box_feat corresbonding max scores: {max_roi_scores}")
             diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
             # print(torch.sum(diff_box_feat * diff_box_feat))
             # weighted spatial regularization
-            if reg is None:
-                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
-                weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0) / image_labels.shape[1]
-            else:
-                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
-                weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0)/ image_labels.shape[1]
-                print(f"reg_new: {reg_new}")
+            # if reg is None:
+            #     feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
+            #     weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
+            #     reg = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0) / image_labels.shape[1]
+            # else:
+            #     feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
+            #     weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
+            #     reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0)/ image_labels.shape[1]
+            #     reg = torch.cat((reg, reg_new), dim=0)
+            feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
+            weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
+            reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
 
-                reg = torch.cat((reg, reg_new), dim=0)
+
             print(f"feat_dis: {feat_dis}")
-
             print(f"weighted_feat_dis: {weighted_feat_dis}")
-
             print(f"reg: {reg}")
 
 
