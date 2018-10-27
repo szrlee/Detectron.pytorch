@@ -163,7 +163,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             print(f"max_roi_pos_cls_scores_ind : {max_roi_pos_cls_scores_ind}")
             print(f"max_roi_pos_cls_scores : {max_roi_pos_cls_scores}")
 
-            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1], :]
+            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
             # print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
             # print(f"box_feat corresbonding ind: {max_roi_ind}")
             print(f"box_feat corresbonding scores: {max_roi_scores}")
@@ -171,13 +171,13 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # print(torch.sum(diff_box_feat * diff_box_feat))
             # weighted spatial regularization
             if reg is None:
-                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1, keepdim=True)
+                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
                 weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg = torch.sum(weighted_feat_dis, dim=0, keepdim=True)/ image_labels.shape[1]
+                reg = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0) / image_labels.shape[1]
             else:
-                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1, keepdim=True)
+                feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
                 weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
-                reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True)/ image_labels.shape[1]
+                reg_new = torch.sum(weighted_feat_dis, dim=0, keepdim=True).unsqueeze(dim=0)/ image_labels.shape[1]
                 print(f"reg_new: {reg_new}")
 
                 reg = torch.cat((reg, reg_new), dim=0)
