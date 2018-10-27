@@ -7,6 +7,7 @@ from torch.autograd import Variable
 from core.config import cfg
 import nn as mynn
 import utils.net as net_utils
+import utils.boxes as box_utils
 
 import numpy as np
 
@@ -129,9 +130,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
             
-            # find positive classes for one image
-            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero()
-            print(f"no squeeze gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
+            # # find positive classes for one image
+            # gt_classes_ind = (image_labels[idx].detach() == 1).nonzero()
+            # print(f"no squeeze gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
             gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze(dim=1)
             print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
 
@@ -140,7 +141,17 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
             max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind.cpu().numpy()]
             print(f"max ind after \n {max_roi_pos_cls_scores_ind}")
-            print(f"rpis ind \n {rois[max_roi_pos_cls_scores_ind, :]}")
+            roi_max_in_cls = rois[max_roi_pos_cls_scores_ind, 1:5]
+            roi_in_one_image = rois[ind, 1:5]
+            print(f"roi_max_in_cls \n {roi_max_in_cls}")
+            print(f"roi_in_one_image \n {roi_in_one_image}")
+
+            roi_overlaps_with_max = box_utils.bbox_overlaps(
+                roi_in_one_image.astype(dtype=np.float32, copy=False),
+                roi_max_in_cls.astype(dtype=np.float32, copy=False)
+            )
+            print(f"roi_overlaps_with_max \n {roi_overlaps_with_max}")
+
 
 
         cls_prob = torch.sum(roi_cls_scores, dim=0)
