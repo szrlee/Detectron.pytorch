@@ -130,7 +130,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
             
             # find positive classes for one image
-            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze()
+            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero()
+            print(f"no squeeze gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
+            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze(dim=1)
             print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
 
             roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
