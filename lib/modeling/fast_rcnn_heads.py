@@ -138,8 +138,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             # print(f"gt_classes_ind: shape {gt_classes_ind.shape}\n {gt_classes_ind}")
 
             roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
-            max_roi_pos_cls_scores_ind = torch.argmax(roi_pos_cls_scores, dim=0)
-            max_roi_pos_cls_scores = torch.max(roi_pos_cls_scores, dim=0)
+            max_roi_pos_cls_scores, max_roi_pos_cls_scores_ind = torch.max(roi_pos_cls_scores, dim=0)
 
             # print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
             max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind]
