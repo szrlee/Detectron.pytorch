@@ -125,9 +125,9 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
         roi_cls_scores = softmax_cls * softmax_det
 
         if cfg.TRAIN.SPATIAL_REG:
-            print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
+            # print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
             # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
-            print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
+            # print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
             
             # # find positive classes for one image
@@ -138,14 +138,14 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
             roi_pos_cls_scores = roi_cls_scores[:, gt_classes_ind]
             max_roi_pos_cls_scores_ind = torch.argmax(roi_pos_cls_scores, dim=0)
-            print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
+            # print(f"max ind before \n {max_roi_pos_cls_scores_ind}")
             max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind]
             print(f"max ind after \n {max_roi_pos_cls_scores_ind}")
             # bugs on indexing max_roi_pos_cls_scores_ind is torch.Size(1)
             roi_max_in_cls = rois[max_roi_pos_cls_scores_ind.cpu().numpy(), 1:5]
             roi_in_one_image = rois[ind, 1:5]
             print(f"roi_max_in_cls \n {roi_max_in_cls}")
-            print(f"roi_in_one_image \n {roi_in_one_image}")
+            # print(f"roi_in_one_image \n {roi_in_one_image}")
 
             roi_overlaps_with_max = box_utils.bbox_overlaps(
                 roi_in_one_image.astype(dtype=np.float32, copy=False),
@@ -155,7 +155,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)
             print(f"index of roi_overlaps_with_max > 0.6 \n {pos_roi_overlaps_with_max_ind}")
             print(f"roi_overlaps_with_max > 0.6 \n {roi_overlaps_with_max[pos_roi_overlaps_with_max_ind]}")
-
+            print(ind(pos_roi_overlaps_with_max_ind[0]))
+            print(max_roi_pos_cls_scores_ind(pos_roi_overlaps_with_max_ind[1]))
 
 
         cls_prob = torch.sum(roi_cls_scores, dim=0)
