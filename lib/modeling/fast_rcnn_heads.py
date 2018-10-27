@@ -163,10 +163,10 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             print(f"max_roi_pos_cls_scores_ind : {max_roi_pos_cls_scores_ind}")
             print(f"max_roi_pos_cls_scores : {max_roi_pos_cls_scores}")
 
-            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
+            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1], :]
             # print(f"box_feat selected shape: {box_feat[selected_overlap_roi_ind].shape}")
             # print(f"box_feat corresbonding ind: {max_roi_ind}")
-            # print(f"box_feat corresbonding scores: {max_roi_scores}")
+            print(f"box_feat corresbonding scores: {max_roi_scores}")
             diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
             # print(torch.sum(diff_box_feat * diff_box_feat))
             # weighted spatial regularization
