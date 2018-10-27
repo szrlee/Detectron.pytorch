@@ -94,9 +94,12 @@ def collect(inputs, is_training):
     # rois are in [[batch_idx, x0, y0, x1, y2], ...] format
     # Combine predictions across all levels and retain the top scoring
     rois = np.concatenate(roi_inputs)
+    print(f"Before sort RoIs: shape {rois.shape}\n {rois}")
+
     scores = np.concatenate(score_inputs).squeeze()
     inds = np.argsort(-scores)[:post_nms_topN]
     rois = rois[inds, :]
+    print(f"After sort RoIs: shape {rois.shape}\n {rois}")
     return rois
 
 

@@ -107,7 +107,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
     # exclude background class
     image_labels = image_labels[:, 1:]
 
-    # print(f"batch_idx_list: {batch_idx_list}")
+    print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
