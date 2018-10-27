@@ -194,7 +194,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
             cls_probs = cls_prob.unsqueeze(dim=0)
         else:
             cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
-        print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}")
+        # print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}")
 
     
     # spatial regularization
@@ -204,7 +204,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
     # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
     # \n softmax_det shape: {softmax_det.shape} sum over dim 0 {softmax_det.sum(dim=0)}")
     loss_cls = bceloss(cls_probs.clamp(0,1), image_labels)
-    print(loss_cls)
+    print(f"loss_cls shape: {loss_cls.shape}")
     # multi label class accuracy
     acc_score = cls_probs.round().eq(image_labels).float().mean()
     # print(f"ap_score: shape {ap_score.shape}\n {ap_score}")
