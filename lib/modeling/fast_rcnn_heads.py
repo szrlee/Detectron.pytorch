@@ -122,8 +122,12 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss):
         region_cls_probs = softmax_cls * softmax_det
 
         if cfg.TRAIN.SPATIAL_REG:
-            print(image_labels)
+            print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
+            print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
+            print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
+            print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
             print((image_labels[idx] == 1).nonzero())
+            print((image_labels_vec[idx] == 1).nonzero())
 
         cls_prob = torch.sum(region_cls_probs, dim=0)
         if cls_probs is None:
