@@ -200,6 +200,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
     # spatial regularization 
     # divided by number of images
     reg = reg / image_labels.shape[0]
+    print(reg)
     # if cls_probs.max() > 1 or cls_probs.min() < 0:
     #     print(f"cls probs : {cls_probs}\n shape : {cls_probs.shape}")
     # print(f"softmax_cls shape: {softmax_cls.shape} sum over dim 1 {softmax_cls.sum(dim=1)}\
