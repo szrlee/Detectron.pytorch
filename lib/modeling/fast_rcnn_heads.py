@@ -112,7 +112,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     # print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
-    reg = torch.tensor(0)
+    # init regularization with scalar tensor 0 in cuda of device_id
+    reg = torch.tensor(0).cuda(device_id)
     assert len(batch_idx_list) == image_labels_vec.shape[0]
     for idx in batch_idx_list:
         ind = (rois_batch_idx == idx).nonzero().squeeze()
