@@ -150,6 +150,7 @@ def clip_tiled_boxes(boxes, im_shape):
     boxes[:, 2::4] = np.maximum(np.minimum(boxes[:, 2::4], im_shape[1] - 1), 0)
     # y2 < im_shape[0]
     boxes[:, 3::4] = np.maximum(np.minimum(boxes[:, 3::4], im_shape[0] - 1), 0)
+    print(f"boxes: {boxes}\n im_shape: {im_shape}")
     return boxes
 
 

@@ -147,6 +147,7 @@ class GenerateProposalsOp(nn.Module):
         # 2. clip proposals to image (may result in proposals with zero area
         # that will be removed in the next step)
         proposals = box_utils.clip_tiled_boxes(proposals, im_info[:2])
+        print(f"proposals:\n {proposals}")
 
         # 3. remove predicted boxes with either height or width < min_size
         keep = _filter_boxes(proposals, min_size, im_info)
@@ -177,6 +178,7 @@ def _filter_boxes(boxes, min_size, im_info):
     hs = boxes[:, 3] - boxes[:, 1] + 1
     x_ctr = boxes[:, 0] + ws / 2.
     y_ctr = boxes[:, 1] + hs / 2.
+    logging.info(f"ws, hs, x_ctr, y_ctr:\n {ws}, {hs}, {x_ctr}, {y_ctr}")
     keep = np.where((ws >= min_size) & (hs >= min_size) &
                     (x_ctr < im_info[1]) & (y_ctr < im_info[0]))[0]
     return keep
