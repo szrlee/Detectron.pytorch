@@ -153,7 +153,7 @@ def save_ckpt(output_dir, args, model, optimizer):
     logger.info('save model: %s', save_name)
 
 
-def load_ckpt(model, ckpt):
+def load_ckpt(model, ckpt, is_training=True):
     """Load checkpoint"""
     mapping, _ = model.detectron_weight_mapping
     state_dict = {}
@@ -161,9 +161,12 @@ def load_ckpt(model, ckpt):
         if mapping[name]:
             state_dict[name] = ckpt[name]
     # logging.info(f"state_dict:\n {state_dict}")
-    if cfg.TRAIN.COPY_CLS_TO_DET:
+    # self.training and self.weak_supervise_with_pretrain and self.copy_cls_to_det
+    # copy cls layer to det layer
+    if is_training and cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN and cfg.TRAIN.COPY_CLS_TO_DET:
         state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
         state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
+
     model.load_state_dict(state_dict, strict=False)
 
 

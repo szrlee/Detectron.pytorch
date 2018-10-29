@@ -321,7 +321,8 @@ def initialize_model_from_cfg(args, gpu_id=0):
     """
     model = model_builder.Generalized_RCNN()
     model.eval()
-
+    logging.info(f"training mode? : {model.training}")
+    
     if args.cuda:
         model.cuda()
 
@@ -329,7 +330,7 @@ def initialize_model_from_cfg(args, gpu_id=0):
         load_name = args.load_ckpt
         logger.info("loading checkpoint %s", load_name)
         checkpoint = torch.load(load_name, map_location=lambda storage, loc: storage)
-        net_utils.load_ckpt(model, checkpoint['model'])
+        net_utils.load_ckpt(model, checkpoint['model'], is_training=model.training)
 
     if args.load_detectron:
         logger.info("loading detectron weights %s", args.load_detectron)

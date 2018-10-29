@@ -120,6 +120,11 @@ if __name__ == '__main__':
         cfg.MODEL.NUM_CLASSES = args.num_classes
     else:  # For subprocess call
         assert cfg.TEST.DATASETS, 'cfg.TEST.DATASETS shouldn\'t be empty'
+
+    # #         
+    # cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = False
+    # cfg.TRAIN.COPY_CLS_TO_DET = False
+
     assert_and_infer_cfg()
 
     logger.info('Testing with config:')

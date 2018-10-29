@@ -47,7 +47,7 @@ class fast_rcnn_outputs(nn.Module):
                 'bbox_pred.weight': 'bbox_pred_w',
                 'bbox_pred.bias': 'bbox_pred_b'
             }
-        elif self.weak_supervise_with_pretrain and self.copy_cls_to_det:
+        elif self.training and self.weak_supervise_with_pretrain and self.copy_cls_to_det:
             # initialize det weight as the same of pretrained cls
             detectron_weight_mapping = {
                 'cls_score.weight': 'cls_score_w',
@@ -57,7 +57,7 @@ class fast_rcnn_outputs(nn.Module):
                 'bbox_pred.weight': 'bbox_pred_w',
                 'bbox_pred.bias': 'bbox_pred_b'
             }
-        elif self.weak_supervise_with_pretrain and not self.copy_cls_to_det:
+        elif self.training and self.weak_supervise_with_pretrain and not self.copy_cls_to_det:
             # initialize det weight as the same of pretrained cls
             detectron_weight_mapping = {
                 'cls_score.weight': 'cls_score_w',
@@ -68,12 +68,13 @@ class fast_rcnn_outputs(nn.Module):
                 'bbox_pred.bias': 'bbox_pred_b'
             }
         else:
+            # testing or training with contined from weak supervision structure.
             # initialize det weight with det
             detectron_weight_mapping = {
                 'cls_score.weight': 'cls_score_w',
                 'cls_score.bias': 'cls_score_b',
                 'det_score.weight': 'det_score_w',
-                'det_score.bias': 'det_score_b',                
+                'det_score.bias': 'det_score_b',            
                 'bbox_pred.weight': 'bbox_pred_w',
                 'bbox_pred.bias': 'bbox_pred_b'
             }
