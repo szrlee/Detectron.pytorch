@@ -166,6 +166,10 @@ __C.TRAIN.GT_MIN_AREA = -1
 # Freeze the backbone architecture during training if set to True
 __C.TRAIN.FREEZE_CONV_BODY = False
 
+# Freeze the RPN architecture during training if set to True
+__C.TRAIN.FREEZE_RPN = False
+
+
 
 # ---------------------------------------------------------------------------- #
 # Data loader options

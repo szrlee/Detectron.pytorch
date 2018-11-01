@@ -140,6 +140,10 @@ class Generalized_RCNN(nn.Module):
             for p in self.Conv_Body.parameters():
                 p.requires_grad = False
 
+        if cfg.TRAIN.FREEZE_RPN:
+            for p in self.RPN.parameters():
+                p.requires_grad = False
+
     def forward(self, data, im_info, roidb=None, **rpn_kwargs):
         if cfg.PYTORCH_VERSION_LESS_THAN_040:
             return self._forward(data, im_info, roidb, **rpn_kwargs)
