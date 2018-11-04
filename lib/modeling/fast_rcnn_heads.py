@@ -110,6 +110,8 @@ class fast_rcnn_outputs(nn.Module):
                 softmax_cls = F.softmax(cls_score, dim=1)
                 softmax_det = F.softmax(det_score, dim=0)
                 roi_cls_scores = softmax_cls * softmax_det
+                print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
+                print(f"bbox_pred shape: {bbox_pred.shape}\n {bbox_pred}")
                 #cls_score = F.softmax(roi_cls_scores, dim=1)
 
             return cls_score, det_score, bbox_pred
