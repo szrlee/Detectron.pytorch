@@ -6,9 +6,9 @@ RESNETS:
   IMAGENET_PRETRAINED_WEIGHTS: 'data/pretrained_model/resnet101_caffe.pth'
 NUM_GPUS: 4
 SOLVER:
-  WEIGHT_DECAY: 0.001
+  WEIGHT_DECAY: 0.1
   LR_POLICY: steps_with_decay
-  BASE_LR: 0.001
+  BASE_LR: 0.0001
   GAMMA: 0.1
   MAX_ITER: 60000
   STEPS: [0, 20000, 40000]
