@@ -183,9 +183,9 @@ class Generalized_RCNN(nn.Module):
             else:
                 box_feat = self.Box_Head(blob_conv, rpn_ret)
             if self.weak_supervise:
-                cls_score, det_score, bbox_pred = self.Box_Outs(box_feat, rpn_ret['rois'])
+                cls_score, det_score, bbox_pred = self.Box_Outs(box_feat)
             else:
-                cls_score, bbox_pred = self.Box_Outs(box_feat, rpn_ret['rois'])
+                cls_score, bbox_pred = self.Box_Outs(box_feat)
         else:
             # TODO: complete the returns for RPN only situation
             pass

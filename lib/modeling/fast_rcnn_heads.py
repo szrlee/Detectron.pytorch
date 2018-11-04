@@ -81,7 +81,7 @@ class fast_rcnn_outputs(nn.Module):
         orphan_in_detectron = []
         return detectron_weight_mapping, orphan_in_detectron
 
-    def forward(self, x, rois):
+    def forward(self, x):
         if x.dim() == 4:
             x = x.squeeze(3).squeeze(2)
         cls_score = self.cls_score(x)
@@ -94,22 +94,25 @@ class fast_rcnn_outputs(nn.Module):
 
         # weak supervision
         det_score = self.det_score(x)
-        softmax_cls = F.softmax(cls_score, dim=1)
-        softmax_det = F.softmax(det_score, dim=0)
-        roi_cls_scores = softmax_cls * softmax_det
-        print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
-        print(f"rois shape: {rois.shape}\n {rois}")
-        print(f"bbox_pred shape: {bbox_pred.shape}\n {bbox_pred}")
-        input()
+
+        # print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
+        # print(f"rois shape: {rois.shape}\n {rois}")
+        # print(f"bbox_pred shape: {bbox_pred.shape}\n {bbox_pred}")
+        # input()
 
 
         if self.training:
             return cls_score, det_score, bbox_pred
         
         if not self.training:
-            softmax_cls = F.softmax(cls_score, dim=1)
-            softmax_det = F.softmax(det_score, dim=0)
-            roi_cls_scores = softmax_cls * softmax_det
+            with torch.no_grad():
+                bbox_pred.fill_(0)
+                softmax_cls = F.softmax(cls_score, dim=1)
+                softmax_det = F.softmax(det_score, dim=0)
+                roi_cls_scores = softmax_cls * softmax_det
+                #cls_score = F.softmax(roi_cls_scores, dim=1)
+
+            return cls_score, det_score, bbox_pred
 
 
 
