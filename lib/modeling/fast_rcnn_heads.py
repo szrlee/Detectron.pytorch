@@ -119,7 +119,7 @@ class fast_rcnn_outputs(nn.Module):
                 
                 ## select which cls scores to output
                 cls_score = softmax_cls_scores
-                
+
             return cls_score, det_score, bbox_pred
 
 
@@ -135,7 +135,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
     # print(f"rois_batch_idx: shape {rois_batch_idx.shape}\n {rois_batch_idx}")
     # print(f"box_feat: shape {box_feat.shape}\n {box_feat}")
 
-    # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
+    print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
     # # exclude background class
     # image_labels = image_labels[:, 1:]
@@ -156,7 +156,7 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
         roi_cls_scores = softmax_cls * softmax_det
 
         if cfg.TRAIN.SPATIAL_REG:
-            print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
+            # print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
             # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
             # print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
