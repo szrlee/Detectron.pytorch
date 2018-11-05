@@ -257,6 +257,8 @@ class JsonDataset(object):
             )
 
         im_has_visible_keypoints = False
+        # Every image has background, thus set the bg cls to 1.
+        gt_labels_vec[0, 0] = 1
         for ix, obj in enumerate(valid_objs):
             cls = self.json_category_id_to_contiguous_id[obj['category_id']]
             boxes[ix, :] = obj['clean_bbox']

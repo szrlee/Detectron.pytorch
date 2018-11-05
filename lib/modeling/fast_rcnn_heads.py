@@ -110,11 +110,16 @@ class fast_rcnn_outputs(nn.Module):
                 softmax_cls = F.softmax(cls_score, dim=1)
                 softmax_det = F.softmax(det_score, dim=0)
                 roi_cls_scores = softmax_cls * softmax_det
+                softmax_cls_scores = F.softmax(roi_cls_scores, dim=1)
+                norm_cls_scores = x = F.normalize(roi_cls_scores, p=1, dim=1)
                 print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
-                print(f"cls_score shape: {cls_score.shape}\n {cls_score}")
-                print(f"bbox_pred shape: {bbox_pred.shape}\n {bbox_pred}")
-                #cls_score = F.softmax(roi_cls_scores, dim=1)
-
+                print(f"softmax_cls_scores shape: {softmax_cls_scores.shape}\n {softmax_cls_scores}")
+                print(f"norm_cls_scores shape: {norm_cls_scores.shape}\n {norm_cls_scores}")
+                # cls_score = F.softmax(roi_cls_scores, dim=1)
+                
+                ## select which cls scores to output
+                cls_score = softmax_cls_scores
+                
             return cls_score, det_score, bbox_pred
 
 
@@ -132,8 +137,8 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
 
     # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
     image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
-    # exclude background class
-    image_labels = image_labels[:, 1:]
+    # # exclude background class
+    # image_labels = image_labels[:, 1:]
 
     # print(f"batch_idx_list: {batch_idx_list}")
     cls_probs = None
@@ -146,13 +151,12 @@ def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_
         cls_ind = torch.index_select(cls_score, 0, ind)
         det_ind = torch.index_select(det_score, 0, ind)
 
-        # exclude background
-        softmax_cls = F.softmax(cls_ind[:, 1:], dim=1)
-        softmax_det = F.softmax(det_ind[:, 1:], dim=0)
+        softmax_cls = F.softmax(cls_ind, dim=1)
+        softmax_det = F.softmax(det_ind, dim=0)
         roi_cls_scores = softmax_cls * softmax_det
 
         if cfg.TRAIN.SPATIAL_REG:
-            # print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
+            print(f"image_labels: shape {image_labels.shape}\n {image_labels}")
             # print(f"image_labels_vec: shape {image_labels_vec.shape}\n {image_labels_vec}")
             # print(f"image_labels[idx]: shape {image_labels[idx].shape}\n {image_labels[idx]}")
             # print(f"image_labels_vec[idx]: shape {image_labels_vec[idx].shape}\n {image_labels_vec[idx]}")
