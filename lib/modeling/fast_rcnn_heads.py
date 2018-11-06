@@ -113,12 +113,14 @@ class fast_rcnn_outputs(nn.Module):
                 softmax_cls_scores = F.softmax(roi_cls_scores, dim=1)
                 norm_cls_scores = x = F.normalize(roi_cls_scores, p=1, dim=1)
                 print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
-                print(f"softmax_cls_scores shape: {softmax_cls_scores.shape}\n {softmax_cls_scores}")
+                # print(f"softmax_cls_scores shape: {softmax_cls_scores.shape}\n {softmax_cls_scores}")
                 print(f"norm_cls_scores shape: {norm_cls_scores.shape}\n {norm_cls_scores}")
                 # cls_score = F.softmax(roi_cls_scores, dim=1)
                 
                 ## select which cls scores to output
-                cls_score = softmax_cls_scores
+                cls_score = norm_cls_scores
+                print(f"sum cls_score over dim 1: {torch.sum(cls_score, dim=1)}")
+
 
             return cls_score, det_score, bbox_pred
 
