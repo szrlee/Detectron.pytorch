@@ -119,7 +119,7 @@ class fast_rcnn_outputs(nn.Module):
                 
                 ## select which cls scores to output
                 cls_score = norm_cls_scores
-                print(f"sum cls_score over dim 1: {torch.sum(cls_score, dim=1)}")
+                # print(f"sum cls_score over dim 1: {torch.sum(cls_score, dim=1)}")
 
 
             return cls_score, det_score, bbox_pred
