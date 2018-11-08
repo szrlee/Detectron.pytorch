@@ -90,6 +90,7 @@ class fast_rcnn_outputs(nn.Module):
         bbox_pred = self.bbox_pred(x)
 
         if not self.weak_supervise:
+            bbox_pred.fill_(0)
             return cls_score, bbox_pred
 
         # weak supervision
