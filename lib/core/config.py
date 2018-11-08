@@ -185,6 +185,11 @@ __C.DATA_LOADER.NUM_THREADS = 4
 # ---------------------------------------------------------------------------- #
 # Inference ('test') options
 # ---------------------------------------------------------------------------- #
+
+#
+__C.TEST.WEAK_SUPERVISE = False
+
+#
 __C.TEST = AttrDict()
 
 # Datasets to test on

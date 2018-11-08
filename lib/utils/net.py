@@ -166,6 +166,9 @@ def load_ckpt(model, ckpt, is_training=True):
     if is_training and cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN and cfg.TRAIN.COPY_CLS_TO_DET:
         state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
         state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
+    elif cfg.TRAIN.WEAK_SUPERVISE and cfg.TEST.WEAK_SUPERVISE:
+        state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
+        state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
 
     model.load_state_dict(state_dict, strict=False)
 
