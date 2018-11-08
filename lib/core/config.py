@@ -185,12 +185,10 @@ __C.DATA_LOADER.NUM_THREADS = 4
 # ---------------------------------------------------------------------------- #
 # Inference ('test') options
 # ---------------------------------------------------------------------------- #
-
-#
-__C.TEST.WEAK_SUPERVISE = False
-
-#
 __C.TEST = AttrDict()
+
+# used only for testing non-weak model with weak cls_score and no bbox refinement 
+__C.TEST.WEAK_SUPERVISE = False
 
 # Datasets to test on
 # Available dataset list: datasets.dataset_catalog.DATASETS.keys()
