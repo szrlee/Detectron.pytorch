@@ -1,0 +1,158 @@
+Called with args:
+Namespace(batch_size=None, cfg_file='configs/dt/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det.yaml', copy_cls_to_det=False, cuda=True, dataset='clipart', disp_interval=20, iter_size=1, load_ckpt='Outputs/e2e_faster_rcnn_R-101-FPN_1x-VOC/Oct08-14-54-41_ip-172-31-8-158_step/ckpt/model_step9999.pth', load_detectron=None, lr=None, lr_decay_gamma=None, no_save=False, num_classes=None, num_workers=None, optimizer=None, resume=False, set_cfgs=[], start_step=0, use_tfboard=True, weak_supervise_with_pretrain=False)
+effective_batch_size = batch_size * iter_size = 16 * 1
+Adaptive config changes:
+    effective_batch_size: 16 --> 16
+    NUM_GPUS:             4 --> 4
+    IMS_PER_BATCH:        4 --> 4
+Adjust BASE_LR linearly according to batch_size change:
+    BASE_LR: 0.02 --> 0.02
+Adjust SOLVER.STEPS and SOLVER.MAX_ITER linearly based on effective_batch_size change:
+    SOLVER.STEPS: [0, 2000, 4000] --> [0, 2000, 4000]
+    SOLVER.MAX_ITER: 6000 --> 6000
+Scale FPN rpn_proposals collect size directly propotional to the change of IMS_PER_BATCH:
+    cfg.FPN.RPN_COLLECT_SCALE: 1.0
+Number of data loading threads: 4
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+INFO json_dataset.py: 305: Loading cached gt_roidb from /home/ubuntu/Detectron.pytorch/data/cache/cross_clipart_train_gt_roidb.pkl
+INFO roidb.py:  50: Appending horizontally-flipped training examples...
+INFO roidb.py:  52: Loaded dataset: cross_clipart_train
+INFO roidb.py: 143: Filtered 0 roidb entries: 998 -> 998
+INFO roidb.py:  69: Computing image aspect ratios and ordering the ratios...
+INFO roidb.py:  71: done
+INFO roidb.py:  75: Computing bounding-box regression targets...
+INFO roidb.py:  77: done
+INFO train_net_step.py: 280: 998 roidb entries
+INFO train_net_step.py: 281: Takes 0.35 sec(s) to construct roidb
+INFO train_net_step.py: 359: loading checkpoint Outputs/e2e_faster_rcnn_R-101-FPN_1x-VOC/Oct08-14-54-41_ip-172-31-8-158_step/ckpt/model_step9999.pth
+INFO train_net_step.py: 425: Training starts !
+INFO net.py:  72: Changing learning rate 0.000000 -> 0.006667
+/home/ubuntu/anaconda3/envs/pytorch41/lib/python3.7/site-packages/torch/nn/functional.py:1890: UserWarning: nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.
+  warnings.warn("nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.")
+roi_cls_scores shape: torch.Size([2000, 21])
+ tensor([[3.0220e-12, 2.0823e-08, 5.1917e-07,  ..., 4.2058e-08, 1.5540e-07,
+         1.1271e-06],
+        [1.5782e-12, 1.8584e-08, 1.6985e-06,  ..., 1.4315e-07, 4.5789e-07,
+         1.3001e-06],
+        [1.9922e-12, 1.7668e-03, 2.6891e-08,  ..., 1.5203e-09, 5.2231e-09,
+         2.2765e-10],
+        ...,
+        [4.3232e-03, 2.1606e-18, 5.2858e-18,  ..., 3.8293e-17, 1.2334e-16,
+         1.9865e-13],
+        [5.8849e-08, 1.3444e-12, 1.1808e-11,  ..., 1.8671e-12, 1.3886e-12,
+         4.2416e-12],
+        [5.7092e-06, 2.2251e-13, 1.5045e-13,  ..., 4.0707e-15, 1.6946e-14,
+         9.7207e-15]], device='cuda:3', grad_fn=<ThMulBackward>)
+rois shape: (2000, 5)
+ [[  2.         0.        80.94327  251.50632  611.      ]
+ [  2.         0.        23.253082 278.8647   611.      ]
+ [  1.       217.34552  138.38463  244.0141   165.08946 ]
+ ...
+ [  1.       584.2281   443.89557  599.       581.1656  ]
+ [  3.         0.       580.69495  501.21826  611.      ]
+ [  1.        91.26611    0.       519.80396   37.112007]]
+bbox_pred shape: torch.Size([2000, 84])
+ tensor([[ 0.0249, -0.0041,  0.0088,  ..., -0.1909, -0.0552, -0.5099],
+        [ 0.0206, -0.0014,  0.0092,  ...,  0.0685, -0.2637, -0.8405],
+        [ 0.0114, -0.0214, -0.0095,  ..., -0.6195,  0.2988, -0.3280],
+        ...,
+        [ 0.0303, -0.0528, -0.0540,  ..., -0.3495,  0.9750, -0.7023],
+        [-0.0037, -0.0507, -0.0195,  ..., -1.2592,  0.4936,  0.9986],
+        [ 0.0072, -0.0374, -0.0388,  ...,  0.3645,  0.9782,  0.3338]],
+       device='cuda:3', grad_fn=<ThAddmmBackward>)
+roi_cls_scores shape: torch.Size([2000, 21])
+ tensor([[1.6718e-10, 1.9025e-11, 9.8234e-11,  ..., 2.7300e-09, 1.0976e-07,
+         1.1305e-01],
+        [3.6097e-09, 8.2761e-13, 5.4863e-10,  ..., 4.1158e-08, 1.5872e-09,
+         1.5217e-10],
+        [6.2479e-10, 6.2514e-06, 1.5973e-07,  ..., 3.9134e-08, 1.7899e-05,
+         2.5109e-09],
+        ...,
+        [5.4956e-08, 3.9179e-06, 1.0595e-06,  ..., 2.8332e-08, 7.7479e-07,
+         1.5872e-09],
+        [9.9204e-05, 1.2462e-08, 1.8968e-10,  ..., 2.4126e-10, 1.2590e-08,
+         6.9652e-12],
+        [3.1528e-07, 2.9177e-07, 1.2244e-08,  ..., 1.1295e-07, 1.2502e-07,
+         4.4749e-08]], device='cuda:1', grad_fn=<ThMulBackward>)
+rois shape: (2000, 5)
+ [[  3.        47.54506  169.51851  179.74141  305.1891  ]
+ [  3.       238.69789   96.64874  622.0468   574.0238  ]
+ [  0.       197.3187   442.32837  280.573    484.11145 ]
+ ...
+ [  0.        70.732864 113.89442  115.18059  137.51149 ]
+ [  0.       269.64172  228.97699  600.6309   494.32947 ]
+ [  0.       280.68658  443.38477  319.50757  480.68787 ]]
+bbox_pred shape: torch.Size([2000, 84])
+ tensor([[ 0.0228, -0.0074, -0.0547,  ..., -1.0619,  0.2933,  0.4442],
+        [ 0.0432, -0.0143,  0.0178,  ..., -0.5616, -0.0755, -0.6349],
+        [ 0.0154,  0.0045, -0.0081,  ..., -0.1091, -0.8281, -0.1270],
+        ...,
+        [-0.0101, -0.0013, -0.0145,  ..., -0.9109, -0.1910,  0.3629],
+        [-0.0134, -0.0190,  0.0090,  ..., -1.4369,  0.7790,  0.6954],
+        [ 0.0067,  0.0025, -0.0107,  ...,  0.2995,  2.6907, -0.2120]],
+       device='cuda:1', grad_fn=<ThAddmmBackward>)
+roi_cls_scores shape: torch.Size([2000, 21])
+ tensor([[6.3966e-13, 1.4293e-07, 2.3208e-05,  ..., 4.8111e-07, 1.0371e-06,
+         3.9561e-08],
+        [6.5340e-13, 1.4198e-07, 1.7212e-06,  ..., 2.1219e-07, 5.0785e-07,
+         2.0441e-08],
+        [9.0153e-13, 1.9664e-06, 7.9634e-08,  ..., 3.7665e-04, 1.4593e-05,
+         4.2344e-06],
+        ...,
+        [6.9305e-06, 3.5451e-13, 1.0667e-13,  ..., 4.7535e-12, 5.5060e-14,
+         2.1723e-13],
+        [4.9859e-08, 1.3549e-11, 9.4984e-09,  ..., 1.9473e-11, 1.7116e-11,
+         9.1667e-11],
+        [1.1437e-05, 9.2059e-13, 7.1482e-14,  ..., 4.3727e-12, 8.4697e-14,
+         1.9744e-12]], device='cuda:2', grad_fn=<ThMulBackward>)
+rois shape: (2000, 5)
+ [[  1.       565.50684   13.287918 941.8911   489.12195 ]
+ [  0.       151.84615   20.39267  481.84662  530.2958  ]
+ [  0.       553.1092    15.111542 989.54156  529.95776 ]
+ ...
+ [  2.       625.761    506.17383  740.17163  556.      ]
+ [  3.       725.12866    0.       999.       119.85242 ]
+ [  0.         0.       127.28879  127.18303  211.41318 ]]
+bbox_pred shape: torch.Size([2000, 84])
+ tensor([[ 0.0205, -0.0235, -0.0002,  ..., -0.1658, -0.2701, -0.2012],
+        [ 0.0209, -0.0172,  0.0045,  ..., -0.6072,  0.2488, -0.3243],
+        [ 0.0139,  0.0096,  0.0138,  ..., -0.4130,  0.1779, -0.5770],
+        ...,
+        [-0.0033,  0.0149, -0.0022,  ..., -0.2899,  1.2633, -0.9000],
+        [ 0.0087, -0.0449,  0.0113,  ...,  2.0743,  0.4995,  1.6266],
+        [ 0.0048, -0.0036,  0.0225,  ..., -0.3221,  1.2013,  0.1482]],
+       device='cuda:2', grad_fn=<ThAddmmBackward>)
+roi_cls_scores shape: torch.Size([2000, 21])
+ tensor([[3.0172e-08, 1.1064e-12, 3.1366e-07,  ..., 1.7516e-10, 1.4951e-11,
+         1.5365e-10],
+        [4.3054e-09, 4.7653e-12, 3.0590e-07,  ..., 3.7802e-10, 3.0038e-10,
+         1.3116e-09],
+        [4.8990e-09, 5.2779e-08, 2.0867e-09,  ..., 1.5199e-07, 5.6984e-08,
+         9.2784e-07],
+        ...,
+        [2.5174e-06, 1.2933e-12, 1.0807e-09,  ..., 3.5682e-12, 1.7703e-11,
+         1.5066e-11],
+        [1.1221e-07, 1.4797e-08, 1.5661e-07,  ..., 1.5803e-11, 5.5992e-12,
+         8.1253e-13],
+        [2.5414e-03, 2.9400e-14, 2.6120e-14,  ..., 8.6874e-16, 4.2214e-15,
+         2.7538e-14]], device='cuda:0', grad_fn=<ThMulBackward>)
+rois shape: (2000, 5)
+ [[  2.       175.77304  253.80557  221.66019  360.75064 ]
+ [  2.       134.88023  193.0565   230.07933  403.2729  ]
+ [  2.       443.73     292.6844   572.76294  429.16058 ]
+ ...
+ [  2.       383.4874   251.59818  421.36356  368.95572 ]
+ [  0.       307.89877  312.95865  334.37442  344.38577 ]
+ [  2.         0.       553.4258    28.422543 599.      ]]
+bbox_pred shape: torch.Size([2000, 84])
+ tensor([[-0.0050, -0.0430, -0.0091,  ..., -0.2318, -0.1708, -0.4948],
+        [ 0.0046, -0.0396, -0.0026,  ...,  0.2570, -0.7010, -0.2405],
+        [ 0.0204, -0.0297, -0.0054,  ..., -0.8506, -0.5466, -0.5007],
+        ...,
+        [-0.0321, -0.0085, -0.0142,  ...,  0.4084,  0.1726, -0.6462],
+        [ 0.0005, -0.0082,  0.0131,  ..., -0.2818,  0.2596, -0.9238],
+        [ 0.0127,  0.0245, -0.0052,  ..., -0.7300,  1.1979, -0.6438]],
+       device='cuda:0', grad_fn=<ThAddmmBackward>)

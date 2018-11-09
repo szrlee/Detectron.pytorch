@@ -1,0 +1,3568 @@
+Called with args:
+Namespace(batch_size=None, cfg_file='configs/dt/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml', copy_cls_to_det=False, cuda=True, dataset='clipart', disp_interval=20, iter_size=1, load_ckpt='Outputs/e2e_faster_rcnn_R-101-FPN_dt-clipart-VOC/Nov04-20-33-03_ip-172-31-8-158_step/ckpt/model_step9999.pth', load_detectron=None, lr=None, lr_decay_gamma=None, no_save=False, num_classes=None, num_workers=None, optimizer=None, resume=False, set_cfgs=[], start_step=0, use_tfboard=True, weak_supervise_with_pretrain=False)
+effective_batch_size = batch_size * iter_size = 16 * 1
+Adaptive config changes:
+    effective_batch_size: 16 --> 16
+    NUM_GPUS:             4 --> 4
+    IMS_PER_BATCH:        4 --> 4
+Adjust BASE_LR linearly according to batch_size change:
+    BASE_LR: 0.0002 --> 0.0002
+Adjust SOLVER.STEPS and SOLVER.MAX_ITER linearly based on effective_batch_size change:
+    SOLVER.STEPS: [0, 5000, 8000] --> [0, 5000, 8000]
+    SOLVER.MAX_ITER: 10000 --> 10000
+Scale FPN rpn_proposals collect size directly propotional to the change of IMS_PER_BATCH:
+    cfg.FPN.RPN_COLLECT_SCALE: 1.0
+Number of data loading threads: 4
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+INFO json_dataset.py: 307: Loading cached gt_roidb from /home/ubuntu/Detectron.pytorch/data/cache/cross_clipart_train_gt_roidb.pkl
+INFO roidb.py:  50: Appending horizontally-flipped training examples...
+INFO roidb.py:  52: Loaded dataset: cross_clipart_train
+INFO roidb.py: 143: Filtered 0 roidb entries: 998 -> 998
+INFO roidb.py:  69: Computing image aspect ratios and ordering the ratios...
+INFO roidb.py:  71: done
+INFO roidb.py:  75: Computing bounding-box regression targets...
+INFO roidb.py:  77: done
+INFO train_net_step.py: 280: 998 roidb entries
+INFO train_net_step.py: 281: Takes 0.34 sec(s) to construct roidb
+INFO train_net_step.py: 359: loading checkpoint Outputs/e2e_faster_rcnn_R-101-FPN_dt-clipart-VOC/Nov04-20-33-03_ip-172-31-8-158_step/ckpt/model_step9999.pth
+INFO train_net_step.py: 425: Training starts !
+INFO net.py:  72: Changing learning rate 0.000000 -> 0.000067
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1 / 10000]
+		loss: 0.175166, lr: 0.000067 time: 10.666520, eta: 1 day, 5:37:45
+		accuracy_cls: 0.937500
+		spatial_reg: 0.000000
+		image_loss_cls: 0.175166, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 21 / 10000]
+		loss: 0.239795, lr: 0.000072 time: 1.017589, eta: 2:49:15
+		accuracy_cls: 0.925595
+		spatial_reg: 0.000000
+		image_loss_cls: 0.239795, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 41 / 10000]
+		loss: 0.250652, lr: 0.000077 time: 0.778866, eta: 2:09:17
+		accuracy_cls: 0.925595
+		spatial_reg: 0.000000
+		image_loss_cls: 0.250652, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 61 / 10000]
+		loss: 0.218851, lr: 0.000083 time: 0.694572, eta: 1:55:04
+		accuracy_cls: 0.928571
+		spatial_reg: 0.000000
+		image_loss_cls: 0.218851, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+/home/ubuntu/anaconda3/envs/pytorch41/lib/python3.7/site-packages/torch/nn/functional.py:1890: UserWarning: nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.
+  warnings.warn("nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.")
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 81 / 10000]
+		loss: 0.210483, lr: 0.000088 time: 0.679171, eta: 1:52:17
+		accuracy_cls: 0.931548
+		spatial_reg: 0.000000
+		image_loss_cls: 0.210483, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 101 / 10000]
+		loss: 0.244111, lr: 0.000093 time: 0.650253, eta: 1:47:17
+		accuracy_cls: 0.927083
+		spatial_reg: 0.000000
+		image_loss_cls: 0.244111, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 121 / 10000]
+		loss: 0.197165, lr: 0.000099 time: 0.630451, eta: 1:43:48
+		accuracy_cls: 0.934524
+		spatial_reg: 0.000000
+		image_loss_cls: 0.197165, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 141 / 10000]
+		loss: 0.223522, lr: 0.000104 time: 0.630273, eta: 1:43:34
+		accuracy_cls: 0.931548
+		spatial_reg: 0.000000
+		image_loss_cls: 0.223522, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 161 / 10000]
+		loss: 0.202213, lr: 0.000109 time: 0.617252, eta: 1:41:13
+		accuracy_cls: 0.931548
+		spatial_reg: 0.000000
+		image_loss_cls: 0.202213, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 181 / 10000]
+		loss: 0.203982, lr: 0.000115 time: 0.646976, eta: 1:45:53
+		accuracy_cls: 0.928571
+		spatial_reg: 0.000000
+		image_loss_cls: 0.203982, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 201 / 10000]
+		loss: 0.187406, lr: 0.000120 time: 0.670432, eta: 1:49:30
+		accuracy_cls: 0.937500
+		spatial_reg: 0.000000
+		image_loss_cls: 0.187406, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 221 / 10000]
+		loss: 0.186970, lr: 0.000125 time: 0.670442, eta: 1:49:16
+		accuracy_cls: 0.936012
+		spatial_reg: 0.000000
+		image_loss_cls: 0.186970, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 241 / 10000]
+		loss: 0.189645, lr: 0.000131 time: 0.670886, eta: 1:49:07
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.189645, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 261 / 10000]
+		loss: 0.192675, lr: 0.000136 time: 0.678323, eta: 1:50:06
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.192675, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 281 / 10000]
+		loss: 0.182616, lr: 0.000141 time: 0.677089, eta: 1:49:41
+		accuracy_cls: 0.940476
+		spatial_reg: 0.000000
+		image_loss_cls: 0.182616, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 301 / 10000]
+		loss: 0.156415, lr: 0.000147 time: 0.677120, eta: 1:49:28
+		accuracy_cls: 0.940476
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156415, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 321 / 10000]
+		loss: 0.144407, lr: 0.000152 time: 0.683514, eta: 1:50:16
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.144407, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 341 / 10000]
+		loss: 0.181728, lr: 0.000157 time: 0.680125, eta: 1:49:30
+		accuracy_cls: 0.937500
+		spatial_reg: 0.000000
+		image_loss_cls: 0.181728, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 361 / 10000]
+		loss: 0.154897, lr: 0.000163 time: 0.679483, eta: 1:49:10
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154897, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 381 / 10000]
+		loss: 0.169409, lr: 0.000168 time: 0.684318, eta: 1:49:43
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.169409, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 401 / 10000]
+		loss: 0.152865, lr: 0.000173 time: 0.683844, eta: 1:49:24
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152865, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 421 / 10000]
+		loss: 0.162195, lr: 0.000179 time: 0.681939, eta: 1:48:52
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162195, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 441 / 10000]
+		loss: 0.152302, lr: 0.000184 time: 0.686920, eta: 1:49:26
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152302, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 461 / 10000]
+		loss: 0.151822, lr: 0.000189 time: 0.687031, eta: 1:49:14
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151822, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 481 / 10000]
+		loss: 0.158270, lr: 0.000195 time: 0.685419, eta: 1:48:45
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158270, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 501 / 10000]
+		loss: 0.170806, lr: 0.000200 time: 0.689295, eta: 1:49:08
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170806, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 521 / 10000]
+		loss: 0.152477, lr: 0.000200 time: 0.689191, eta: 1:48:53
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152477, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 541 / 10000]
+		loss: 0.158284, lr: 0.000200 time: 0.688936, eta: 1:48:37
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158284, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 561 / 10000]
+		loss: 0.148529, lr: 0.000200 time: 0.692015, eta: 1:48:52
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148529, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 581 / 10000]
+		loss: 0.166481, lr: 0.000200 time: 0.690779, eta: 1:48:27
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166481, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 601 / 10000]
+		loss: 0.133409, lr: 0.000200 time: 0.690355, eta: 1:48:09
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.133409, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 621 / 10000]
+		loss: 0.157915, lr: 0.000200 time: 0.692552, eta: 1:48:16
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157915, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 641 / 10000]
+		loss: 0.149380, lr: 0.000200 time: 0.691558, eta: 1:47:52
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149380, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 661 / 10000]
+		loss: 0.155407, lr: 0.000200 time: 0.690486, eta: 1:47:29
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155407, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 681 / 10000]
+		loss: 0.151245, lr: 0.000200 time: 0.690349, eta: 1:47:14
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151245, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 701 / 10000]
+		loss: 0.157567, lr: 0.000200 time: 0.692884, eta: 1:47:23
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157567, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 721 / 10000]
+		loss: 0.125512, lr: 0.000200 time: 0.691636, eta: 1:46:58
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.125512, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 741 / 10000]
+		loss: 0.161950, lr: 0.000200 time: 0.691019, eta: 1:46:38
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161950, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 761 / 10000]
+		loss: 0.143989, lr: 0.000200 time: 0.693719, eta: 1:46:49
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.143989, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 781 / 10000]
+		loss: 0.166864, lr: 0.000200 time: 0.693088, eta: 1:46:30
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166864, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 801 / 10000]
+		loss: 0.128011, lr: 0.000200 time: 0.692141, eta: 1:46:07
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.128011, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 821 / 10000]
+		loss: 0.132199, lr: 0.000200 time: 0.693833, eta: 1:46:09
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.132199, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 841 / 10000]
+		loss: 0.143051, lr: 0.000200 time: 0.693373, eta: 1:45:51
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.143051, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 861 / 10000]
+		loss: 0.126377, lr: 0.000200 time: 0.692645, eta: 1:45:30
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.126377, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 881 / 10000]
+		loss: 0.142718, lr: 0.000200 time: 0.694189, eta: 1:45:31
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.142718, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 901 / 10000]
+		loss: 0.147725, lr: 0.000200 time: 0.693974, eta: 1:45:15
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.147725, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 921 / 10000]
+		loss: 0.131577, lr: 0.000200 time: 0.693511, eta: 1:44:57
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.131577, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 941 / 10000]
+		loss: 0.132336, lr: 0.000200 time: 0.695605, eta: 1:45:02
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.132336, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 961 / 10000]
+		loss: 0.116271, lr: 0.000200 time: 0.694694, eta: 1:44:40
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.116271, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 981 / 10000]
+		loss: 0.135981, lr: 0.000200 time: 0.694085, eta: 1:44:20
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.135981, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1001 / 10000]
+		loss: 0.121581, lr: 0.000200 time: 0.695467, eta: 1:44:19
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121581, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1021 / 10000]
+		loss: 0.129799, lr: 0.000200 time: 0.695093, eta: 1:44:01
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.129799, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1041 / 10000]
+		loss: 0.136300, lr: 0.000200 time: 0.694533, eta: 1:43:43
+		accuracy_cls: 0.944940
+		spatial_reg: 0.000000
+		image_loss_cls: 0.136300, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1061 / 10000]
+		loss: 0.132108, lr: 0.000200 time: 0.696642, eta: 1:43:47
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.132108, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1081 / 10000]
+		loss: 0.129885, lr: 0.000200 time: 0.696726, eta: 1:43:34
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.129885, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1101 / 10000]
+		loss: 0.123882, lr: 0.000200 time: 0.695880, eta: 1:43:13
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.123882, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1121 / 10000]
+		loss: 0.133680, lr: 0.000200 time: 0.697411, eta: 1:43:13
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.133680, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1141 / 10000]
+		loss: 0.128674, lr: 0.000200 time: 0.696966, eta: 1:42:55
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.128674, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1161 / 10000]
+		loss: 0.138970, lr: 0.000200 time: 0.696534, eta: 1:42:37
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.138970, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1181 / 10000]
+		loss: 0.112046, lr: 0.000200 time: 0.697122, eta: 1:42:28
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112046, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1201 / 10000]
+		loss: 0.117158, lr: 0.000200 time: 0.696877, eta: 1:42:12
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.117158, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1221 / 10000]
+		loss: 0.142797, lr: 0.000200 time: 0.696849, eta: 1:41:58
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.142797, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1241 / 10000]
+		loss: 0.129654, lr: 0.000200 time: 0.697627, eta: 1:41:51
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.129654, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1261 / 10000]
+		loss: 0.139913, lr: 0.000200 time: 0.697085, eta: 1:41:32
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.139913, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1281 / 10000]
+		loss: 0.112491, lr: 0.000200 time: 0.696632, eta: 1:41:14
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112491, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1301 / 10000]
+		loss: 0.116728, lr: 0.000200 time: 0.696195, eta: 1:40:56
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.116728, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1321 / 10000]
+		loss: 0.123154, lr: 0.000200 time: 0.697383, eta: 1:40:53
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.123154, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1341 / 10000]
+		loss: 0.137538, lr: 0.000200 time: 0.696942, eta: 1:40:35
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.137538, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1361 / 10000]
+		loss: 0.119887, lr: 0.000200 time: 0.696945, eta: 1:40:21
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.119887, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1381 / 10000]
+		loss: 0.121074, lr: 0.000200 time: 0.698117, eta: 1:40:17
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121074, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1401 / 10000]
+		loss: 0.123792, lr: 0.000200 time: 0.697664, eta: 1:39:59
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.123792, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1421 / 10000]
+		loss: 0.124134, lr: 0.000200 time: 0.697296, eta: 1:39:42
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.124134, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1441 / 10000]
+		loss: 0.130037, lr: 0.000200 time: 0.698265, eta: 1:39:37
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.130037, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1461 / 10000]
+		loss: 0.122717, lr: 0.000200 time: 0.698212, eta: 1:39:22
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.122717, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1481 / 10000]
+		loss: 0.120047, lr: 0.000200 time: 0.697888, eta: 1:39:06
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.120047, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step1499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1501 / 10000]
+		loss: 0.121326, lr: 0.000200 time: 0.699254, eta: 1:39:03
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121326, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1521 / 10000]
+		loss: 0.134278, lr: 0.000200 time: 0.699379, eta: 1:38:50
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.134278, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1541 / 10000]
+		loss: 0.114875, lr: 0.000200 time: 0.699208, eta: 1:38:35
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.114875, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1561 / 10000]
+		loss: 0.117394, lr: 0.000200 time: 0.700048, eta: 1:38:28
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.117394, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1581 / 10000]
+		loss: 0.118613, lr: 0.000200 time: 0.699611, eta: 1:38:10
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118613, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1601 / 10000]
+		loss: 0.128250, lr: 0.000200 time: 0.699425, eta: 1:37:55
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.128250, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1621 / 10000]
+		loss: 0.127070, lr: 0.000200 time: 0.700381, eta: 1:37:49
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.127070, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1641 / 10000]
+		loss: 0.112970, lr: 0.000200 time: 0.699640, eta: 1:37:28
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112970, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1661 / 10000]
+		loss: 0.128164, lr: 0.000200 time: 0.699175, eta: 1:37:11
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.128164, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1681 / 10000]
+		loss: 0.133373, lr: 0.000200 time: 0.700125, eta: 1:37:05
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.133373, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1701 / 10000]
+		loss: 0.112970, lr: 0.000200 time: 0.699799, eta: 1:36:48
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112970, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1721 / 10000]
+		loss: 0.119458, lr: 0.000200 time: 0.699252, eta: 1:36:29
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.119458, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1741 / 10000]
+		loss: 0.123166, lr: 0.000200 time: 0.699774, eta: 1:36:20
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.123166, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1761 / 10000]
+		loss: 0.111242, lr: 0.000200 time: 0.699862, eta: 1:36:06
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.111242, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1781 / 10000]
+		loss: 0.109668, lr: 0.000200 time: 0.699553, eta: 1:35:50
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.109668, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1801 / 10000]
+		loss: 0.125274, lr: 0.000200 time: 0.700242, eta: 1:35:41
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.125274, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1821 / 10000]
+		loss: 0.111624, lr: 0.000200 time: 0.700134, eta: 1:35:27
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.111624, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1841 / 10000]
+		loss: 0.124328, lr: 0.000200 time: 0.699894, eta: 1:35:11
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.124328, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1861 / 10000]
+		loss: 0.133207, lr: 0.000200 time: 0.700436, eta: 1:35:01
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.133207, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1881 / 10000]
+		loss: 0.120165, lr: 0.000200 time: 0.700224, eta: 1:34:45
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.120165, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1901 / 10000]
+		loss: 0.131308, lr: 0.000200 time: 0.700022, eta: 1:34:30
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.131308, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1921 / 10000]
+		loss: 0.117043, lr: 0.000200 time: 0.699842, eta: 1:34:14
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.117043, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1941 / 10000]
+		loss: 0.101529, lr: 0.000200 time: 0.700169, eta: 1:34:03
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.101529, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1961 / 10000]
+		loss: 0.121928, lr: 0.000200 time: 0.699901, eta: 1:33:47
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121928, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 1981 / 10000]
+		loss: 0.114973, lr: 0.000200 time: 0.699790, eta: 1:33:32
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.114973, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step1999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2001 / 10000]
+		loss: 0.121442, lr: 0.000200 time: 0.700126, eta: 1:33:21
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121442, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2021 / 10000]
+		loss: 0.121066, lr: 0.000200 time: 0.699537, eta: 1:33:02
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121066, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2041 / 10000]
+		loss: 0.113564, lr: 0.000200 time: 0.699357, eta: 1:32:46
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.113564, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2061 / 10000]
+		loss: 0.116431, lr: 0.000200 time: 0.700071, eta: 1:32:38
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.116431, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2081 / 10000]
+		loss: 0.116441, lr: 0.000200 time: 0.699746, eta: 1:32:21
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.116441, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2101 / 10000]
+		loss: 0.118058, lr: 0.000200 time: 0.699217, eta: 1:32:03
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118058, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2121 / 10000]
+		loss: 0.114627, lr: 0.000200 time: 0.699810, eta: 1:31:54
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.114627, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2141 / 10000]
+		loss: 0.098818, lr: 0.000200 time: 0.699361, eta: 1:31:36
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098818, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2161 / 10000]
+		loss: 0.124248, lr: 0.000200 time: 0.699204, eta: 1:31:21
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.124248, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2181 / 10000]
+		loss: 0.117783, lr: 0.000200 time: 0.699645, eta: 1:31:11
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.117783, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2201 / 10000]
+		loss: 0.100429, lr: 0.000200 time: 0.699461, eta: 1:30:55
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.100429, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2221 / 10000]
+		loss: 0.113434, lr: 0.000200 time: 0.699053, eta: 1:30:38
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.113434, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2241 / 10000]
+		loss: 0.124629, lr: 0.000200 time: 0.699407, eta: 1:30:27
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.124629, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2261 / 10000]
+		loss: 0.108838, lr: 0.000200 time: 0.699072, eta: 1:30:10
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.108838, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2281 / 10000]
+		loss: 0.126191, lr: 0.000200 time: 0.699092, eta: 1:29:56
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.126191, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2301 / 10000]
+		loss: 0.093662, lr: 0.000200 time: 0.699621, eta: 1:29:47
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093662, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2321 / 10000]
+		loss: 0.118167, lr: 0.000200 time: 0.699006, eta: 1:29:28
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118167, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2341 / 10000]
+		loss: 0.103172, lr: 0.000200 time: 0.698740, eta: 1:29:12
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.103172, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2361 / 10000]
+		loss: 0.105886, lr: 0.000200 time: 0.699383, eta: 1:29:03
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105886, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2381 / 10000]
+		loss: 0.107684, lr: 0.000200 time: 0.699255, eta: 1:28:48
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107684, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2401 / 10000]
+		loss: 0.105461, lr: 0.000200 time: 0.698719, eta: 1:28:30
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105461, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2421 / 10000]
+		loss: 0.118779, lr: 0.000200 time: 0.699267, eta: 1:28:20
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118779, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2441 / 10000]
+		loss: 0.116843, lr: 0.000200 time: 0.699108, eta: 1:28:05
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.116843, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2461 / 10000]
+		loss: 0.115628, lr: 0.000200 time: 0.698717, eta: 1:27:48
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.115628, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2481 / 10000]
+		loss: 0.112716, lr: 0.000200 time: 0.699206, eta: 1:27:38
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112716, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step2499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2501 / 10000]
+		loss: 0.121687, lr: 0.000200 time: 0.698946, eta: 1:27:22
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.121687, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2521 / 10000]
+		loss: 0.113877, lr: 0.000200 time: 0.698813, eta: 1:27:07
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.113877, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2541 / 10000]
+		loss: 0.103361, lr: 0.000200 time: 0.698730, eta: 1:26:52
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.103361, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2561 / 10000]
+		loss: 0.115047, lr: 0.000200 time: 0.699153, eta: 1:26:41
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.115047, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2581 / 10000]
+		loss: 0.131486, lr: 0.000200 time: 0.698864, eta: 1:26:25
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.131486, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2601 / 10000]
+		loss: 0.107686, lr: 0.000200 time: 0.698878, eta: 1:26:11
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107686, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2621 / 10000]
+		loss: 0.118953, lr: 0.000200 time: 0.699462, eta: 1:26:02
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118953, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2641 / 10000]
+		loss: 0.091027, lr: 0.000200 time: 0.699106, eta: 1:25:45
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091027, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2661 / 10000]
+		loss: 0.113617, lr: 0.000200 time: 0.698686, eta: 1:25:28
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.113617, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2681 / 10000]
+		loss: 0.090548, lr: 0.000200 time: 0.699336, eta: 1:25:19
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090548, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2701 / 10000]
+		loss: 0.105564, lr: 0.000200 time: 0.699121, eta: 1:25:03
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105564, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2721 / 10000]
+		loss: 0.104075, lr: 0.000200 time: 0.699080, eta: 1:24:49
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104075, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2741 / 10000]
+		loss: 0.125865, lr: 0.000200 time: 0.699461, eta: 1:24:38
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.125865, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2761 / 10000]
+		loss: 0.112185, lr: 0.000200 time: 0.699443, eta: 1:24:23
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112185, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2781 / 10000]
+		loss: 0.103154, lr: 0.000200 time: 0.699194, eta: 1:24:08
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.103154, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2801 / 10000]
+		loss: 0.106204, lr: 0.000200 time: 0.699720, eta: 1:23:57
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.106204, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2821 / 10000]
+		loss: 0.096955, lr: 0.000200 time: 0.699444, eta: 1:23:42
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096955, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2841 / 10000]
+		loss: 0.111205, lr: 0.000200 time: 0.699283, eta: 1:23:26
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.111205, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2861 / 10000]
+		loss: 0.104411, lr: 0.000200 time: 0.699713, eta: 1:23:15
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104411, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2881 / 10000]
+		loss: 0.102286, lr: 0.000200 time: 0.699639, eta: 1:23:01
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.102286, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2901 / 10000]
+		loss: 0.126122, lr: 0.000200 time: 0.699561, eta: 1:22:46
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.126122, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2921 / 10000]
+		loss: 0.101793, lr: 0.000200 time: 0.699939, eta: 1:22:35
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.101793, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2941 / 10000]
+		loss: 0.105582, lr: 0.000200 time: 0.699491, eta: 1:22:18
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105582, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2961 / 10000]
+		loss: 0.105201, lr: 0.000200 time: 0.699445, eta: 1:22:04
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105201, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 2981 / 10000]
+		loss: 0.107730, lr: 0.000200 time: 0.699997, eta: 1:21:53
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107730, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step2999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3001 / 10000]
+		loss: 0.115394, lr: 0.000200 time: 0.699899, eta: 1:21:39
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.115394, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3021 / 10000]
+		loss: 0.104120, lr: 0.000200 time: 0.699620, eta: 1:21:23
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104120, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3041 / 10000]
+		loss: 0.095784, lr: 0.000200 time: 0.700108, eta: 1:21:12
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095784, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3061 / 10000]
+		loss: 0.095640, lr: 0.000200 time: 0.699904, eta: 1:20:57
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095640, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3081 / 10000]
+		loss: 0.105681, lr: 0.000200 time: 0.699719, eta: 1:20:42
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105681, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3101 / 10000]
+		loss: 0.099847, lr: 0.000200 time: 0.700049, eta: 1:20:30
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099847, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3121 / 10000]
+		loss: 0.104273, lr: 0.000200 time: 0.699935, eta: 1:20:15
+		accuracy_cls: 0.961309
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104273, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3141 / 10000]
+		loss: 0.112347, lr: 0.000200 time: 0.699692, eta: 1:19:59
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112347, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3161 / 10000]
+		loss: 0.110490, lr: 0.000200 time: 0.699425, eta: 1:19:44
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.110490, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3181 / 10000]
+		loss: 0.103123, lr: 0.000200 time: 0.699940, eta: 1:19:33
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.103123, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3201 / 10000]
+		loss: 0.109894, lr: 0.000200 time: 0.699848, eta: 1:19:18
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.109894, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3221 / 10000]
+		loss: 0.109700, lr: 0.000200 time: 0.699726, eta: 1:19:04
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.109700, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3241 / 10000]
+		loss: 0.118462, lr: 0.000200 time: 0.700094, eta: 1:18:52
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.118462, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3261 / 10000]
+		loss: 0.102960, lr: 0.000200 time: 0.699722, eta: 1:18:36
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.102960, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3281 / 10000]
+		loss: 0.106441, lr: 0.000200 time: 0.699650, eta: 1:18:21
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.106441, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3301 / 10000]
+		loss: 0.101603, lr: 0.000200 time: 0.700120, eta: 1:18:10
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.101603, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3321 / 10000]
+		loss: 0.107438, lr: 0.000200 time: 0.699921, eta: 1:17:55
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107438, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3341 / 10000]
+		loss: 0.100807, lr: 0.000200 time: 0.699922, eta: 1:17:41
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.100807, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3361 / 10000]
+		loss: 0.114078, lr: 0.000200 time: 0.700470, eta: 1:17:31
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.114078, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3381 / 10000]
+		loss: 0.107311, lr: 0.000200 time: 0.700419, eta: 1:17:16
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107311, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3401 / 10000]
+		loss: 0.105413, lr: 0.000200 time: 0.700215, eta: 1:17:01
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.105413, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3421 / 10000]
+		loss: 0.096182, lr: 0.000200 time: 0.700991, eta: 1:16:52
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096182, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3441 / 10000]
+		loss: 0.096590, lr: 0.000200 time: 0.700882, eta: 1:16:37
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096590, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3461 / 10000]
+		loss: 0.096040, lr: 0.000200 time: 0.700572, eta: 1:16:21
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096040, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3481 / 10000]
+		loss: 0.099551, lr: 0.000200 time: 0.701106, eta: 1:16:11
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099551, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step3499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3501 / 10000]
+		loss: 0.099936, lr: 0.000200 time: 0.700953, eta: 1:15:56
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099936, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3521 / 10000]
+		loss: 0.088305, lr: 0.000200 time: 0.700855, eta: 1:15:41
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088305, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3541 / 10000]
+		loss: 0.106693, lr: 0.000200 time: 0.701190, eta: 1:15:29
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.106693, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3561 / 10000]
+		loss: 0.109042, lr: 0.000200 time: 0.700944, eta: 1:15:14
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.109042, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3581 / 10000]
+		loss: 0.102985, lr: 0.000200 time: 0.700995, eta: 1:15:00
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.102985, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3601 / 10000]
+		loss: 0.089608, lr: 0.000200 time: 0.701439, eta: 1:14:49
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089608, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3621 / 10000]
+		loss: 0.083933, lr: 0.000200 time: 0.701127, eta: 1:14:33
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083933, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3641 / 10000]
+		loss: 0.112768, lr: 0.000200 time: 0.701033, eta: 1:14:18
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.112768, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3661 / 10000]
+		loss: 0.104137, lr: 0.000200 time: 0.701308, eta: 1:14:06
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104137, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3681 / 10000]
+		loss: 0.107418, lr: 0.000200 time: 0.701297, eta: 1:13:52
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107418, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3701 / 10000]
+		loss: 0.096827, lr: 0.000200 time: 0.701149, eta: 1:13:37
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096827, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3721 / 10000]
+		loss: 0.092920, lr: 0.000200 time: 0.701646, eta: 1:13:26
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092920, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3741 / 10000]
+		loss: 0.095449, lr: 0.000200 time: 0.701485, eta: 1:13:11
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095449, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3761 / 10000]
+		loss: 0.104728, lr: 0.000200 time: 0.701326, eta: 1:12:56
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104728, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3781 / 10000]
+		loss: 0.096246, lr: 0.000200 time: 0.701191, eta: 1:12:41
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096246, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3801 / 10000]
+		loss: 0.098469, lr: 0.000200 time: 0.701522, eta: 1:12:29
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098469, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3821 / 10000]
+		loss: 0.089373, lr: 0.000200 time: 0.701445, eta: 1:12:14
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089373, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3841 / 10000]
+		loss: 0.091901, lr: 0.000200 time: 0.701403, eta: 1:12:00
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091901, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3861 / 10000]
+		loss: 0.094042, lr: 0.000200 time: 0.701785, eta: 1:11:48
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094042, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3881 / 10000]
+		loss: 0.108149, lr: 0.000200 time: 0.701601, eta: 1:11:33
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.108149, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3901 / 10000]
+		loss: 0.098485, lr: 0.000200 time: 0.701520, eta: 1:11:19
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098485, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3921 / 10000]
+		loss: 0.099413, lr: 0.000200 time: 0.701846, eta: 1:11:07
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099413, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3941 / 10000]
+		loss: 0.108383, lr: 0.000200 time: 0.701824, eta: 1:10:53
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.108383, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3961 / 10000]
+		loss: 0.104838, lr: 0.000200 time: 0.701652, eta: 1:10:37
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104838, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 3981 / 10000]
+		loss: 0.090924, lr: 0.000200 time: 0.702142, eta: 1:10:26
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090924, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step3999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4001 / 10000]
+		loss: 0.100257, lr: 0.000200 time: 0.702028, eta: 1:10:12
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.100257, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4021 / 10000]
+		loss: 0.104622, lr: 0.000200 time: 0.701954, eta: 1:09:57
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.104622, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4041 / 10000]
+		loss: 0.099793, lr: 0.000200 time: 0.702377, eta: 1:09:46
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099793, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4061 / 10000]
+		loss: 0.095491, lr: 0.000200 time: 0.702279, eta: 1:09:31
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095491, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4081 / 10000]
+		loss: 0.090726, lr: 0.000200 time: 0.702135, eta: 1:09:16
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090726, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4101 / 10000]
+		loss: 0.089412, lr: 0.000200 time: 0.702433, eta: 1:09:04
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089412, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4121 / 10000]
+		loss: 0.085425, lr: 0.000200 time: 0.702211, eta: 1:08:49
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085425, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4141 / 10000]
+		loss: 0.099959, lr: 0.000200 time: 0.702163, eta: 1:08:34
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099959, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4161 / 10000]
+		loss: 0.097382, lr: 0.000200 time: 0.702463, eta: 1:08:22
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097382, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4181 / 10000]
+		loss: 0.091693, lr: 0.000200 time: 0.702372, eta: 1:08:07
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091693, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4201 / 10000]
+		loss: 0.096555, lr: 0.000200 time: 0.702238, eta: 1:07:52
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096555, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4221 / 10000]
+		loss: 0.096176, lr: 0.000200 time: 0.702572, eta: 1:07:40
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096176, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4241 / 10000]
+		loss: 0.096880, lr: 0.000200 time: 0.702320, eta: 1:07:25
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096880, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4261 / 10000]
+		loss: 0.097844, lr: 0.000200 time: 0.702122, eta: 1:07:10
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097844, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4281 / 10000]
+		loss: 0.082993, lr: 0.000200 time: 0.702790, eta: 1:06:59
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082993, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4301 / 10000]
+		loss: 0.109117, lr: 0.000200 time: 0.702622, eta: 1:06:44
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.109117, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4321 / 10000]
+		loss: 0.085659, lr: 0.000200 time: 0.702494, eta: 1:06:30
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085659, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4341 / 10000]
+		loss: 0.089941, lr: 0.000200 time: 0.702897, eta: 1:06:18
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089941, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4361 / 10000]
+		loss: 0.098423, lr: 0.000200 time: 0.702757, eta: 1:06:03
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098423, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4381 / 10000]
+		loss: 0.093943, lr: 0.000200 time: 0.702512, eta: 1:05:48
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093943, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4401 / 10000]
+		loss: 0.094587, lr: 0.000200 time: 0.702435, eta: 1:05:33
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094587, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4421 / 10000]
+		loss: 0.107922, lr: 0.000200 time: 0.702772, eta: 1:05:21
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.107922, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4441 / 10000]
+		loss: 0.088189, lr: 0.000200 time: 0.702645, eta: 1:05:06
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088189, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4461 / 10000]
+		loss: 0.093616, lr: 0.000200 time: 0.702416, eta: 1:04:51
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093616, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4481 / 10000]
+		loss: 0.094803, lr: 0.000200 time: 0.702823, eta: 1:04:39
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094803, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step4499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4501 / 10000]
+		loss: 0.084862, lr: 0.000200 time: 0.702723, eta: 1:04:24
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084862, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4521 / 10000]
+		loss: 0.097128, lr: 0.000200 time: 0.702658, eta: 1:04:10
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097128, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4541 / 10000]
+		loss: 0.100127, lr: 0.000200 time: 0.702982, eta: 1:03:58
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.100127, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4561 / 10000]
+		loss: 0.092068, lr: 0.000200 time: 0.702970, eta: 1:03:44
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092068, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4581 / 10000]
+		loss: 0.093031, lr: 0.000200 time: 0.702917, eta: 1:03:29
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093031, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4601 / 10000]
+		loss: 0.095876, lr: 0.000200 time: 0.703177, eta: 1:03:17
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095876, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4621 / 10000]
+		loss: 0.078992, lr: 0.000200 time: 0.703150, eta: 1:03:02
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.078992, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4641 / 10000]
+		loss: 0.094215, lr: 0.000200 time: 0.703131, eta: 1:02:48
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094215, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4661 / 10000]
+		loss: 0.081531, lr: 0.000200 time: 0.703493, eta: 1:02:36
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081531, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4681 / 10000]
+		loss: 0.096571, lr: 0.000200 time: 0.703180, eta: 1:02:20
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096571, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4701 / 10000]
+		loss: 0.094412, lr: 0.000200 time: 0.703186, eta: 1:02:06
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094412, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4721 / 10000]
+		loss: 0.099727, lr: 0.000200 time: 0.703566, eta: 1:01:54
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099727, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4741 / 10000]
+		loss: 0.088329, lr: 0.000200 time: 0.703504, eta: 1:01:40
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088329, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4761 / 10000]
+		loss: 0.093210, lr: 0.000200 time: 0.703305, eta: 1:01:25
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093210, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4781 / 10000]
+		loss: 0.083412, lr: 0.000200 time: 0.703636, eta: 1:01:12
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083412, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4801 / 10000]
+		loss: 0.085211, lr: 0.000200 time: 0.703619, eta: 1:00:58
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085211, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4821 / 10000]
+		loss: 0.092591, lr: 0.000200 time: 0.703611, eta: 1:00:44
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092591, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4841 / 10000]
+		loss: 0.083184, lr: 0.000200 time: 0.704081, eta: 1:00:33
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083184, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4861 / 10000]
+		loss: 0.079456, lr: 0.000200 time: 0.703975, eta: 1:00:18
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079456, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4881 / 10000]
+		loss: 0.086930, lr: 0.000200 time: 0.704048, eta: 1:00:04
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086930, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4901 / 10000]
+		loss: 0.091897, lr: 0.000200 time: 0.704675, eta: 0:59:53
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091897, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4921 / 10000]
+		loss: 0.087603, lr: 0.000200 time: 0.704665, eta: 0:59:39
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087603, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4941 / 10000]
+		loss: 0.093540, lr: 0.000200 time: 0.704630, eta: 0:59:25
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093540, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4961 / 10000]
+		loss: 0.091349, lr: 0.000200 time: 0.704789, eta: 0:59:12
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091349, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 4981 / 10000]
+		loss: 0.086293, lr: 0.000200 time: 0.704600, eta: 0:58:57
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086293, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step4999.pth
+INFO train_net_step.py: 451: Decay the learning on step 5000
+INFO net.py:  72: Changing learning rate 0.000200 -> 0.000020
+INFO net.py:  97: Scaling update history by 0.100000 (new lr / old lr)
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5001 / 10000]
+		loss: 0.086468, lr: 0.000020 time: 0.704549, eta: 0:58:42
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086468, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5021 / 10000]
+		loss: 0.079212, lr: 0.000020 time: 0.704463, eta: 0:58:28
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079212, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5041 / 10000]
+		loss: 0.082211, lr: 0.000020 time: 0.704882, eta: 0:58:16
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082211, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5061 / 10000]
+		loss: 0.085981, lr: 0.000020 time: 0.704662, eta: 0:58:01
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085981, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5081 / 10000]
+		loss: 0.087280, lr: 0.000020 time: 0.704491, eta: 0:57:46
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087280, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5101 / 10000]
+		loss: 0.077667, lr: 0.000020 time: 0.704651, eta: 0:57:32
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077667, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5121 / 10000]
+		loss: 0.085427, lr: 0.000020 time: 0.704548, eta: 0:57:18
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085427, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5141 / 10000]
+		loss: 0.095041, lr: 0.000020 time: 0.704306, eta: 0:57:02
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095041, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5161 / 10000]
+		loss: 0.086983, lr: 0.000020 time: 0.704576, eta: 0:56:50
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086983, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5181 / 10000]
+		loss: 0.091034, lr: 0.000020 time: 0.704489, eta: 0:56:35
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091034, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5201 / 10000]
+		loss: 0.084658, lr: 0.000020 time: 0.704381, eta: 0:56:21
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084658, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5221 / 10000]
+		loss: 0.091108, lr: 0.000020 time: 0.704660, eta: 0:56:08
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091108, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5241 / 10000]
+		loss: 0.091568, lr: 0.000020 time: 0.704563, eta: 0:55:53
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091568, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5261 / 10000]
+		loss: 0.080685, lr: 0.000020 time: 0.704589, eta: 0:55:39
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080685, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5281 / 10000]
+		loss: 0.096751, lr: 0.000020 time: 0.704902, eta: 0:55:27
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096751, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5301 / 10000]
+		loss: 0.076683, lr: 0.000020 time: 0.704693, eta: 0:55:12
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.076683, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5321 / 10000]
+		loss: 0.092481, lr: 0.000020 time: 0.704531, eta: 0:54:57
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092481, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5341 / 10000]
+		loss: 0.088113, lr: 0.000020 time: 0.704821, eta: 0:54:44
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088113, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5361 / 10000]
+		loss: 0.100012, lr: 0.000020 time: 0.704637, eta: 0:54:29
+		accuracy_cls: 0.961309
+		spatial_reg: 0.000000
+		image_loss_cls: 0.100012, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5381 / 10000]
+		loss: 0.075381, lr: 0.000020 time: 0.704565, eta: 0:54:15
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075381, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5401 / 10000]
+		loss: 0.081808, lr: 0.000020 time: 0.704927, eta: 0:54:02
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081808, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5421 / 10000]
+		loss: 0.082974, lr: 0.000020 time: 0.704847, eta: 0:53:48
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082974, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5441 / 10000]
+		loss: 0.098949, lr: 0.000020 time: 0.704657, eta: 0:53:33
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098949, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5461 / 10000]
+		loss: 0.091681, lr: 0.000020 time: 0.705048, eta: 0:53:20
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091681, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5481 / 10000]
+		loss: 0.081760, lr: 0.000020 time: 0.704872, eta: 0:53:06
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081760, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step5499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5501 / 10000]
+		loss: 0.096035, lr: 0.000020 time: 0.704864, eta: 0:52:51
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096035, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5521 / 10000]
+		loss: 0.073807, lr: 0.000020 time: 0.705025, eta: 0:52:38
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.073807, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5541 / 10000]
+		loss: 0.080465, lr: 0.000020 time: 0.705004, eta: 0:52:24
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080465, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5561 / 10000]
+		loss: 0.076151, lr: 0.000020 time: 0.704948, eta: 0:52:09
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.076151, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5581 / 10000]
+		loss: 0.093147, lr: 0.000020 time: 0.705215, eta: 0:51:57
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093147, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5601 / 10000]
+		loss: 0.088294, lr: 0.000020 time: 0.705041, eta: 0:51:42
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088294, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5621 / 10000]
+		loss: 0.081336, lr: 0.000020 time: 0.704952, eta: 0:51:27
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081336, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5641 / 10000]
+		loss: 0.088186, lr: 0.000020 time: 0.704850, eta: 0:51:13
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088186, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5661 / 10000]
+		loss: 0.087690, lr: 0.000020 time: 0.705197, eta: 0:51:00
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087690, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5681 / 10000]
+		loss: 0.088464, lr: 0.000020 time: 0.704971, eta: 0:50:45
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088464, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5701 / 10000]
+		loss: 0.077136, lr: 0.000020 time: 0.704989, eta: 0:50:31
+		accuracy_cls: 0.976190
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077136, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5721 / 10000]
+		loss: 0.097625, lr: 0.000020 time: 0.705382, eta: 0:50:19
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097625, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5741 / 10000]
+		loss: 0.080222, lr: 0.000020 time: 0.705264, eta: 0:50:04
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080222, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5761 / 10000]
+		loss: 0.080386, lr: 0.000020 time: 0.705224, eta: 0:49:50
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080386, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5781 / 10000]
+		loss: 0.084431, lr: 0.000020 time: 0.705864, eta: 0:49:38
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084431, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5801 / 10000]
+		loss: 0.082993, lr: 0.000020 time: 0.705710, eta: 0:49:23
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082993, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5821 / 10000]
+		loss: 0.083651, lr: 0.000020 time: 0.705581, eta: 0:49:09
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083651, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5841 / 10000]
+		loss: 0.090550, lr: 0.000020 time: 0.705864, eta: 0:48:56
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090550, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5861 / 10000]
+		loss: 0.085394, lr: 0.000020 time: 0.705856, eta: 0:48:42
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085394, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5881 / 10000]
+		loss: 0.083901, lr: 0.000020 time: 0.705797, eta: 0:48:27
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083901, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5901 / 10000]
+		loss: 0.087806, lr: 0.000020 time: 0.706085, eta: 0:48:14
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087806, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5921 / 10000]
+		loss: 0.078225, lr: 0.000020 time: 0.705940, eta: 0:48:00
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.078225, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5941 / 10000]
+		loss: 0.091804, lr: 0.000020 time: 0.705817, eta: 0:47:45
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091804, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5961 / 10000]
+		loss: 0.089369, lr: 0.000020 time: 0.706198, eta: 0:47:33
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089369, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 5981 / 10000]
+		loss: 0.087068, lr: 0.000020 time: 0.705965, eta: 0:47:17
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087068, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step5999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6001 / 10000]
+		loss: 0.088362, lr: 0.000020 time: 0.706021, eta: 0:47:04
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088362, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6021 / 10000]
+		loss: 0.106405, lr: 0.000020 time: 0.706347, eta: 0:46:51
+		accuracy_cls: 0.958333
+		spatial_reg: 0.000000
+		image_loss_cls: 0.106405, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6041 / 10000]
+		loss: 0.077592, lr: 0.000020 time: 0.706168, eta: 0:46:36
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077592, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6061 / 10000]
+		loss: 0.080919, lr: 0.000020 time: 0.706006, eta: 0:46:21
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080919, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6081 / 10000]
+		loss: 0.090794, lr: 0.000020 time: 0.706334, eta: 0:46:08
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090794, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6101 / 10000]
+		loss: 0.095335, lr: 0.000020 time: 0.706239, eta: 0:45:54
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095335, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6121 / 10000]
+		loss: 0.081465, lr: 0.000020 time: 0.706115, eta: 0:45:39
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081465, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6141 / 10000]
+		loss: 0.089405, lr: 0.000020 time: 0.706436, eta: 0:45:26
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089405, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6161 / 10000]
+		loss: 0.087059, lr: 0.000020 time: 0.706452, eta: 0:45:12
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087059, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6181 / 10000]
+		loss: 0.072642, lr: 0.000020 time: 0.706384, eta: 0:44:58
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.072642, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6201 / 10000]
+		loss: 0.095570, lr: 0.000020 time: 0.706625, eta: 0:44:45
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095570, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6221 / 10000]
+		loss: 0.088296, lr: 0.000020 time: 0.706636, eta: 0:44:31
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088296, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6241 / 10000]
+		loss: 0.089257, lr: 0.000020 time: 0.706596, eta: 0:44:16
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089257, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6261 / 10000]
+		loss: 0.090308, lr: 0.000020 time: 0.706509, eta: 0:44:02
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090308, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6281 / 10000]
+		loss: 0.101818, lr: 0.000020 time: 0.706647, eta: 0:43:48
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.101818, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6301 / 10000]
+		loss: 0.095753, lr: 0.000020 time: 0.706545, eta: 0:43:34
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095753, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6321 / 10000]
+		loss: 0.068887, lr: 0.000020 time: 0.706414, eta: 0:43:19
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.068887, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6341 / 10000]
+		loss: 0.075197, lr: 0.000020 time: 0.706701, eta: 0:43:06
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075197, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6361 / 10000]
+		loss: 0.086306, lr: 0.000020 time: 0.706547, eta: 0:42:51
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086306, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6381 / 10000]
+		loss: 0.083038, lr: 0.000020 time: 0.706489, eta: 0:42:37
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083038, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6401 / 10000]
+		loss: 0.080154, lr: 0.000020 time: 0.706963, eta: 0:42:25
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080154, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6421 / 10000]
+		loss: 0.093636, lr: 0.000020 time: 0.706933, eta: 0:42:10
+		accuracy_cls: 0.959821
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093636, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6441 / 10000]
+		loss: 0.081341, lr: 0.000020 time: 0.706790, eta: 0:41:56
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081341, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6461 / 10000]
+		loss: 0.084853, lr: 0.000020 time: 0.707028, eta: 0:41:42
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084853, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6481 / 10000]
+		loss: 0.085106, lr: 0.000020 time: 0.706930, eta: 0:41:28
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085106, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step6499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6501 / 10000]
+		loss: 0.086701, lr: 0.000020 time: 0.706861, eta: 0:41:14
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086701, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6521 / 10000]
+		loss: 0.088386, lr: 0.000020 time: 0.707158, eta: 0:41:00
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088386, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6541 / 10000]
+		loss: 0.087912, lr: 0.000020 time: 0.707095, eta: 0:40:46
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087912, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6561 / 10000]
+		loss: 0.094249, lr: 0.000020 time: 0.707035, eta: 0:40:32
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094249, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6581 / 10000]
+		loss: 0.099917, lr: 0.000020 time: 0.707258, eta: 0:40:18
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.099917, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6601 / 10000]
+		loss: 0.080861, lr: 0.000020 time: 0.707170, eta: 0:40:04
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080861, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6621 / 10000]
+		loss: 0.085999, lr: 0.000020 time: 0.707150, eta: 0:39:50
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085999, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6641 / 10000]
+		loss: 0.086723, lr: 0.000020 time: 0.707395, eta: 0:39:36
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086723, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6661 / 10000]
+		loss: 0.086468, lr: 0.000020 time: 0.707191, eta: 0:39:22
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086468, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6681 / 10000]
+		loss: 0.086340, lr: 0.000020 time: 0.707122, eta: 0:39:07
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086340, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6701 / 10000]
+		loss: 0.084361, lr: 0.000020 time: 0.707384, eta: 0:38:54
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084361, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6721 / 10000]
+		loss: 0.091431, lr: 0.000020 time: 0.707302, eta: 0:38:39
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091431, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6741 / 10000]
+		loss: 0.073861, lr: 0.000020 time: 0.707160, eta: 0:38:25
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.073861, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6761 / 10000]
+		loss: 0.086676, lr: 0.000020 time: 0.707413, eta: 0:38:12
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086676, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6781 / 10000]
+		loss: 0.075096, lr: 0.000020 time: 0.707349, eta: 0:37:57
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075096, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6801 / 10000]
+		loss: 0.083552, lr: 0.000020 time: 0.707269, eta: 0:37:43
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083552, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6821 / 10000]
+		loss: 0.085996, lr: 0.000020 time: 0.707538, eta: 0:37:29
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085996, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6841 / 10000]
+		loss: 0.089907, lr: 0.000020 time: 0.707396, eta: 0:37:15
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089907, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6861 / 10000]
+		loss: 0.080373, lr: 0.000020 time: 0.707337, eta: 0:37:01
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080373, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6881 / 10000]
+		loss: 0.087031, lr: 0.000020 time: 0.707241, eta: 0:36:46
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087031, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6901 / 10000]
+		loss: 0.081152, lr: 0.000020 time: 0.707285, eta: 0:36:32
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081152, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6921 / 10000]
+		loss: 0.097039, lr: 0.000020 time: 0.707211, eta: 0:36:18
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097039, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6941 / 10000]
+		loss: 0.075533, lr: 0.000020 time: 0.707153, eta: 0:36:03
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075533, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6961 / 10000]
+		loss: 0.087039, lr: 0.000020 time: 0.707530, eta: 0:35:50
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087039, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 6981 / 10000]
+		loss: 0.087907, lr: 0.000020 time: 0.707417, eta: 0:35:36
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087907, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step6999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7001 / 10000]
+		loss: 0.080441, lr: 0.000020 time: 0.707303, eta: 0:35:21
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080441, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7021 / 10000]
+		loss: 0.081140, lr: 0.000020 time: 0.707586, eta: 0:35:08
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081140, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7041 / 10000]
+		loss: 0.078540, lr: 0.000020 time: 0.707433, eta: 0:34:54
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.078540, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7061 / 10000]
+		loss: 0.096617, lr: 0.000020 time: 0.707409, eta: 0:34:39
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096617, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7081 / 10000]
+		loss: 0.076716, lr: 0.000020 time: 0.707502, eta: 0:34:25
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.076716, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7101 / 10000]
+		loss: 0.091214, lr: 0.000020 time: 0.707420, eta: 0:34:11
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091214, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7121 / 10000]
+		loss: 0.082716, lr: 0.000020 time: 0.707341, eta: 0:33:57
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082716, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7141 / 10000]
+		loss: 0.097534, lr: 0.000020 time: 0.707546, eta: 0:33:43
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097534, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7161 / 10000]
+		loss: 0.079119, lr: 0.000020 time: 0.707542, eta: 0:33:29
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079119, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7181 / 10000]
+		loss: 0.101583, lr: 0.000020 time: 0.707522, eta: 0:33:15
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.101583, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7201 / 10000]
+		loss: 0.082433, lr: 0.000020 time: 0.707759, eta: 0:33:01
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082433, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7221 / 10000]
+		loss: 0.088398, lr: 0.000020 time: 0.707703, eta: 0:32:47
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088398, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7241 / 10000]
+		loss: 0.084108, lr: 0.000020 time: 0.707662, eta: 0:32:33
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084108, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7261 / 10000]
+		loss: 0.086714, lr: 0.000020 time: 0.707877, eta: 0:32:19
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086714, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7281 / 10000]
+		loss: 0.079317, lr: 0.000020 time: 0.707722, eta: 0:32:05
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079317, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7301 / 10000]
+		loss: 0.091202, lr: 0.000020 time: 0.707680, eta: 0:31:50
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091202, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7321 / 10000]
+		loss: 0.085626, lr: 0.000020 time: 0.707941, eta: 0:31:37
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085626, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7341 / 10000]
+		loss: 0.083172, lr: 0.000020 time: 0.707923, eta: 0:31:23
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083172, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7361 / 10000]
+		loss: 0.083577, lr: 0.000020 time: 0.707740, eta: 0:31:08
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083577, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7381 / 10000]
+		loss: 0.077745, lr: 0.000020 time: 0.707951, eta: 0:30:54
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077745, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7401 / 10000]
+		loss: 0.085700, lr: 0.000020 time: 0.707934, eta: 0:30:40
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085700, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7421 / 10000]
+		loss: 0.085111, lr: 0.000020 time: 0.707859, eta: 0:30:26
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085111, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7441 / 10000]
+		loss: 0.075355, lr: 0.000020 time: 0.707982, eta: 0:30:12
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075355, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7461 / 10000]
+		loss: 0.084490, lr: 0.000020 time: 0.707878, eta: 0:29:58
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084490, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7481 / 10000]
+		loss: 0.088511, lr: 0.000020 time: 0.707838, eta: 0:29:43
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088511, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step7499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7501 / 10000]
+		loss: 0.078641, lr: 0.000020 time: 0.707761, eta: 0:29:29
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.078641, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7521 / 10000]
+		loss: 0.086219, lr: 0.000020 time: 0.707990, eta: 0:29:15
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086219, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7541 / 10000]
+		loss: 0.087308, lr: 0.000020 time: 0.707947, eta: 0:29:01
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087308, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7561 / 10000]
+		loss: 0.084094, lr: 0.000020 time: 0.707843, eta: 0:28:47
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084094, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7581 / 10000]
+		loss: 0.085256, lr: 0.000020 time: 0.707993, eta: 0:28:33
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085256, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7601 / 10000]
+		loss: 0.087284, lr: 0.000020 time: 0.707968, eta: 0:28:19
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087284, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7621 / 10000]
+		loss: 0.085027, lr: 0.000020 time: 0.707928, eta: 0:28:04
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085027, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7641 / 10000]
+		loss: 0.093318, lr: 0.000020 time: 0.708281, eta: 0:27:51
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093318, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7661 / 10000]
+		loss: 0.083188, lr: 0.000020 time: 0.708124, eta: 0:27:37
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083188, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7681 / 10000]
+		loss: 0.076626, lr: 0.000020 time: 0.708055, eta: 0:27:22
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.076626, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7701 / 10000]
+		loss: 0.092234, lr: 0.000020 time: 0.708195, eta: 0:27:08
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092234, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7721 / 10000]
+		loss: 0.091557, lr: 0.000020 time: 0.708132, eta: 0:26:54
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091557, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7741 / 10000]
+		loss: 0.092509, lr: 0.000020 time: 0.708027, eta: 0:26:40
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092509, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7761 / 10000]
+		loss: 0.077573, lr: 0.000020 time: 0.708274, eta: 0:26:26
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077573, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7781 / 10000]
+		loss: 0.084669, lr: 0.000020 time: 0.708212, eta: 0:26:12
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084669, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7801 / 10000]
+		loss: 0.080758, lr: 0.000020 time: 0.708160, eta: 0:25:57
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080758, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7821 / 10000]
+		loss: 0.091095, lr: 0.000020 time: 0.708315, eta: 0:25:44
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091095, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7841 / 10000]
+		loss: 0.084921, lr: 0.000020 time: 0.708373, eta: 0:25:30
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084921, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7861 / 10000]
+		loss: 0.082665, lr: 0.000020 time: 0.708257, eta: 0:25:15
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082665, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7881 / 10000]
+		loss: 0.085596, lr: 0.000020 time: 0.708411, eta: 0:25:01
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085596, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7901 / 10000]
+		loss: 0.087674, lr: 0.000020 time: 0.708246, eta: 0:24:47
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087674, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7921 / 10000]
+		loss: 0.079538, lr: 0.000020 time: 0.708244, eta: 0:24:33
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079538, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7941 / 10000]
+		loss: 0.085589, lr: 0.000020 time: 0.708392, eta: 0:24:19
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085589, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7961 / 10000]
+		loss: 0.085500, lr: 0.000020 time: 0.708383, eta: 0:24:05
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085500, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 7981 / 10000]
+		loss: 0.079333, lr: 0.000020 time: 0.708314, eta: 0:23:50
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079333, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step7999.pth
+INFO train_net_step.py: 451: Decay the learning on step 8000
+INFO net.py:  72: Changing learning rate 0.000020 -> 0.000002
+INFO net.py:  97: Scaling update history by 0.100000 (new lr / old lr)
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8001 / 10000]
+		loss: 0.089353, lr: 0.000002 time: 0.708622, eta: 0:23:37
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.089353, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8021 / 10000]
+		loss: 0.085228, lr: 0.000002 time: 0.708593, eta: 0:23:23
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085228, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8041 / 10000]
+		loss: 0.088798, lr: 0.000002 time: 0.708429, eta: 0:23:08
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088798, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8061 / 10000]
+		loss: 0.080837, lr: 0.000002 time: 0.708712, eta: 0:22:54
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080837, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8081 / 10000]
+		loss: 0.088699, lr: 0.000002 time: 0.708743, eta: 0:22:40
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088699, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8101 / 10000]
+		loss: 0.088087, lr: 0.000002 time: 0.708641, eta: 0:22:26
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088087, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8121 / 10000]
+		loss: 0.085392, lr: 0.000002 time: 0.708567, eta: 0:22:12
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085392, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8141 / 10000]
+		loss: 0.086364, lr: 0.000002 time: 0.708791, eta: 0:21:58
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086364, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8161 / 10000]
+		loss: 0.095312, lr: 0.000002 time: 0.708718, eta: 0:21:44
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.095312, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8181 / 10000]
+		loss: 0.073490, lr: 0.000002 time: 0.708603, eta: 0:21:29
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.073490, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8201 / 10000]
+		loss: 0.080473, lr: 0.000002 time: 0.708952, eta: 0:21:16
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080473, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8221 / 10000]
+		loss: 0.091949, lr: 0.000002 time: 0.708927, eta: 0:21:01
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091949, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8241 / 10000]
+		loss: 0.085393, lr: 0.000002 time: 0.708872, eta: 0:20:47
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085393, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8261 / 10000]
+		loss: 0.085942, lr: 0.000002 time: 0.709241, eta: 0:20:34
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085942, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8281 / 10000]
+		loss: 0.083344, lr: 0.000002 time: 0.709184, eta: 0:20:19
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083344, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8301 / 10000]
+		loss: 0.085894, lr: 0.000002 time: 0.709142, eta: 0:20:05
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085894, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8321 / 10000]
+		loss: 0.087396, lr: 0.000002 time: 0.709367, eta: 0:19:51
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087396, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8341 / 10000]
+		loss: 0.086230, lr: 0.000002 time: 0.709319, eta: 0:19:37
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086230, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8361 / 10000]
+		loss: 0.083639, lr: 0.000002 time: 0.709288, eta: 0:19:23
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083639, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8381 / 10000]
+		loss: 0.085273, lr: 0.000002 time: 0.709535, eta: 0:19:09
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085273, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8401 / 10000]
+		loss: 0.085668, lr: 0.000002 time: 0.709564, eta: 0:18:55
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085668, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8421 / 10000]
+		loss: 0.086334, lr: 0.000002 time: 0.709433, eta: 0:18:40
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086334, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8441 / 10000]
+		loss: 0.091831, lr: 0.000002 time: 0.709839, eta: 0:18:27
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091831, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8461 / 10000]
+		loss: 0.085932, lr: 0.000002 time: 0.709764, eta: 0:18:13
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085932, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8481 / 10000]
+		loss: 0.082773, lr: 0.000002 time: 0.709676, eta: 0:17:58
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082773, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step8499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8501 / 10000]
+		loss: 0.081632, lr: 0.000002 time: 0.709913, eta: 0:17:44
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081632, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8521 / 10000]
+		loss: 0.092445, lr: 0.000002 time: 0.709856, eta: 0:17:30
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092445, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8541 / 10000]
+		loss: 0.076401, lr: 0.000002 time: 0.709853, eta: 0:17:16
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.076401, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8561 / 10000]
+		loss: 0.083131, lr: 0.000002 time: 0.710206, eta: 0:17:02
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083131, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8581 / 10000]
+		loss: 0.090607, lr: 0.000002 time: 0.710173, eta: 0:16:48
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090607, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8601 / 10000]
+		loss: 0.075526, lr: 0.000002 time: 0.710198, eta: 0:16:34
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075526, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8621 / 10000]
+		loss: 0.081826, lr: 0.000002 time: 0.710487, eta: 0:16:20
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081826, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8641 / 10000]
+		loss: 0.088811, lr: 0.000002 time: 0.710350, eta: 0:16:06
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088811, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8661 / 10000]
+		loss: 0.081095, lr: 0.000002 time: 0.710313, eta: 0:15:51
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081095, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8681 / 10000]
+		loss: 0.083268, lr: 0.000002 time: 0.710609, eta: 0:15:38
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083268, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8701 / 10000]
+		loss: 0.098122, lr: 0.000002 time: 0.710515, eta: 0:15:23
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098122, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8721 / 10000]
+		loss: 0.093553, lr: 0.000002 time: 0.710410, eta: 0:15:09
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093553, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8741 / 10000]
+		loss: 0.071530, lr: 0.000002 time: 0.710361, eta: 0:14:55
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.071530, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8761 / 10000]
+		loss: 0.096976, lr: 0.000002 time: 0.710661, eta: 0:14:41
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.096976, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8781 / 10000]
+		loss: 0.091329, lr: 0.000002 time: 0.710666, eta: 0:14:27
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091329, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8801 / 10000]
+		loss: 0.077368, lr: 0.000002 time: 0.710528, eta: 0:14:12
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077368, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8821 / 10000]
+		loss: 0.087625, lr: 0.000002 time: 0.710788, eta: 0:13:58
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087625, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8841 / 10000]
+		loss: 0.079720, lr: 0.000002 time: 0.710691, eta: 0:13:44
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079720, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8861 / 10000]
+		loss: 0.097181, lr: 0.000002 time: 0.710628, eta: 0:13:30
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.097181, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8881 / 10000]
+		loss: 0.087538, lr: 0.000002 time: 0.710940, eta: 0:13:16
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087538, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8901 / 10000]
+		loss: 0.088318, lr: 0.000002 time: 0.710914, eta: 0:13:02
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088318, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8921 / 10000]
+		loss: 0.084960, lr: 0.000002 time: 0.710855, eta: 0:12:47
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084960, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8941 / 10000]
+		loss: 0.087054, lr: 0.000002 time: 0.711037, eta: 0:12:33
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087054, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8961 / 10000]
+		loss: 0.083467, lr: 0.000002 time: 0.711066, eta: 0:12:19
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083467, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 8981 / 10000]
+		loss: 0.084841, lr: 0.000002 time: 0.711009, eta: 0:12:05
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084841, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step8999.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9001 / 10000]
+		loss: 0.081820, lr: 0.000002 time: 0.711255, eta: 0:11:51
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081820, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9021 / 10000]
+		loss: 0.085686, lr: 0.000002 time: 0.711117, eta: 0:11:36
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.085686, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9041 / 10000]
+		loss: 0.080595, lr: 0.000002 time: 0.711097, eta: 0:11:22
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080595, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9061 / 10000]
+		loss: 0.074768, lr: 0.000002 time: 0.711518, eta: 0:11:08
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.074768, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9081 / 10000]
+		loss: 0.084191, lr: 0.000002 time: 0.711533, eta: 0:10:54
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084191, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9101 / 10000]
+		loss: 0.083522, lr: 0.000002 time: 0.711508, eta: 0:10:40
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083522, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9121 / 10000]
+		loss: 0.075012, lr: 0.000002 time: 0.711792, eta: 0:10:26
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.075012, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9141 / 10000]
+		loss: 0.077055, lr: 0.000002 time: 0.711736, eta: 0:10:12
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077055, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9161 / 10000]
+		loss: 0.084651, lr: 0.000002 time: 0.711609, eta: 0:09:57
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084651, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9181 / 10000]
+		loss: 0.087931, lr: 0.000002 time: 0.711795, eta: 0:09:43
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087931, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9201 / 10000]
+		loss: 0.077991, lr: 0.000002 time: 0.711698, eta: 0:09:29
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.077991, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9221 / 10000]
+		loss: 0.092011, lr: 0.000002 time: 0.711663, eta: 0:09:15
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092011, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9241 / 10000]
+		loss: 0.098466, lr: 0.000002 time: 0.711970, eta: 0:09:01
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.098466, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9261 / 10000]
+		loss: 0.073992, lr: 0.000002 time: 0.711944, eta: 0:08:46
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.073992, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9281 / 10000]
+		loss: 0.080595, lr: 0.000002 time: 0.711890, eta: 0:08:32
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.080595, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9301 / 10000]
+		loss: 0.088566, lr: 0.000002 time: 0.712289, eta: 0:08:18
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088566, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9321 / 10000]
+		loss: 0.084492, lr: 0.000002 time: 0.712087, eta: 0:08:04
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084492, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9341 / 10000]
+		loss: 0.082052, lr: 0.000002 time: 0.712056, eta: 0:07:49
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082052, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9361 / 10000]
+		loss: 0.071310, lr: 0.000002 time: 0.712024, eta: 0:07:35
+		accuracy_cls: 0.974702
+		spatial_reg: 0.000000
+		image_loss_cls: 0.071310, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9381 / 10000]
+		loss: 0.081793, lr: 0.000002 time: 0.712360, eta: 0:07:21
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.081793, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9401 / 10000]
+		loss: 0.083366, lr: 0.000002 time: 0.712283, eta: 0:07:07
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083366, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9421 / 10000]
+		loss: 0.083970, lr: 0.000002 time: 0.712226, eta: 0:06:53
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083970, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9441 / 10000]
+		loss: 0.082070, lr: 0.000002 time: 0.712527, eta: 0:06:39
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082070, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9461 / 10000]
+		loss: 0.090821, lr: 0.000002 time: 0.712601, eta: 0:06:24
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090821, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9481 / 10000]
+		loss: 0.071951, lr: 0.000002 time: 0.712511, eta: 0:06:10
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.071951, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step9499.pth
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9501 / 10000]
+		loss: 0.092435, lr: 0.000002 time: 0.712757, eta: 0:05:56
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.092435, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9521 / 10000]
+		loss: 0.082064, lr: 0.000002 time: 0.712655, eta: 0:05:42
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082064, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9541 / 10000]
+		loss: 0.083624, lr: 0.000002 time: 0.712532, eta: 0:05:27
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083624, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9561 / 10000]
+		loss: 0.082205, lr: 0.000002 time: 0.712774, eta: 0:05:13
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.082205, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9581 / 10000]
+		loss: 0.094979, lr: 0.000002 time: 0.712715, eta: 0:04:59
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094979, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9601 / 10000]
+		loss: 0.086399, lr: 0.000002 time: 0.712698, eta: 0:04:45
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086399, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9621 / 10000]
+		loss: 0.079110, lr: 0.000002 time: 0.712766, eta: 0:04:30
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079110, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9641 / 10000]
+		loss: 0.093647, lr: 0.000002 time: 0.712734, eta: 0:04:16
+		accuracy_cls: 0.961310
+		spatial_reg: 0.000000
+		image_loss_cls: 0.093647, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9661 / 10000]
+		loss: 0.067502, lr: 0.000002 time: 0.712745, eta: 0:04:02
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.067502, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9681 / 10000]
+		loss: 0.083068, lr: 0.000002 time: 0.712963, eta: 0:03:48
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083068, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9701 / 10000]
+		loss: 0.083252, lr: 0.000002 time: 0.712816, eta: 0:03:33
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083252, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9721 / 10000]
+		loss: 0.090525, lr: 0.000002 time: 0.712815, eta: 0:03:19
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.090525, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9741 / 10000]
+		loss: 0.088246, lr: 0.000002 time: 0.713119, eta: 0:03:05
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088246, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9761 / 10000]
+		loss: 0.086262, lr: 0.000002 time: 0.713087, eta: 0:02:51
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086262, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9781 / 10000]
+		loss: 0.083421, lr: 0.000002 time: 0.713028, eta: 0:02:36
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.083421, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9801 / 10000]
+		loss: 0.078267, lr: 0.000002 time: 0.713540, eta: 0:02:22
+		accuracy_cls: 0.970238
+		spatial_reg: 0.000000
+		image_loss_cls: 0.078267, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9821 / 10000]
+		loss: 0.087322, lr: 0.000002 time: 0.713535, eta: 0:02:08
+		accuracy_cls: 0.965774
+		spatial_reg: 0.000000
+		image_loss_cls: 0.087322, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9841 / 10000]
+		loss: 0.088590, lr: 0.000002 time: 0.713518, eta: 0:01:54
+		accuracy_cls: 0.962798
+		spatial_reg: 0.000000
+		image_loss_cls: 0.088590, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9861 / 10000]
+		loss: 0.084275, lr: 0.000002 time: 0.713828, eta: 0:01:39
+		accuracy_cls: 0.967262
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084275, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9881 / 10000]
+		loss: 0.094991, lr: 0.000002 time: 0.713798, eta: 0:01:25
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.094991, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9901 / 10000]
+		loss: 0.079227, lr: 0.000002 time: 0.713752, eta: 0:01:11
+		accuracy_cls: 0.973214
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079227, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9921 / 10000]
+		loss: 0.084376, lr: 0.000002 time: 0.713958, eta: 0:00:57
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084376, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9941 / 10000]
+		loss: 0.086675, lr: 0.000002 time: 0.713895, eta: 0:00:42
+		accuracy_cls: 0.971726
+		spatial_reg: 0.000000
+		image_loss_cls: 0.086675, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9961 / 10000]
+		loss: 0.079286, lr: 0.000002 time: 0.713889, eta: 0:00:28
+		accuracy_cls: 0.968750
+		spatial_reg: 0.000000
+		image_loss_cls: 0.079286, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 9981 / 10000]
+		loss: 0.091703, lr: 0.000002 time: 0.713879, eta: 0:00:14
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.091703, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+[Nov08-16-57-14_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN.yaml][Step 10000 / 10000]
+		loss: 0.084409, lr: 0.000002 time: 0.714136, eta: 0:00:00
+		accuracy_cls: 0.964286
+		spatial_reg: 0.000000
+		image_loss_cls: 0.084409, loss_rpn_cls: 0.000000, loss_rpn_bbox: 0.000000
+		
+		
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step9999.pth
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_without-spatial-reg_copy-cls-to-det_freeze-conv-body-RPN/Nov08-16-57-14_ip-172-31-8-158_step/ckpt/model_step9999.pth
