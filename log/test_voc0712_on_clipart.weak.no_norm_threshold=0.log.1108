@@ -1,0 +1,15 @@
+INFO test_net.py:  72: Called with args:
+INFO test_net.py:  73: Namespace(cfg_file='configs/baselines/e2e_faster_rcnn_R-101-FPN_1x-VOC_use_weak_test.yaml', dataset='clipart', load_ckpt='Outputs/e2e_faster_rcnn_R-101-FPN_1x-VOC/Oct08-14-54-41_ip-172-31-8-158_step/ckpt/model_step9999.pth', load_detectron=None, multi_gpu_testing=True, num_classes=None, output_dir=None, range=None, set_cfgs=[], vis=False)
+INFO test_net.py:  83: Automatically set output directory to Outputs/e2e_faster_rcnn_R-101-FPN_1x-VOC/Oct08-14-54-41_ip-172-31-8-158_step/test
+Traceback (most recent call last):
+  File "tools/test_net.py", line 93, in <module>
+    merge_cfg_from_file(args.cfg_file)
+  File "/home/ubuntu/Detectron.pytorch/lib/core/config.py", line 1052, in merge_cfg_from_file
+    _merge_a_into_b(yaml_cfg, __C)
+  File "/home/ubuntu/Detectron.pytorch/lib/core/config.py", line 1114, in _merge_a_into_b
+    _merge_a_into_b(v, b[k], stack=stack_push)
+  File "/home/ubuntu/Detectron.pytorch/lib/core/config.py", line 1108, in _merge_a_into_b
+    v = _check_and_coerce_cfg_value_type(v, b[k], k, full_key)
+  File "/home/ubuntu/Detectron.pytorch/lib/core/config.py", line 1177, in _check_and_coerce_cfg_value_type
+    'key: {}'.format(type_b, type_a, value_b, value_a, full_key)
+ValueError: Type mismatch (<class 'float'> vs. <class 'int'>) with values (0.05 vs. 0) for config key: TEST.SCORE_THRESH
