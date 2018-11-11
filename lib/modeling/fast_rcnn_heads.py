@@ -172,6 +172,7 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, bceloss, box_feat):
             reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
         cls_prob = torch.logsumexp(softmax_cls, dim=0)
         print(f"softmax_cls shape: {softmax_cls.shape}\n {softmax_cls}")
+        print(f"softmax_cls sum over dim 1 shape: {softmax_cls.sum(dim=1)}")
         print(f"cls_prob shape: {cls_prob.shape}\n {cls_prob}")
         if cls_probs is None:
             cls_probs = cls_prob.unsqueeze(dim=0)
