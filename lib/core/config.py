@@ -169,6 +169,8 @@ __C.TRAIN.FREEZE_CONV_BODY = False
 # Freeze the RPN architecture during training if set to True
 __C.TRAIN.FREEZE_RPN = False
 
+# Freeze the Box head during training if set to True
+__C.TRAIN.FREEZE_BOX_HEAD = False
 
 
 # ---------------------------------------------------------------------------- #
