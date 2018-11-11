@@ -161,14 +161,15 @@ def load_ckpt(model, ckpt, is_training=True):
         if mapping[name]:
             state_dict[name] = ckpt[name]
     # logging.info(f"state_dict:\n {state_dict}")
-    # self.training and self.weak_supervise_with_pretrain and self.copy_cls_to_det
-    # copy cls layer to det layer
-    if is_training and cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN and cfg.TRAIN.COPY_CLS_TO_DET:
-        state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
-        state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
-    elif cfg.TRAIN.WEAK_SUPERVISE and cfg.TEST.WEAK_SUPERVISE:
-        state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
-        state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
+    if cfg.FAST_RCNN.BOX_OUT_STREAMS == 2:
+        # self.training and self.weak_supervise_with_pretrain and self.copy_cls_to_det
+        # copy cls layer to det layer
+        if is_training and cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN and cfg.TRAIN.COPY_CLS_TO_DET:
+            state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
+            state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
+        elif cfg.TRAIN.WEAK_SUPERVISE and cfg.TEST.WEAK_SUPERVISE:
+            state_dict['Box_Outs.det_score.weight'] = ckpt['Box_Outs.cls_score.weight']
+            state_dict['Box_Outs.det_score.bias'] = ckpt['Box_Outs.cls_score.bias']
 
     model.load_state_dict(state_dict, strict=False)
 

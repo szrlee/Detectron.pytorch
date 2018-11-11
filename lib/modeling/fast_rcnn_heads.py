@@ -17,8 +17,10 @@ class fast_rcnn_outputs(nn.Module):
         self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
         self.weak_supervise_with_pretrain = cfg.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN
         self.copy_cls_to_det = cfg.TRAIN.COPY_CLS_TO_DET
+        self.streams = cfg.FAST_RCNN.BOX_OUT_STREAMS
+
         self.cls_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
-        if self.weak_supervise:
+        if self.weak_supervise and (self.streams == 2):
             self.det_score = nn.Linear(dim_in, cfg.MODEL.NUM_CLASSES)
 
         if cfg.MODEL.CLS_AGNOSTIC_BBOX_REG:  # bg and fg
@@ -32,7 +34,7 @@ class fast_rcnn_outputs(nn.Module):
         init.normal_(self.cls_score.weight, std=0.01)
         init.constant_(self.cls_score.bias, 0)
 
-        if self.weak_supervise:
+        if self.weak_supervise and (self.streams == 2):
             init.normal_(self.det_score.weight, std=0.01)
             init.constant_(self.det_score.bias, 0)
 
@@ -40,7 +42,7 @@ class fast_rcnn_outputs(nn.Module):
         init.constant_(self.bbox_pred.bias, 0)
 
     def detectron_weight_mapping(self):
-        if not self.weak_supervise:
+        if not self.weak_supervise or (self.streams == 1):
             detectron_weight_mapping = {
                 'cls_score.weight': 'cls_score_w',
                 'cls_score.bias': 'cls_score_b',
@@ -89,12 +91,12 @@ class fast_rcnn_outputs(nn.Module):
             cls_score = F.softmax(cls_score, dim=1)
         bbox_pred = self.bbox_pred(x)
 
-        if not self.weak_supervise:
+        if not self.weak_supervise or (self.streams == 1):
             # test for no bbox refinement but using cls_score
             # bbox_pred.fill_(0)
             return cls_score, bbox_pred
 
-        # weak supervision
+        # weak supervision when 2 streams 
         det_score = self.det_score(x)
 
         # print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
@@ -107,11 +109,11 @@ class fast_rcnn_outputs(nn.Module):
             return cls_score, det_score, bbox_pred
         
         if not self.training:
-            with torch.no_grad():
-                bbox_pred.fill_(0)
-                softmax_cls = F.softmax(cls_score, dim=1)
-                softmax_det = F.softmax(det_score, dim=0)
-                roi_cls_scores = softmax_cls * softmax_det
+            # with torch.no_grad():
+                # bbox_pred.fill_(0)
+                # softmax_cls = F.softmax(cls_score, dim=1)
+                # softmax_det = F.softmax(det_score, dim=0)
+                # roi_cls_scores = softmax_cls * softmax_det
                 # softmax_cls_scores = F.softmax(roi_cls_scores, dim=1)
                 #p_norm = 1/2
                 #norm_cls_scores = F.normalize(roi_cls_scores, p=p_norm, dim=1)
@@ -131,9 +133,58 @@ class fast_rcnn_outputs(nn.Module):
 
             return cls_score, det_score, bbox_pred
 
+def s1_image_level_loss(cls_score, rois, image_labels_vec, bceloss, box_feat):
+    device_id = cls_score.get_device()
 
+    rois_batch_idx = rois[:, 0]
+    batch_idx_list = np.unique(rois_batch_idx).astype('int32').tolist()
+    rois_batch_idx = torch.from_numpy(rois_batch_idx).cuda(device_id)
+    image_labels = Variable(torch.from_numpy(image_labels_vec.astype('float32'))).cuda(device_id)
+    cls_probs = None
+    # init regularization with scalar tensor 0 in cuda of device_id
+    reg = torch.tensor(0.0).cuda(device_id)
+    assert len(batch_idx_list) == image_labels_vec.shape[0]
+    for idx in batch_idx_list:
+        ind = (rois_batch_idx == idx).nonzero().squeeze()
+        # print(ind.shape, ind[-1])
+        cls_ind = torch.index_select(cls_score, 0, ind)
+        softmax_cls = F.softmax(cls_ind, dim=1)
+        if cfg.TRAIN.SPATIAL_REG:
+            gt_classes_ind = (image_labels[idx].detach() == 1).nonzero().squeeze(dim=1)
+            roi_pos_cls_scores = softmax_cls[:, gt_classes_ind].detach()
+            max_roi_pos_cls_scores, max_roi_pos_cls_scores_ind = torch.max(roi_pos_cls_scores, dim=0)
+            max_roi_pos_cls_scores_ind = ind[max_roi_pos_cls_scores_ind]
+            roi_max_in_cls = rois[max_roi_pos_cls_scores_ind.cpu().numpy(), 1:5]
+            roi_in_one_image = rois[ind, 1:5]
+            roi_overlaps_with_max = box_utils.bbox_overlaps(
+                roi_in_one_image.astype(dtype=np.float32, copy=False),
+                roi_max_in_cls.astype(dtype=np.float32, copy=False)
+            )
+            pos_roi_overlaps_with_max_ind = np.where(roi_overlaps_with_max > 0.6)
+            selected_overlap_roi_ind  = ind[pos_roi_overlaps_with_max_ind[0]]
+            max_roi_ind = max_roi_pos_cls_scores_ind[pos_roi_overlaps_with_max_ind[1]]
 
-def image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_feat):
+            max_roi_scores = max_roi_pos_cls_scores[pos_roi_overlaps_with_max_ind[1]]
+            diff_box_feat = (box_feat[selected_overlap_roi_ind] - box_feat[max_roi_ind])
+            feat_dis = torch.sum(diff_box_feat * diff_box_feat, dim=1)
+            weighted_feat_dis = (1/2) * max_roi_scores * max_roi_scores * feat_dis
+            # divided by number of non-background classes
+            reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
+        cls_prob = torch.logsumexp(softmax_cls, dim=0)
+        print(f"cls_prob shape: {cls_prob.shape}\n {cls_prob}")
+        if cls_probs is None:
+            cls_probs = cls_prob.unsqueeze(dim=0)
+        else:
+            cls_probs = torch.cat((cls_probs, cls_prob.unsqueeze(dim=0)), dim=0)
+        # print(f"cls_probs shape: {cls_probs.shape}\n {cls_probs}")
+    # spatial regularization 
+    # divided by number of images
+    reg = reg / image_labels.shape[0]
+    loss_cls = bceloss(cls_probs.clamp(0,1), image_labels)
+    acc_score = cls_probs.round().eq(image_labels).float().mean()
+    return loss_cls, acc_score, reg
+
+def s2_image_level_loss(cls_score, det_score, rois, image_labels_vec, bceloss, box_feat):
     device_id = cls_score.get_device()
 
     assert device_id == det_score.get_device()

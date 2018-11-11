@@ -109,6 +109,8 @@ class Generalized_RCNN(nn.Module):
             self.Box_Outs = fast_rcnn_heads.fast_rcnn_outputs(
                 self.Box_Head.dim_out)
 
+        self.streams = cfg.FAST_RCNN.BOX_OUT_STREAMS
+
         # Mask Branch
         if cfg.MODEL.MASK_ON:
             self.Mask_Head = get_func(cfg.MRCNN.ROI_MASK_HEAD)(
@@ -142,6 +144,10 @@ class Generalized_RCNN(nn.Module):
 
         if cfg.TRAIN.FREEZE_RPN:
             for p in self.RPN.parameters():
+                p.requires_grad = False
+
+        if cfg.TRAIN.FREEZE_BOX_HEAD:
+            for p in self.Box_Head.parameters():
                 p.requires_grad = False
 
     def forward(self, data, im_info, roidb=None, **rpn_kwargs):
@@ -182,7 +188,7 @@ class Generalized_RCNN(nn.Module):
                 box_feat, res5_feat = self.Box_Head(blob_conv, rpn_ret)
             else:
                 box_feat = self.Box_Head(blob_conv, rpn_ret)
-            if self.weak_supervise:
+            if self.weak_supervise and (self.streams == 2):
                 cls_score, det_score, bbox_pred = self.Box_Outs(box_feat)
             else:
                 cls_score, bbox_pred = self.Box_Outs(box_feat)
@@ -255,17 +261,19 @@ class Generalized_RCNN(nn.Module):
 
         elif self.training and self.weak_supervise:
             # Weak supervision image-level loss
-            # logging.info(f"image-level labels: shape {rpn_ret['image_labels_vec'].shape}\n {rpn_ret['image_labels_vec']}")
-            # logging.info(f"cls score: shape {cls_score.shape}\n {cls_score}")
-            # logging.info(f"det score: shape {det_score.shape}\n {det_score}")
-            # 
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
-            image_loss_cls, acc_score, reg = fast_rcnn_heads.image_level_loss(
-                cls_score, det_score, rpn_ret['rois'], rpn_ret['image_labels_vec'], self.bceloss, box_feat)
+            if self.streams == 2:
+                image_loss_cls, acc_score, reg = fast_rcnn_heads.s2_image_level_loss(
+                  cls_score, det_score, rpn_ret['rois'], rpn_ret['image_labels_vec'],
+                  self.bceloss, box_feat)
+            elif self.streams == 1:
+                image_loss_cls, acc_score, reg = fast_rcnn_heads.s1_image_level_loss(
+                  cls_score, rpn_ret['rois'], rpn_ret['image_labels_vec'],
+                  self.bceloss, box_feat)
+                 
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['losses']['spatial_reg'] = reg
-
             return_dict['metrics']['accuracy_cls'] = acc_score            
 
             # pytorch0.4 bug on gathering scalar(0-dim) tensors
