@@ -75,6 +75,7 @@ class Generalized_RCNN(nn.Module):
         # Weakly supervision
         self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
         self.bceloss = nn.BCELoss()
+        self.MLSoftMarginLoss = nn.MultiLabelSoftMarginLoss()
 
         # For cache
         self.mapping_to_detectron = None
@@ -270,7 +271,7 @@ class Generalized_RCNN(nn.Module):
             elif self.streams == 1:
                 image_loss_cls, acc_score, reg = fast_rcnn_heads.s1_image_level_loss(
                   cls_score, rpn_ret['rois'], rpn_ret['image_labels_vec'],
-                  self.bceloss, box_feat)
+                  self.MLSoftMarginLoss, box_feat)
                  
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['losses']['spatial_reg'] = reg

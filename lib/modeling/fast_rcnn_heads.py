@@ -133,7 +133,7 @@ class fast_rcnn_outputs(nn.Module):
 
             return cls_score, det_score, bbox_pred
 
-def s1_image_level_loss(cls_score, rois, image_labels_vec, bceloss, box_feat):
+def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, box_feat):
     device_id = cls_score.get_device()
 
     rois_batch_idx = rois[:, 0]
