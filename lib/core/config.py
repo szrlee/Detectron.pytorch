@@ -629,6 +629,9 @@ __C.SOLVER.LOG_LR_CHANGE_THRESHOLD = 1.1
 # ---------------------------------------------------------------------------- #
 __C.FAST_RCNN = AttrDict()
 
+
+# The typr of streams in Box Out
+__C.FAST_RCNN.BOX_OUT_STREAMS = 1
 # The type of RoI head to use for bounding box classification and regression
 # The string must match a function this is imported in modeling.model_builder
 # (e.g., 'head_builder.add_roi_2mlp_head' to specify a two hidden layer MLP)
