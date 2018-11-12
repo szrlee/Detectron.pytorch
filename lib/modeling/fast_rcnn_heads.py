@@ -171,7 +171,7 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCE
             # divided by number of non-background classes
             reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
 
-        cls_prob = torch.max(softmax_cls, dim=0)
+        cls_prob, _ = torch.max(softmax_cls, dim=0)
         # cls_prob = torch.logsumexp(softmax_cls, dim=0)
         # print(f"softmax_cls shape: {softmax_cls.shape}\n {softmax_cls}")
         # print(f"softmax_cls sum over dim 1 shape: {softmax_cls.sum(dim=1)}")
