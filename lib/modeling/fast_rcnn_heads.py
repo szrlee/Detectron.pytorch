@@ -133,7 +133,7 @@ class fast_rcnn_outputs(nn.Module):
 
             return cls_score, det_score, bbox_pred
 
-def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCELoss, box_feat):
+def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCELoss, BCEWithLogitsLoss, box_feat):
     device_id = cls_score.get_device()
 
     rois_batch_idx = rois[:, 0]
@@ -171,7 +171,8 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCE
             # divided by number of non-background classes
             reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
 
-        cls_prob, _ = torch.max(softmax_cls, dim=0)
+        cls_prob, _ = torch.max(cls_ind, dim=0)
+        # cls_prob, _ = torch.max(softmax_cls, dim=0)
         # cls_prob = torch.logsumexp(softmax_cls, dim=0)
         # print(f"softmax_cls shape: {softmax_cls.shape}\n {softmax_cls}")
         # print(f"softmax_cls sum over dim 1 shape: {softmax_cls.sum(dim=1)}")
@@ -185,7 +186,8 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCE
     # divided by number of images
     reg = reg / image_labels.shape[0]
     # loss_cls = MLSoftMarginLoss(cls_probs.clamp(0,1), image_labels)
-    loss_cls = BCELoss(cls_probs.clamp(0,1), image_labels)
+    # loss_cls = BCELoss(cls_probs.clamp(0,1), image_labels)
+    loss_cls = BCEWithLogitsLoss(cls_probs.clamp(0,1), image_labels)
     acc_score = cls_probs.round().eq(image_labels).float().mean()
     return loss_cls, acc_score, reg
 
