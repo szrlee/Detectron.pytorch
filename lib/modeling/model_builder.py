@@ -271,7 +271,7 @@ class Generalized_RCNN(nn.Module):
             elif self.streams == 1:
                 image_loss_cls, acc_score, reg = fast_rcnn_heads.s1_image_level_loss(
                   cls_score, rpn_ret['rois'], rpn_ret['image_labels_vec'],
-                  self.MLSoftMarginLoss, box_feat)
+                  self.MLSoftMarginLoss, self.bceloss, box_feat)
                  
             return_dict['losses']['image_loss_cls'] = image_loss_cls
             return_dict['losses']['spatial_reg'] = reg
