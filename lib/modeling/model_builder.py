@@ -262,6 +262,8 @@ class Generalized_RCNN(nn.Module):
                 return_dict['metrics'][k] = v.unsqueeze(0)
 
         elif self.training and self.weak_supervise:
+            return_dict['losses'] = {}
+            return_dict['metrics'] = {}
             # rpn loss
             rpn_kwargs.update(dict(
                 (k, rpn_ret[k]) for k in rpn_ret.keys()
@@ -277,8 +279,6 @@ class Generalized_RCNN(nn.Module):
                 return_dict['losses']['loss_rpn_bbox'] = loss_rpn_bbox
 
             # Weak supervision image-level loss
-            return_dict['losses'] = {}
-            return_dict['metrics'] = {}
             if self.streams == 2:
                 image_loss_cls, acc_score, reg = fast_rcnn_heads.s2_image_level_loss(
                   cls_score, det_score, rpn_ret['rois'], rpn_ret['image_labels_vec'],
