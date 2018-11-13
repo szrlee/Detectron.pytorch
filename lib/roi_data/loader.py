@@ -25,7 +25,7 @@ class RoiDataLoader(data.Dataset):
         index, ratio = index_tuple
         single_db = [self._roidb[index]]
         blobs, valid = get_minibatch(single_db)
-        #TODO: Check if minibatch is valid ? If not, abandon it.
+        # TODO: Check if minibatch is valid ? If not, abandon it.
         # Need to change _worker_loop in torch.utils.data.dataloader.py.
 
         # Squeeze batch dim

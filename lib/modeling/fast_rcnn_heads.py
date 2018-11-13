@@ -98,39 +98,10 @@ class fast_rcnn_outputs(nn.Module):
 
         # weak supervision when 2 streams 
         det_score = self.det_score(x)
-
-        # print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
-        # print(f"rois shape: {rois.shape}\n {rois}")
-        # print(f"bbox_pred shape: {bbox_pred.shape}\n {bbox_pred}")
-        # input()
-
-
         if self.training:
             return cls_score, det_score, bbox_pred
         
         if not self.training:
-            # with torch.no_grad():
-                # bbox_pred.fill_(0)
-                # softmax_cls = F.softmax(cls_score, dim=1)
-                # softmax_det = F.softmax(det_score, dim=0)
-                # roi_cls_scores = softmax_cls * softmax_det
-                # softmax_cls_scores = F.softmax(roi_cls_scores, dim=1)
-                #p_norm = 1/2
-                #norm_cls_scores = F.normalize(roi_cls_scores, p=p_norm, dim=1)
-                # norm_cls_scores = norm_cls_scores.pow(p_norm)
-                # print(f"roi_cls_scores shape: {roi_cls_scores.shape}\n {roi_cls_scores}")
-                # print(f"softmax_cls_scores shape: {softmax_cls_scores.shape}\n {softmax_cls_scores}")
-                # print(f"norm_cls_scores shape: {norm_cls_scores.shape}\n {norm_cls_scores}")
-                # cls_score = F.softmax(roi_cls_scores, dim=1)
-                
-                ## select which cls scores to output
-                # cls_score = norm_cls_scores
-
-                # cls_score = roi_cls_scores
-
-                # print(f"sum cls_score over dim 1: {torch.sum(cls_score, dim=1)}")
-
-
             return cls_score, det_score, bbox_pred
 
 def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCELoss, BCEWithLogitsLoss, box_feat):
@@ -171,9 +142,7 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCE
             # divided by number of non-background classes
             reg = reg + torch.sum(weighted_feat_dis) / image_labels.shape[1]
 
-        cls_prob, _ = torch.max(cls_ind, dim=0)
-        # cls_prob, _ = torch.max(softmax_cls, dim=0)
-        # cls_prob = torch.logsumexp(softmax_cls, dim=0)
+        cls_prob, _ = torch.max(softmax_cls, dim=0)
         # print(f"softmax_cls shape: {softmax_cls.shape}\n {softmax_cls}")
         # print(f"softmax_cls sum over dim 1 shape: {softmax_cls.sum(dim=1)}")
         # print(f"cls_prob shape: {cls_prob.shape}\n {cls_prob}")
@@ -185,9 +154,7 @@ def s1_image_level_loss(cls_score, rois, image_labels_vec, MLSoftMarginLoss, BCE
     # spatial regularization 
     # divided by number of images
     reg = reg / image_labels.shape[0]
-    # loss_cls = MLSoftMarginLoss(cls_probs.clamp(0,1), image_labels)
-    # loss_cls = BCELoss(cls_probs.clamp(0,1), image_labels)
-    loss_cls = BCEWithLogitsLoss(cls_probs.clamp(0,1), image_labels)
+    loss_cls = BCELoss(cls_probs.clamp(0,1), image_labels)
     acc_score = cls_probs.round().eq(image_labels).float().mean()
     return loss_cls, acc_score, reg
 
