@@ -1,0 +1,1820 @@
+Called with args:
+Namespace(batch_size=32, cfg_file='configs/dt/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml', copy_cls_to_det=False, cuda=True, dataset='clipart', disp_interval=20, iter_size=1, load_ckpt='Outputs/e2e_faster_rcnn_R-101-FPN_dt-clipart-VOC/Nov04-20-33-03_ip-172-31-8-158_step/ckpt/model_step9999.pth', load_detectron=None, lr=None, lr_decay_gamma=None, no_save=False, num_classes=None, num_workers=None, optimizer=None, resume=False, set_cfgs=[], start_step=0, use_tfboard=True, weak_supervise_with_pretrain=False)
+effective_batch_size = batch_size * iter_size = 32 * 1
+Adaptive config changes:
+    effective_batch_size: 16 --> 32
+    NUM_GPUS:             8 --> 8
+    IMS_PER_BATCH:        2 --> 4
+Adjust BASE_LR linearly according to batch_size change:
+    BASE_LR: 2e-05 --> 4e-05
+Adjust SOLVER.STEPS and SOLVER.MAX_ITER linearly based on effective_batch_size change:
+    SOLVER.STEPS: [0, 5000, 8000] --> [0, 2500, 4000]
+    SOLVER.MAX_ITER: 10000 --> 5000
+Scale FPN rpn_proposals collect size directly propotional to the change of IMS_PER_BATCH:
+    cfg.FPN.RPN_COLLECT_SCALE: 2.0
+Number of data loading threads: 4
+loading annotations into memory...
+Done (t=0.01s)
+creating index...
+index created!
+INFO json_dataset.py: 307: Loading cached gt_roidb from /home/ubuntu/Detectron.pytorch/data/cache/cross_clipart_train_gt_roidb.pkl
+INFO roidb.py:  50: Appending horizontally-flipped training examples...
+INFO roidb.py:  52: Loaded dataset: cross_clipart_train
+INFO roidb.py: 143: Filtered 0 roidb entries: 998 -> 998
+INFO roidb.py:  69: Computing image aspect ratios and ordering the ratios...
+INFO roidb.py:  71: done
+INFO roidb.py:  75: Computing bounding-box regression targets...
+INFO roidb.py:  77: done
+INFO train_net_step.py: 280: 998 roidb entries
+INFO train_net_step.py: 281: Takes 0.37 sec(s) to construct roidb
+INFO train_net_step.py: 359: loading checkpoint Outputs/e2e_faster_rcnn_R-101-FPN_dt-clipart-VOC/Nov04-20-33-03_ip-172-31-8-158_step/ckpt/model_step9999.pth
+INFO train_net_step.py: 425: Training starts !
+INFO net.py:  72: Changing learning rate 0.000000 -> 0.000013
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1 / 5000]
+		loss: 0.192775, lr: 0.000013 time: 26.355762, eta: 1 day, 12:36:18
+		accuracy_cls: 0.956845
+		spatial_reg: 0.000000
+		image_loss_cls: 0.139388, loss_rpn_cls: 0.044753, loss_rpn_bbox: 0.008635
+		loss_rpn_cls_fpn2: 0.002335, loss_rpn_cls_fpn3: 0.024069, loss_rpn_cls_fpn4: 0.012289, loss_rpn_cls_fpn5: 0.005764, loss_rpn_cls_fpn6: 0.000296
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.003557, loss_rpn_bbox_fpn4: 0.001730, loss_rpn_bbox_fpn5: 0.001916, loss_rpn_bbox_fpn6: 0.001431
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 21 / 5000]
+		loss: 0.217424, lr: 0.000014 time: 2.237057, eta: 3:05:40
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165233, loss_rpn_cls: 0.032354, loss_rpn_bbox: 0.010788
+		loss_rpn_cls_fpn2: 0.004351, loss_rpn_cls_fpn3: 0.009113, loss_rpn_cls_fpn4: 0.010547, loss_rpn_cls_fpn5: 0.004529, loss_rpn_cls_fpn6: 0.000251
+		loss_rpn_bbox_fpn2: 0.000197, loss_rpn_bbox_fpn3: 0.001625, loss_rpn_bbox_fpn4: 0.003315, loss_rpn_bbox_fpn5: 0.003479, loss_rpn_bbox_fpn6: 0.000548
+/home/ubuntu/anaconda3/envs/pytorch41/lib/python3.7/site-packages/torch/nn/functional.py:1890: UserWarning: nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.
+  warnings.warn("nn.functional.upsample is deprecated. Use nn.functional.interpolate instead.")
+/home/ubuntu/anaconda3/envs/pytorch41/lib/python3.7/site-packages/torch/nn/functional.py:52: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 41 / 5000]
+		loss: 0.196476, lr: 0.000015 time: 1.723875, eta: 2:22:30
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157900, loss_rpn_cls: 0.034046, loss_rpn_bbox: 0.011901
+		loss_rpn_cls_fpn2: 0.004425, loss_rpn_cls_fpn3: 0.008919, loss_rpn_cls_fpn4: 0.011425, loss_rpn_cls_fpn5: 0.004290, loss_rpn_cls_fpn6: 0.000142
+		loss_rpn_bbox_fpn2: 0.000340, loss_rpn_bbox_fpn3: 0.001985, loss_rpn_bbox_fpn4: 0.003563, loss_rpn_bbox_fpn5: 0.004883, loss_rpn_bbox_fpn6: 0.000628
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 61 / 5000]
+		loss: 0.214664, lr: 0.000017 time: 1.496467, eta: 2:03:12
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164946, loss_rpn_cls: 0.031305, loss_rpn_bbox: 0.011598
+		loss_rpn_cls_fpn2: 0.004044, loss_rpn_cls_fpn3: 0.009539, loss_rpn_cls_fpn4: 0.011934, loss_rpn_cls_fpn5: 0.004549, loss_rpn_cls_fpn6: 0.000179
+		loss_rpn_bbox_fpn2: 0.000038, loss_rpn_bbox_fpn3: 0.001948, loss_rpn_bbox_fpn4: 0.004146, loss_rpn_bbox_fpn5: 0.004355, loss_rpn_bbox_fpn6: 0.000711
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 81 / 5000]
+		loss: 0.199989, lr: 0.000018 time: 1.427260, eta: 1:57:02
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155144, loss_rpn_cls: 0.031221, loss_rpn_bbox: 0.011698
+		loss_rpn_cls_fpn2: 0.004501, loss_rpn_cls_fpn3: 0.009839, loss_rpn_cls_fpn4: 0.009776, loss_rpn_cls_fpn5: 0.004474, loss_rpn_cls_fpn6: 0.000233
+		loss_rpn_bbox_fpn2: 0.000182, loss_rpn_bbox_fpn3: 0.001962, loss_rpn_bbox_fpn4: 0.003878, loss_rpn_bbox_fpn5: 0.004210, loss_rpn_bbox_fpn6: 0.000739
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 101 / 5000]
+		loss: 0.234576, lr: 0.000019 time: 1.382486, eta: 1:52:54
+		accuracy_cls: 0.941220
+		spatial_reg: 0.000000
+		image_loss_cls: 0.188893, loss_rpn_cls: 0.032254, loss_rpn_bbox: 0.012036
+		loss_rpn_cls_fpn2: 0.004012, loss_rpn_cls_fpn3: 0.010361, loss_rpn_cls_fpn4: 0.011085, loss_rpn_cls_fpn5: 0.004992, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000226, loss_rpn_bbox_fpn3: 0.001926, loss_rpn_bbox_fpn4: 0.003907, loss_rpn_bbox_fpn5: 0.004784, loss_rpn_bbox_fpn6: 0.000689
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 121 / 5000]
+		loss: 0.231375, lr: 0.000020 time: 1.322487, eta: 1:47:33
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.178670, loss_rpn_cls: 0.035805, loss_rpn_bbox: 0.012383
+		loss_rpn_cls_fpn2: 0.004066, loss_rpn_cls_fpn3: 0.011004, loss_rpn_cls_fpn4: 0.012515, loss_rpn_cls_fpn5: 0.004036, loss_rpn_cls_fpn6: 0.000199
+		loss_rpn_bbox_fpn2: 0.000199, loss_rpn_bbox_fpn3: 0.001678, loss_rpn_bbox_fpn4: 0.004563, loss_rpn_bbox_fpn5: 0.003998, loss_rpn_bbox_fpn6: 0.000621
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 141 / 5000]
+		loss: 0.201915, lr: 0.000021 time: 1.306952, eta: 1:45:51
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148648, loss_rpn_cls: 0.028222, loss_rpn_bbox: 0.012325
+		loss_rpn_cls_fpn2: 0.004122, loss_rpn_cls_fpn3: 0.008048, loss_rpn_cls_fpn4: 0.009284, loss_rpn_cls_fpn5: 0.004730, loss_rpn_cls_fpn6: 0.000192
+		loss_rpn_bbox_fpn2: 0.000457, loss_rpn_bbox_fpn3: 0.001756, loss_rpn_bbox_fpn4: 0.003130, loss_rpn_bbox_fpn5: 0.004744, loss_rpn_bbox_fpn6: 0.000693
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 161 / 5000]
+		loss: 0.207260, lr: 0.000022 time: 1.289181, eta: 1:43:59
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163361, loss_rpn_cls: 0.031953, loss_rpn_bbox: 0.010304
+		loss_rpn_cls_fpn2: 0.004043, loss_rpn_cls_fpn3: 0.007986, loss_rpn_cls_fpn4: 0.011459, loss_rpn_cls_fpn5: 0.005073, loss_rpn_cls_fpn6: 0.000222
+		loss_rpn_bbox_fpn2: 0.000054, loss_rpn_bbox_fpn3: 0.001768, loss_rpn_bbox_fpn4: 0.003705, loss_rpn_bbox_fpn5: 0.003634, loss_rpn_bbox_fpn6: 0.000713
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 181 / 5000]
+		loss: 0.213690, lr: 0.000023 time: 1.262445, eta: 1:41:24
+		accuracy_cls: 0.942708
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166329, loss_rpn_cls: 0.035140, loss_rpn_bbox: 0.012734
+		loss_rpn_cls_fpn2: 0.004420, loss_rpn_cls_fpn3: 0.010812, loss_rpn_cls_fpn4: 0.012454, loss_rpn_cls_fpn5: 0.004983, loss_rpn_cls_fpn6: 0.000203
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001875, loss_rpn_bbox_fpn4: 0.004162, loss_rpn_bbox_fpn5: 0.004212, loss_rpn_bbox_fpn6: 0.000688
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 201 / 5000]
+		loss: 0.216001, lr: 0.000024 time: 1.257507, eta: 1:40:36
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166985, loss_rpn_cls: 0.032153, loss_rpn_bbox: 0.011665
+		loss_rpn_cls_fpn2: 0.004634, loss_rpn_cls_fpn3: 0.008940, loss_rpn_cls_fpn4: 0.008883, loss_rpn_cls_fpn5: 0.004658, loss_rpn_cls_fpn6: 0.000392
+		loss_rpn_bbox_fpn2: 0.000136, loss_rpn_bbox_fpn3: 0.001941, loss_rpn_bbox_fpn4: 0.003759, loss_rpn_bbox_fpn5: 0.004331, loss_rpn_bbox_fpn6: 0.000871
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 221 / 5000]
+		loss: 0.202487, lr: 0.000025 time: 1.250925, eta: 1:39:39
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160754, loss_rpn_cls: 0.032687, loss_rpn_bbox: 0.011042
+		loss_rpn_cls_fpn2: 0.004591, loss_rpn_cls_fpn3: 0.009112, loss_rpn_cls_fpn4: 0.011952, loss_rpn_cls_fpn5: 0.003991, loss_rpn_cls_fpn6: 0.000193
+		loss_rpn_bbox_fpn2: 0.000295, loss_rpn_bbox_fpn3: 0.002031, loss_rpn_bbox_fpn4: 0.003371, loss_rpn_bbox_fpn5: 0.003927, loss_rpn_bbox_fpn6: 0.000649
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 241 / 5000]
+		loss: 0.215422, lr: 0.000026 time: 1.233735, eta: 1:37:52
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166825, loss_rpn_cls: 0.035156, loss_rpn_bbox: 0.012140
+		loss_rpn_cls_fpn2: 0.003946, loss_rpn_cls_fpn3: 0.010177, loss_rpn_cls_fpn4: 0.012743, loss_rpn_cls_fpn5: 0.005298, loss_rpn_cls_fpn6: 0.000308
+		loss_rpn_bbox_fpn2: 0.000057, loss_rpn_bbox_fpn3: 0.001644, loss_rpn_bbox_fpn4: 0.004351, loss_rpn_bbox_fpn5: 0.004135, loss_rpn_bbox_fpn6: 0.000780
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step249.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 261 / 5000]
+		loss: 0.211427, lr: 0.000027 time: 1.233157, eta: 1:37:25
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166374, loss_rpn_cls: 0.032993, loss_rpn_bbox: 0.010125
+		loss_rpn_cls_fpn2: 0.004824, loss_rpn_cls_fpn3: 0.012171, loss_rpn_cls_fpn4: 0.008525, loss_rpn_cls_fpn5: 0.004298, loss_rpn_cls_fpn6: 0.000193
+		loss_rpn_bbox_fpn2: 0.000196, loss_rpn_bbox_fpn3: 0.002036, loss_rpn_bbox_fpn4: 0.002978, loss_rpn_bbox_fpn5: 0.003760, loss_rpn_bbox_fpn6: 0.000673
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 281 / 5000]
+		loss: 0.218770, lr: 0.000028 time: 1.230375, eta: 1:36:47
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168418, loss_rpn_cls: 0.031086, loss_rpn_bbox: 0.012084
+		loss_rpn_cls_fpn2: 0.003835, loss_rpn_cls_fpn3: 0.008544, loss_rpn_cls_fpn4: 0.011640, loss_rpn_cls_fpn5: 0.005124, loss_rpn_cls_fpn6: 0.000329
+		loss_rpn_bbox_fpn2: 0.000142, loss_rpn_bbox_fpn3: 0.001659, loss_rpn_bbox_fpn4: 0.004159, loss_rpn_bbox_fpn5: 0.004780, loss_rpn_bbox_fpn6: 0.000726
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 301 / 5000]
+		loss: 0.215655, lr: 0.000029 time: 1.217575, eta: 1:35:22
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170497, loss_rpn_cls: 0.032768, loss_rpn_bbox: 0.010673
+		loss_rpn_cls_fpn2: 0.004505, loss_rpn_cls_fpn3: 0.009839, loss_rpn_cls_fpn4: 0.013914, loss_rpn_cls_fpn5: 0.005177, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000060, loss_rpn_bbox_fpn3: 0.001624, loss_rpn_bbox_fpn4: 0.004123, loss_rpn_bbox_fpn5: 0.003683, loss_rpn_bbox_fpn6: 0.000780
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 321 / 5000]
+		loss: 0.191784, lr: 0.000030 time: 1.217300, eta: 1:34:56
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153967, loss_rpn_cls: 0.026849, loss_rpn_bbox: 0.010382
+		loss_rpn_cls_fpn2: 0.004009, loss_rpn_cls_fpn3: 0.010176, loss_rpn_cls_fpn4: 0.008425, loss_rpn_cls_fpn5: 0.004186, loss_rpn_cls_fpn6: 0.000277
+		loss_rpn_bbox_fpn2: 0.000181, loss_rpn_bbox_fpn3: 0.001678, loss_rpn_bbox_fpn4: 0.003433, loss_rpn_bbox_fpn5: 0.003697, loss_rpn_bbox_fpn6: 0.000827
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 341 / 5000]
+		loss: 0.229950, lr: 0.000031 time: 1.206685, eta: 1:33:43
+		accuracy_cls: 0.941220
+		spatial_reg: 0.000000
+		image_loss_cls: 0.182540, loss_rpn_cls: 0.034602, loss_rpn_bbox: 0.012522
+		loss_rpn_cls_fpn2: 0.004472, loss_rpn_cls_fpn3: 0.010807, loss_rpn_cls_fpn4: 0.012295, loss_rpn_cls_fpn5: 0.004402, loss_rpn_cls_fpn6: 0.000186
+		loss_rpn_bbox_fpn2: 0.000278, loss_rpn_bbox_fpn3: 0.001665, loss_rpn_bbox_fpn4: 0.003829, loss_rpn_bbox_fpn5: 0.005076, loss_rpn_bbox_fpn6: 0.000500
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 361 / 5000]
+		loss: 0.219898, lr: 0.000033 time: 1.209023, eta: 1:33:29
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170887, loss_rpn_cls: 0.036376, loss_rpn_bbox: 0.010721
+		loss_rpn_cls_fpn2: 0.004591, loss_rpn_cls_fpn3: 0.009546, loss_rpn_cls_fpn4: 0.012485, loss_rpn_cls_fpn5: 0.004877, loss_rpn_cls_fpn6: 0.000243
+		loss_rpn_bbox_fpn2: 0.000151, loss_rpn_bbox_fpn3: 0.001798, loss_rpn_bbox_fpn4: 0.003686, loss_rpn_bbox_fpn5: 0.003921, loss_rpn_bbox_fpn6: 0.000710
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 381 / 5000]
+		loss: 0.213822, lr: 0.000034 time: 1.208495, eta: 1:33:03
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165548, loss_rpn_cls: 0.032279, loss_rpn_bbox: 0.011819
+		loss_rpn_cls_fpn2: 0.003706, loss_rpn_cls_fpn3: 0.008557, loss_rpn_cls_fpn4: 0.011046, loss_rpn_cls_fpn5: 0.004993, loss_rpn_cls_fpn6: 0.000285
+		loss_rpn_bbox_fpn2: 0.000470, loss_rpn_bbox_fpn3: 0.001634, loss_rpn_bbox_fpn4: 0.003626, loss_rpn_bbox_fpn5: 0.004045, loss_rpn_bbox_fpn6: 0.000871
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 401 / 5000]
+		loss: 0.208791, lr: 0.000035 time: 1.200692, eta: 1:32:03
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165195, loss_rpn_cls: 0.032761, loss_rpn_bbox: 0.011746
+		loss_rpn_cls_fpn2: 0.004503, loss_rpn_cls_fpn3: 0.009698, loss_rpn_cls_fpn4: 0.011085, loss_rpn_cls_fpn5: 0.004664, loss_rpn_cls_fpn6: 0.000222
+		loss_rpn_bbox_fpn2: 0.000125, loss_rpn_bbox_fpn3: 0.002074, loss_rpn_bbox_fpn4: 0.003808, loss_rpn_bbox_fpn5: 0.004515, loss_rpn_bbox_fpn6: 0.000704
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 421 / 5000]
+		loss: 0.213656, lr: 0.000036 time: 1.202779, eta: 1:31:48
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163185, loss_rpn_cls: 0.032369, loss_rpn_bbox: 0.010635
+		loss_rpn_cls_fpn2: 0.003917, loss_rpn_cls_fpn3: 0.007367, loss_rpn_cls_fpn4: 0.011630, loss_rpn_cls_fpn5: 0.004753, loss_rpn_cls_fpn6: 0.000206
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001503, loss_rpn_bbox_fpn4: 0.003727, loss_rpn_bbox_fpn5: 0.004284, loss_rpn_bbox_fpn6: 0.000844
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 441 / 5000]
+		loss: 0.208948, lr: 0.000037 time: 1.203302, eta: 1:31:27
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163504, loss_rpn_cls: 0.031226, loss_rpn_bbox: 0.012064
+		loss_rpn_cls_fpn2: 0.004202, loss_rpn_cls_fpn3: 0.009042, loss_rpn_cls_fpn4: 0.012029, loss_rpn_cls_fpn5: 0.003911, loss_rpn_cls_fpn6: 0.000163
+		loss_rpn_bbox_fpn2: 0.000387, loss_rpn_bbox_fpn3: 0.001864, loss_rpn_bbox_fpn4: 0.004404, loss_rpn_bbox_fpn5: 0.004898, loss_rpn_bbox_fpn6: 0.000518
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 461 / 5000]
+		loss: 0.204914, lr: 0.000038 time: 1.196346, eta: 1:30:31
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157444, loss_rpn_cls: 0.031831, loss_rpn_bbox: 0.011628
+		loss_rpn_cls_fpn2: 0.004188, loss_rpn_cls_fpn3: 0.010243, loss_rpn_cls_fpn4: 0.010989, loss_rpn_cls_fpn5: 0.005039, loss_rpn_cls_fpn6: 0.000324
+		loss_rpn_bbox_fpn2: 0.000057, loss_rpn_bbox_fpn3: 0.001786, loss_rpn_bbox_fpn4: 0.003699, loss_rpn_bbox_fpn5: 0.004298, loss_rpn_bbox_fpn6: 0.000795
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 481 / 5000]
+		loss: 0.217472, lr: 0.000039 time: 1.198134, eta: 1:30:15
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159611, loss_rpn_cls: 0.032413, loss_rpn_bbox: 0.011533
+		loss_rpn_cls_fpn2: 0.004661, loss_rpn_cls_fpn3: 0.010113, loss_rpn_cls_fpn4: 0.011660, loss_rpn_cls_fpn5: 0.004352, loss_rpn_cls_fpn6: 0.000236
+		loss_rpn_bbox_fpn2: 0.000149, loss_rpn_bbox_fpn3: 0.002124, loss_rpn_bbox_fpn4: 0.004203, loss_rpn_bbox_fpn5: 0.003962, loss_rpn_bbox_fpn6: 0.000636
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step499.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 501 / 5000]
+		loss: 0.211448, lr: 0.000040 time: 1.200243, eta: 1:30:01
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160178, loss_rpn_cls: 0.037141, loss_rpn_bbox: 0.010446
+		loss_rpn_cls_fpn2: 0.003505, loss_rpn_cls_fpn3: 0.012130, loss_rpn_cls_fpn4: 0.012968, loss_rpn_cls_fpn5: 0.004808, loss_rpn_cls_fpn6: 0.000202
+		loss_rpn_bbox_fpn2: 0.000342, loss_rpn_bbox_fpn3: 0.001847, loss_rpn_bbox_fpn4: 0.003510, loss_rpn_bbox_fpn5: 0.003596, loss_rpn_bbox_fpn6: 0.000791
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 521 / 5000]
+		loss: 0.215314, lr: 0.000040 time: 1.193824, eta: 1:29:08
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165206, loss_rpn_cls: 0.034814, loss_rpn_bbox: 0.011856
+		loss_rpn_cls_fpn2: 0.004768, loss_rpn_cls_fpn3: 0.009623, loss_rpn_cls_fpn4: 0.011051, loss_rpn_cls_fpn5: 0.005308, loss_rpn_cls_fpn6: 0.000279
+		loss_rpn_bbox_fpn2: 0.000231, loss_rpn_bbox_fpn3: 0.002159, loss_rpn_bbox_fpn4: 0.004397, loss_rpn_bbox_fpn5: 0.004025, loss_rpn_bbox_fpn6: 0.000642
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 541 / 5000]
+		loss: 0.214270, lr: 0.000040 time: 1.194401, eta: 1:28:47
+		accuracy_cls: 0.942708
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170053, loss_rpn_cls: 0.033902, loss_rpn_bbox: 0.012045
+		loss_rpn_cls_fpn2: 0.003636, loss_rpn_cls_fpn3: 0.011810, loss_rpn_cls_fpn4: 0.013873, loss_rpn_cls_fpn5: 0.005010, loss_rpn_cls_fpn6: 0.000293
+		loss_rpn_bbox_fpn2: 0.000196, loss_rpn_bbox_fpn3: 0.001621, loss_rpn_bbox_fpn4: 0.004117, loss_rpn_bbox_fpn5: 0.003834, loss_rpn_bbox_fpn6: 0.000573
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 561 / 5000]
+		loss: 0.210106, lr: 0.000040 time: 1.194904, eta: 1:28:25
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168595, loss_rpn_cls: 0.030693, loss_rpn_bbox: 0.011336
+		loss_rpn_cls_fpn2: 0.004437, loss_rpn_cls_fpn3: 0.007974, loss_rpn_cls_fpn4: 0.011446, loss_rpn_cls_fpn5: 0.004542, loss_rpn_cls_fpn6: 0.000211
+		loss_rpn_bbox_fpn2: 0.000220, loss_rpn_bbox_fpn3: 0.001798, loss_rpn_bbox_fpn4: 0.003401, loss_rpn_bbox_fpn5: 0.004828, loss_rpn_bbox_fpn6: 0.000771
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 581 / 5000]
+		loss: 0.197038, lr: 0.000040 time: 1.190427, eta: 1:27:41
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156902, loss_rpn_cls: 0.031789, loss_rpn_bbox: 0.011568
+		loss_rpn_cls_fpn2: 0.003366, loss_rpn_cls_fpn3: 0.010578, loss_rpn_cls_fpn4: 0.011148, loss_rpn_cls_fpn5: 0.004730, loss_rpn_cls_fpn6: 0.000190
+		loss_rpn_bbox_fpn2: 0.000059, loss_rpn_bbox_fpn3: 0.001981, loss_rpn_bbox_fpn4: 0.003725, loss_rpn_bbox_fpn5: 0.004305, loss_rpn_bbox_fpn6: 0.000705
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 601 / 5000]
+		loss: 0.203982, lr: 0.000040 time: 1.190982, eta: 1:27:20
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156755, loss_rpn_cls: 0.032222, loss_rpn_bbox: 0.011533
+		loss_rpn_cls_fpn2: 0.004156, loss_rpn_cls_fpn3: 0.010987, loss_rpn_cls_fpn4: 0.009547, loss_rpn_cls_fpn5: 0.004056, loss_rpn_cls_fpn6: 0.000274
+		loss_rpn_bbox_fpn2: 0.000139, loss_rpn_bbox_fpn3: 0.001289, loss_rpn_bbox_fpn4: 0.003929, loss_rpn_bbox_fpn5: 0.004679, loss_rpn_bbox_fpn6: 0.000674
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 621 / 5000]
+		loss: 0.210415, lr: 0.000040 time: 1.193607, eta: 1:27:07
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168406, loss_rpn_cls: 0.034217, loss_rpn_bbox: 0.011999
+		loss_rpn_cls_fpn2: 0.004508, loss_rpn_cls_fpn3: 0.010778, loss_rpn_cls_fpn4: 0.013250, loss_rpn_cls_fpn5: 0.004655, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000177, loss_rpn_bbox_fpn3: 0.002036, loss_rpn_bbox_fpn4: 0.004074, loss_rpn_bbox_fpn5: 0.004447, loss_rpn_bbox_fpn6: 0.000676
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 641 / 5000]
+		loss: 0.215545, lr: 0.000040 time: 1.189265, eta: 1:26:25
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164232, loss_rpn_cls: 0.030890, loss_rpn_bbox: 0.010933
+		loss_rpn_cls_fpn2: 0.003758, loss_rpn_cls_fpn3: 0.008454, loss_rpn_cls_fpn4: 0.010007, loss_rpn_cls_fpn5: 0.004594, loss_rpn_cls_fpn6: 0.000219
+		loss_rpn_bbox_fpn2: 0.000251, loss_rpn_bbox_fpn3: 0.001675, loss_rpn_bbox_fpn4: 0.003561, loss_rpn_bbox_fpn5: 0.004037, loss_rpn_bbox_fpn6: 0.000755
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 661 / 5000]
+		loss: 0.211089, lr: 0.000040 time: 1.190304, eta: 1:26:05
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160121, loss_rpn_cls: 0.039201, loss_rpn_bbox: 0.010849
+		loss_rpn_cls_fpn2: 0.003649, loss_rpn_cls_fpn3: 0.007224, loss_rpn_cls_fpn4: 0.012105, loss_rpn_cls_fpn5: 0.004598, loss_rpn_cls_fpn6: 0.000240
+		loss_rpn_bbox_fpn2: 0.000036, loss_rpn_bbox_fpn3: 0.001661, loss_rpn_bbox_fpn4: 0.004001, loss_rpn_bbox_fpn5: 0.003267, loss_rpn_bbox_fpn6: 0.000835
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 681 / 5000]
+		loss: 0.209501, lr: 0.000040 time: 1.186123, eta: 1:25:24
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161935, loss_rpn_cls: 0.031274, loss_rpn_bbox: 0.011608
+		loss_rpn_cls_fpn2: 0.004279, loss_rpn_cls_fpn3: 0.009592, loss_rpn_cls_fpn4: 0.009279, loss_rpn_cls_fpn5: 0.004096, loss_rpn_cls_fpn6: 0.000122
+		loss_rpn_bbox_fpn2: 0.000136, loss_rpn_bbox_fpn3: 0.001998, loss_rpn_bbox_fpn4: 0.003477, loss_rpn_bbox_fpn5: 0.004615, loss_rpn_bbox_fpn6: 0.000710
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 701 / 5000]
+		loss: 0.220789, lr: 0.000040 time: 1.189224, eta: 1:25:13
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163879, loss_rpn_cls: 0.031948, loss_rpn_bbox: 0.012412
+		loss_rpn_cls_fpn2: 0.004221, loss_rpn_cls_fpn3: 0.010325, loss_rpn_cls_fpn4: 0.011003, loss_rpn_cls_fpn5: 0.004825, loss_rpn_cls_fpn6: 0.000180
+		loss_rpn_bbox_fpn2: 0.000127, loss_rpn_bbox_fpn3: 0.001933, loss_rpn_bbox_fpn4: 0.004304, loss_rpn_bbox_fpn5: 0.004277, loss_rpn_bbox_fpn6: 0.000539
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 721 / 5000]
+		loss: 0.205487, lr: 0.000040 time: 1.190468, eta: 1:24:55
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159840, loss_rpn_cls: 0.029725, loss_rpn_bbox: 0.010873
+		loss_rpn_cls_fpn2: 0.003839, loss_rpn_cls_fpn3: 0.006717, loss_rpn_cls_fpn4: 0.010249, loss_rpn_cls_fpn5: 0.004705, loss_rpn_cls_fpn6: 0.000314
+		loss_rpn_bbox_fpn2: 0.000194, loss_rpn_bbox_fpn3: 0.001307, loss_rpn_bbox_fpn4: 0.003471, loss_rpn_bbox_fpn5: 0.003795, loss_rpn_bbox_fpn6: 0.000790
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 741 / 5000]
+		loss: 0.206109, lr: 0.000040 time: 1.186923, eta: 1:24:16
+		accuracy_cls: 0.944196
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163033, loss_rpn_cls: 0.030864, loss_rpn_bbox: 0.011250
+		loss_rpn_cls_fpn2: 0.004021, loss_rpn_cls_fpn3: 0.009913, loss_rpn_cls_fpn4: 0.010560, loss_rpn_cls_fpn5: 0.005178, loss_rpn_cls_fpn6: 0.000162
+		loss_rpn_bbox_fpn2: 0.000094, loss_rpn_bbox_fpn3: 0.001865, loss_rpn_bbox_fpn4: 0.003045, loss_rpn_bbox_fpn5: 0.003887, loss_rpn_bbox_fpn6: 0.000706
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step749.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 761 / 5000]
+		loss: 0.206460, lr: 0.000040 time: 1.187345, eta: 1:23:54
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166428, loss_rpn_cls: 0.033757, loss_rpn_bbox: 0.010552
+		loss_rpn_cls_fpn2: 0.004267, loss_rpn_cls_fpn3: 0.010960, loss_rpn_cls_fpn4: 0.009702, loss_rpn_cls_fpn5: 0.004553, loss_rpn_cls_fpn6: 0.000204
+		loss_rpn_bbox_fpn2: 0.000330, loss_rpn_bbox_fpn3: 0.001572, loss_rpn_bbox_fpn4: 0.004076, loss_rpn_bbox_fpn5: 0.004162, loss_rpn_bbox_fpn6: 0.000647
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 781 / 5000]
+		loss: 0.200382, lr: 0.000040 time: 1.187861, eta: 1:23:32
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158220, loss_rpn_cls: 0.033456, loss_rpn_bbox: 0.012276
+		loss_rpn_cls_fpn2: 0.004672, loss_rpn_cls_fpn3: 0.008690, loss_rpn_cls_fpn4: 0.009815, loss_rpn_cls_fpn5: 0.004489, loss_rpn_cls_fpn6: 0.000300
+		loss_rpn_bbox_fpn2: 0.000409, loss_rpn_bbox_fpn3: 0.001462, loss_rpn_bbox_fpn4: 0.002982, loss_rpn_bbox_fpn5: 0.004570, loss_rpn_bbox_fpn6: 0.000863
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 801 / 5000]
+		loss: 0.206511, lr: 0.000040 time: 1.184115, eta: 1:22:53
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157883, loss_rpn_cls: 0.032719, loss_rpn_bbox: 0.011246
+		loss_rpn_cls_fpn2: 0.003086, loss_rpn_cls_fpn3: 0.009765, loss_rpn_cls_fpn4: 0.010670, loss_rpn_cls_fpn5: 0.004561, loss_rpn_cls_fpn6: 0.000375
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001616, loss_rpn_bbox_fpn4: 0.004306, loss_rpn_bbox_fpn5: 0.003840, loss_rpn_bbox_fpn6: 0.000794
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 821 / 5000]
+		loss: 0.218704, lr: 0.000040 time: 1.184914, eta: 1:22:32
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168656, loss_rpn_cls: 0.034600, loss_rpn_bbox: 0.011076
+		loss_rpn_cls_fpn2: 0.003782, loss_rpn_cls_fpn3: 0.009613, loss_rpn_cls_fpn4: 0.013930, loss_rpn_cls_fpn5: 0.004547, loss_rpn_cls_fpn6: 0.000296
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001842, loss_rpn_bbox_fpn4: 0.003523, loss_rpn_bbox_fpn5: 0.004285, loss_rpn_bbox_fpn6: 0.000658
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 841 / 5000]
+		loss: 0.198316, lr: 0.000040 time: 1.185865, eta: 1:22:13
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156325, loss_rpn_cls: 0.030705, loss_rpn_bbox: 0.011126
+		loss_rpn_cls_fpn2: 0.004380, loss_rpn_cls_fpn3: 0.009834, loss_rpn_cls_fpn4: 0.011400, loss_rpn_cls_fpn5: 0.004572, loss_rpn_cls_fpn6: 0.000185
+		loss_rpn_bbox_fpn2: 0.000218, loss_rpn_bbox_fpn3: 0.001833, loss_rpn_bbox_fpn4: 0.003855, loss_rpn_bbox_fpn5: 0.004163, loss_rpn_bbox_fpn6: 0.000719
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 861 / 5000]
+		loss: 0.201406, lr: 0.000040 time: 1.182760, eta: 1:21:36
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158227, loss_rpn_cls: 0.032948, loss_rpn_bbox: 0.011119
+		loss_rpn_cls_fpn2: 0.004265, loss_rpn_cls_fpn3: 0.010447, loss_rpn_cls_fpn4: 0.009632, loss_rpn_cls_fpn5: 0.004019, loss_rpn_cls_fpn6: 0.000126
+		loss_rpn_bbox_fpn2: 0.000177, loss_rpn_bbox_fpn3: 0.001693, loss_rpn_bbox_fpn4: 0.003554, loss_rpn_bbox_fpn5: 0.003799, loss_rpn_bbox_fpn6: 0.000633
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 881 / 5000]
+		loss: 0.212467, lr: 0.000040 time: 1.183196, eta: 1:21:14
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168987, loss_rpn_cls: 0.032385, loss_rpn_bbox: 0.011520
+		loss_rpn_cls_fpn2: 0.004258, loss_rpn_cls_fpn3: 0.007611, loss_rpn_cls_fpn4: 0.010404, loss_rpn_cls_fpn5: 0.004921, loss_rpn_cls_fpn6: 0.000271
+		loss_rpn_bbox_fpn2: 0.000508, loss_rpn_bbox_fpn3: 0.001524, loss_rpn_bbox_fpn4: 0.004458, loss_rpn_bbox_fpn5: 0.004445, loss_rpn_bbox_fpn6: 0.000680
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 901 / 5000]
+		loss: 0.207524, lr: 0.000040 time: 1.184291, eta: 1:20:55
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157596, loss_rpn_cls: 0.033570, loss_rpn_bbox: 0.011248
+		loss_rpn_cls_fpn2: 0.003637, loss_rpn_cls_fpn3: 0.009428, loss_rpn_cls_fpn4: 0.011225, loss_rpn_cls_fpn5: 0.004050, loss_rpn_cls_fpn6: 0.000283
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001901, loss_rpn_bbox_fpn4: 0.003726, loss_rpn_bbox_fpn5: 0.003992, loss_rpn_bbox_fpn6: 0.000766
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 921 / 5000]
+		loss: 0.209873, lr: 0.000040 time: 1.181733, eta: 1:20:21
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166769, loss_rpn_cls: 0.032933, loss_rpn_bbox: 0.011844
+		loss_rpn_cls_fpn2: 0.004324, loss_rpn_cls_fpn3: 0.008503, loss_rpn_cls_fpn4: 0.009846, loss_rpn_cls_fpn5: 0.004917, loss_rpn_cls_fpn6: 0.000259
+		loss_rpn_bbox_fpn2: 0.000174, loss_rpn_bbox_fpn3: 0.001515, loss_rpn_bbox_fpn4: 0.003985, loss_rpn_bbox_fpn5: 0.004448, loss_rpn_bbox_fpn6: 0.000822
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 941 / 5000]
+		loss: 0.202949, lr: 0.000040 time: 1.182405, eta: 1:20:00
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151577, loss_rpn_cls: 0.028303, loss_rpn_bbox: 0.010924
+		loss_rpn_cls_fpn2: 0.003831, loss_rpn_cls_fpn3: 0.008034, loss_rpn_cls_fpn4: 0.009508, loss_rpn_cls_fpn5: 0.004069, loss_rpn_cls_fpn6: 0.000202
+		loss_rpn_bbox_fpn2: 0.000299, loss_rpn_bbox_fpn3: 0.001502, loss_rpn_bbox_fpn4: 0.004186, loss_rpn_bbox_fpn5: 0.004405, loss_rpn_bbox_fpn6: 0.000782
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 961 / 5000]
+		loss: 0.218511, lr: 0.000040 time: 1.179123, eta: 1:19:23
+		accuracy_cls: 0.944940
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165251, loss_rpn_cls: 0.033012, loss_rpn_bbox: 0.011007
+		loss_rpn_cls_fpn2: 0.003420, loss_rpn_cls_fpn3: 0.011502, loss_rpn_cls_fpn4: 0.010535, loss_rpn_cls_fpn5: 0.004519, loss_rpn_cls_fpn6: 0.000322
+		loss_rpn_bbox_fpn2: 0.000055, loss_rpn_bbox_fpn3: 0.002082, loss_rpn_bbox_fpn4: 0.003440, loss_rpn_bbox_fpn5: 0.003860, loss_rpn_bbox_fpn6: 0.000757
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 981 / 5000]
+		loss: 0.201069, lr: 0.000040 time: 1.179595, eta: 1:19:01
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158933, loss_rpn_cls: 0.029921, loss_rpn_bbox: 0.011556
+		loss_rpn_cls_fpn2: 0.004013, loss_rpn_cls_fpn3: 0.009060, loss_rpn_cls_fpn4: 0.011250, loss_rpn_cls_fpn5: 0.004419, loss_rpn_cls_fpn6: 0.000195
+		loss_rpn_bbox_fpn2: 0.000054, loss_rpn_bbox_fpn3: 0.001485, loss_rpn_bbox_fpn4: 0.003807, loss_rpn_bbox_fpn5: 0.004075, loss_rpn_bbox_fpn6: 0.000740
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step999.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1001 / 5000]
+		loss: 0.208402, lr: 0.000040 time: 1.180260, eta: 1:18:41
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163866, loss_rpn_cls: 0.032244, loss_rpn_bbox: 0.011487
+		loss_rpn_cls_fpn2: 0.004733, loss_rpn_cls_fpn3: 0.009806, loss_rpn_cls_fpn4: 0.010707, loss_rpn_cls_fpn5: 0.004887, loss_rpn_cls_fpn6: 0.000248
+		loss_rpn_bbox_fpn2: 0.000203, loss_rpn_bbox_fpn3: 0.001545, loss_rpn_bbox_fpn4: 0.003258, loss_rpn_bbox_fpn5: 0.004200, loss_rpn_bbox_fpn6: 0.000764
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1021 / 5000]
+		loss: 0.210539, lr: 0.000040 time: 1.178025, eta: 1:18:08
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162498, loss_rpn_cls: 0.033948, loss_rpn_bbox: 0.011280
+		loss_rpn_cls_fpn2: 0.004375, loss_rpn_cls_fpn3: 0.009792, loss_rpn_cls_fpn4: 0.012396, loss_rpn_cls_fpn5: 0.004809, loss_rpn_cls_fpn6: 0.000183
+		loss_rpn_bbox_fpn2: 0.000212, loss_rpn_bbox_fpn3: 0.001908, loss_rpn_bbox_fpn4: 0.003300, loss_rpn_bbox_fpn5: 0.003833, loss_rpn_bbox_fpn6: 0.000825
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1041 / 5000]
+		loss: 0.203734, lr: 0.000040 time: 1.178744, eta: 1:17:47
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162318, loss_rpn_cls: 0.029908, loss_rpn_bbox: 0.011366
+		loss_rpn_cls_fpn2: 0.004324, loss_rpn_cls_fpn3: 0.009067, loss_rpn_cls_fpn4: 0.010052, loss_rpn_cls_fpn5: 0.004112, loss_rpn_cls_fpn6: 0.000161
+		loss_rpn_bbox_fpn2: 0.000163, loss_rpn_bbox_fpn3: 0.001707, loss_rpn_bbox_fpn4: 0.003828, loss_rpn_bbox_fpn5: 0.004533, loss_rpn_bbox_fpn6: 0.000626
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1061 / 5000]
+		loss: 0.212121, lr: 0.000040 time: 1.179370, eta: 1:17:26
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165472, loss_rpn_cls: 0.031663, loss_rpn_bbox: 0.011155
+		loss_rpn_cls_fpn2: 0.003820, loss_rpn_cls_fpn3: 0.012163, loss_rpn_cls_fpn4: 0.014438, loss_rpn_cls_fpn5: 0.004598, loss_rpn_cls_fpn6: 0.000190
+		loss_rpn_bbox_fpn2: 0.000153, loss_rpn_bbox_fpn3: 0.001879, loss_rpn_bbox_fpn4: 0.003980, loss_rpn_bbox_fpn5: 0.003993, loss_rpn_bbox_fpn6: 0.000821
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1081 / 5000]
+		loss: 0.192984, lr: 0.000040 time: 1.177208, eta: 1:16:54
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149224, loss_rpn_cls: 0.029386, loss_rpn_bbox: 0.010783
+		loss_rpn_cls_fpn2: 0.003904, loss_rpn_cls_fpn3: 0.008499, loss_rpn_cls_fpn4: 0.009711, loss_rpn_cls_fpn5: 0.005166, loss_rpn_cls_fpn6: 0.000249
+		loss_rpn_bbox_fpn2: 0.000147, loss_rpn_bbox_fpn3: 0.001676, loss_rpn_bbox_fpn4: 0.003339, loss_rpn_bbox_fpn5: 0.004467, loss_rpn_bbox_fpn6: 0.000813
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1101 / 5000]
+		loss: 0.221790, lr: 0.000040 time: 1.177534, eta: 1:16:32
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166986, loss_rpn_cls: 0.038021, loss_rpn_bbox: 0.012582
+		loss_rpn_cls_fpn2: 0.003970, loss_rpn_cls_fpn3: 0.009680, loss_rpn_cls_fpn4: 0.015305, loss_rpn_cls_fpn5: 0.004681, loss_rpn_cls_fpn6: 0.000219
+		loss_rpn_bbox_fpn2: 0.000085, loss_rpn_bbox_fpn3: 0.001795, loss_rpn_bbox_fpn4: 0.004200, loss_rpn_bbox_fpn5: 0.004537, loss_rpn_bbox_fpn6: 0.000681
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1121 / 5000]
+		loss: 0.198865, lr: 0.000040 time: 1.177694, eta: 1:16:09
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162415, loss_rpn_cls: 0.028053, loss_rpn_bbox: 0.010596
+		loss_rpn_cls_fpn2: 0.003606, loss_rpn_cls_fpn3: 0.007435, loss_rpn_cls_fpn4: 0.009108, loss_rpn_cls_fpn5: 0.004191, loss_rpn_cls_fpn6: 0.000201
+		loss_rpn_bbox_fpn2: 0.000352, loss_rpn_bbox_fpn3: 0.001862, loss_rpn_bbox_fpn4: 0.003033, loss_rpn_bbox_fpn5: 0.004259, loss_rpn_bbox_fpn6: 0.000934
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1141 / 5000]
+		loss: 0.214136, lr: 0.000040 time: 1.175474, eta: 1:15:37
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160729, loss_rpn_cls: 0.033398, loss_rpn_bbox: 0.010284
+		loss_rpn_cls_fpn2: 0.003815, loss_rpn_cls_fpn3: 0.009691, loss_rpn_cls_fpn4: 0.011640, loss_rpn_cls_fpn5: 0.004843, loss_rpn_cls_fpn6: 0.000235
+		loss_rpn_bbox_fpn2: 0.000057, loss_rpn_bbox_fpn3: 0.001731, loss_rpn_bbox_fpn4: 0.002947, loss_rpn_bbox_fpn5: 0.003969, loss_rpn_bbox_fpn6: 0.000605
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1161 / 5000]
+		loss: 0.215700, lr: 0.000040 time: 1.176485, eta: 1:15:17
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161688, loss_rpn_cls: 0.032314, loss_rpn_bbox: 0.012199
+		loss_rpn_cls_fpn2: 0.004501, loss_rpn_cls_fpn3: 0.009381, loss_rpn_cls_fpn4: 0.013511, loss_rpn_cls_fpn5: 0.004457, loss_rpn_cls_fpn6: 0.000279
+		loss_rpn_bbox_fpn2: 0.000351, loss_rpn_bbox_fpn3: 0.001798, loss_rpn_bbox_fpn4: 0.003856, loss_rpn_bbox_fpn5: 0.004003, loss_rpn_bbox_fpn6: 0.000735
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1181 / 5000]
+		loss: 0.199774, lr: 0.000040 time: 1.177069, eta: 1:14:56
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153006, loss_rpn_cls: 0.029068, loss_rpn_bbox: 0.010835
+		loss_rpn_cls_fpn2: 0.003130, loss_rpn_cls_fpn3: 0.007331, loss_rpn_cls_fpn4: 0.008251, loss_rpn_cls_fpn5: 0.005066, loss_rpn_cls_fpn6: 0.000221
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001648, loss_rpn_bbox_fpn4: 0.003100, loss_rpn_bbox_fpn5: 0.004356, loss_rpn_bbox_fpn6: 0.000769
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1201 / 5000]
+		loss: 0.201234, lr: 0.000040 time: 1.174966, eta: 1:14:24
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161026, loss_rpn_cls: 0.031160, loss_rpn_bbox: 0.011095
+		loss_rpn_cls_fpn2: 0.004468, loss_rpn_cls_fpn3: 0.008608, loss_rpn_cls_fpn4: 0.011256, loss_rpn_cls_fpn5: 0.004425, loss_rpn_cls_fpn6: 0.000181
+		loss_rpn_bbox_fpn2: 0.000190, loss_rpn_bbox_fpn3: 0.001718, loss_rpn_bbox_fpn4: 0.003475, loss_rpn_bbox_fpn5: 0.004252, loss_rpn_bbox_fpn6: 0.000739
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1221 / 5000]
+		loss: 0.203300, lr: 0.000040 time: 1.175592, eta: 1:14:03
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158893, loss_rpn_cls: 0.035883, loss_rpn_bbox: 0.012679
+		loss_rpn_cls_fpn2: 0.003386, loss_rpn_cls_fpn3: 0.009474, loss_rpn_cls_fpn4: 0.014394, loss_rpn_cls_fpn5: 0.004767, loss_rpn_cls_fpn6: 0.000200
+		loss_rpn_bbox_fpn2: 0.000053, loss_rpn_bbox_fpn3: 0.001674, loss_rpn_bbox_fpn4: 0.005137, loss_rpn_bbox_fpn5: 0.004413, loss_rpn_bbox_fpn6: 0.000745
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1241 / 5000]
+		loss: 0.198369, lr: 0.000040 time: 1.176054, eta: 1:13:41
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161328, loss_rpn_cls: 0.029489, loss_rpn_bbox: 0.010356
+		loss_rpn_cls_fpn2: 0.004522, loss_rpn_cls_fpn3: 0.009862, loss_rpn_cls_fpn4: 0.008801, loss_rpn_cls_fpn5: 0.004624, loss_rpn_cls_fpn6: 0.000228
+		loss_rpn_bbox_fpn2: 0.000383, loss_rpn_bbox_fpn3: 0.001570, loss_rpn_bbox_fpn4: 0.003140, loss_rpn_bbox_fpn5: 0.004080, loss_rpn_bbox_fpn6: 0.000773
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step1249.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1261 / 5000]
+		loss: 0.203646, lr: 0.000040 time: 1.173892, eta: 1:13:10
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162614, loss_rpn_cls: 0.033606, loss_rpn_bbox: 0.011904
+		loss_rpn_cls_fpn2: 0.004190, loss_rpn_cls_fpn3: 0.008060, loss_rpn_cls_fpn4: 0.010060, loss_rpn_cls_fpn5: 0.004620, loss_rpn_cls_fpn6: 0.000136
+		loss_rpn_bbox_fpn2: 0.000131, loss_rpn_bbox_fpn3: 0.001712, loss_rpn_bbox_fpn4: 0.004223, loss_rpn_bbox_fpn5: 0.004430, loss_rpn_bbox_fpn6: 0.000851
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1281 / 5000]
+		loss: 0.212840, lr: 0.000040 time: 1.174460, eta: 1:12:48
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165277, loss_rpn_cls: 0.030840, loss_rpn_bbox: 0.010862
+		loss_rpn_cls_fpn2: 0.004012, loss_rpn_cls_fpn3: 0.009681, loss_rpn_cls_fpn4: 0.011417, loss_rpn_cls_fpn5: 0.004793, loss_rpn_cls_fpn6: 0.000198
+		loss_rpn_bbox_fpn2: 0.000124, loss_rpn_bbox_fpn3: 0.002011, loss_rpn_bbox_fpn4: 0.003878, loss_rpn_bbox_fpn5: 0.004271, loss_rpn_bbox_fpn6: 0.000745
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1301 / 5000]
+		loss: 0.220979, lr: 0.000040 time: 1.172515, eta: 1:12:18
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.174641, loss_rpn_cls: 0.029608, loss_rpn_bbox: 0.011157
+		loss_rpn_cls_fpn2: 0.003727, loss_rpn_cls_fpn3: 0.008740, loss_rpn_cls_fpn4: 0.011017, loss_rpn_cls_fpn5: 0.004737, loss_rpn_cls_fpn6: 0.000213
+		loss_rpn_bbox_fpn2: 0.000350, loss_rpn_bbox_fpn3: 0.001664, loss_rpn_bbox_fpn4: 0.003614, loss_rpn_bbox_fpn5: 0.003851, loss_rpn_bbox_fpn6: 0.000703
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1321 / 5000]
+		loss: 0.194837, lr: 0.000040 time: 1.173095, eta: 1:11:56
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151411, loss_rpn_cls: 0.027707, loss_rpn_bbox: 0.011734
+		loss_rpn_cls_fpn2: 0.004178, loss_rpn_cls_fpn3: 0.008265, loss_rpn_cls_fpn4: 0.008818, loss_rpn_cls_fpn5: 0.004908, loss_rpn_cls_fpn6: 0.000210
+		loss_rpn_bbox_fpn2: 0.000094, loss_rpn_bbox_fpn3: 0.001886, loss_rpn_bbox_fpn4: 0.003407, loss_rpn_bbox_fpn5: 0.004467, loss_rpn_bbox_fpn6: 0.000614
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1341 / 5000]
+		loss: 0.203678, lr: 0.000040 time: 1.173706, eta: 1:11:35
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159986, loss_rpn_cls: 0.034118, loss_rpn_bbox: 0.010084
+		loss_rpn_cls_fpn2: 0.003856, loss_rpn_cls_fpn3: 0.010844, loss_rpn_cls_fpn4: 0.011369, loss_rpn_cls_fpn5: 0.003699, loss_rpn_cls_fpn6: 0.000274
+		loss_rpn_bbox_fpn2: 0.000207, loss_rpn_bbox_fpn3: 0.001520, loss_rpn_bbox_fpn4: 0.003752, loss_rpn_bbox_fpn5: 0.003900, loss_rpn_bbox_fpn6: 0.000990
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1361 / 5000]
+		loss: 0.199126, lr: 0.000040 time: 1.171970, eta: 1:11:05
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157383, loss_rpn_cls: 0.029590, loss_rpn_bbox: 0.011147
+		loss_rpn_cls_fpn2: 0.004085, loss_rpn_cls_fpn3: 0.009752, loss_rpn_cls_fpn4: 0.008702, loss_rpn_cls_fpn5: 0.004449, loss_rpn_cls_fpn6: 0.000122
+		loss_rpn_bbox_fpn2: 0.000086, loss_rpn_bbox_fpn3: 0.001625, loss_rpn_bbox_fpn4: 0.003711, loss_rpn_bbox_fpn5: 0.003946, loss_rpn_bbox_fpn6: 0.000571
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1381 / 5000]
+		loss: 0.198930, lr: 0.000040 time: 1.172681, eta: 1:10:45
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154682, loss_rpn_cls: 0.032537, loss_rpn_bbox: 0.011605
+		loss_rpn_cls_fpn2: 0.005014, loss_rpn_cls_fpn3: 0.010085, loss_rpn_cls_fpn4: 0.010164, loss_rpn_cls_fpn5: 0.004812, loss_rpn_cls_fpn6: 0.000197
+		loss_rpn_bbox_fpn2: 0.000377, loss_rpn_bbox_fpn3: 0.002082, loss_rpn_bbox_fpn4: 0.003733, loss_rpn_bbox_fpn5: 0.004043, loss_rpn_bbox_fpn6: 0.000656
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1401 / 5000]
+		loss: 0.200736, lr: 0.000040 time: 1.173343, eta: 1:10:24
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159480, loss_rpn_cls: 0.027171, loss_rpn_bbox: 0.010361
+		loss_rpn_cls_fpn2: 0.003859, loss_rpn_cls_fpn3: 0.007934, loss_rpn_cls_fpn4: 0.011784, loss_rpn_cls_fpn5: 0.004377, loss_rpn_cls_fpn6: 0.000245
+		loss_rpn_bbox_fpn2: 0.000124, loss_rpn_bbox_fpn3: 0.001210, loss_rpn_bbox_fpn4: 0.003700, loss_rpn_bbox_fpn5: 0.003682, loss_rpn_bbox_fpn6: 0.000845
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1421 / 5000]
+		loss: 0.203759, lr: 0.000040 time: 1.171371, eta: 1:09:53
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166610, loss_rpn_cls: 0.029002, loss_rpn_bbox: 0.011008
+		loss_rpn_cls_fpn2: 0.004117, loss_rpn_cls_fpn3: 0.008258, loss_rpn_cls_fpn4: 0.010654, loss_rpn_cls_fpn5: 0.004394, loss_rpn_cls_fpn6: 0.000198
+		loss_rpn_bbox_fpn2: 0.000205, loss_rpn_bbox_fpn3: 0.001743, loss_rpn_bbox_fpn4: 0.003130, loss_rpn_bbox_fpn5: 0.004313, loss_rpn_bbox_fpn6: 0.000787
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1441 / 5000]
+		loss: 0.196834, lr: 0.000040 time: 1.171506, eta: 1:09:30
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153186, loss_rpn_cls: 0.030081, loss_rpn_bbox: 0.011741
+		loss_rpn_cls_fpn2: 0.004413, loss_rpn_cls_fpn3: 0.007260, loss_rpn_cls_fpn4: 0.009143, loss_rpn_cls_fpn5: 0.004456, loss_rpn_cls_fpn6: 0.000237
+		loss_rpn_bbox_fpn2: 0.000212, loss_rpn_bbox_fpn3: 0.001569, loss_rpn_bbox_fpn4: 0.004038, loss_rpn_bbox_fpn5: 0.003970, loss_rpn_bbox_fpn6: 0.000747
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1461 / 5000]
+		loss: 0.209704, lr: 0.000040 time: 1.172172, eta: 1:09:09
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.169055, loss_rpn_cls: 0.029763, loss_rpn_bbox: 0.011036
+		loss_rpn_cls_fpn2: 0.004253, loss_rpn_cls_fpn3: 0.010477, loss_rpn_cls_fpn4: 0.009091, loss_rpn_cls_fpn5: 0.004109, loss_rpn_cls_fpn6: 0.000197
+		loss_rpn_bbox_fpn2: 0.000345, loss_rpn_bbox_fpn3: 0.001704, loss_rpn_bbox_fpn4: 0.003858, loss_rpn_bbox_fpn5: 0.003637, loss_rpn_bbox_fpn6: 0.000680
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1481 / 5000]
+		loss: 0.209762, lr: 0.000040 time: 1.170604, eta: 1:08:40
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.165965, loss_rpn_cls: 0.034783, loss_rpn_bbox: 0.010854
+		loss_rpn_cls_fpn2: 0.003901, loss_rpn_cls_fpn3: 0.009109, loss_rpn_cls_fpn4: 0.010644, loss_rpn_cls_fpn5: 0.004587, loss_rpn_cls_fpn6: 0.000204
+		loss_rpn_bbox_fpn2: 0.000130, loss_rpn_bbox_fpn3: 0.001627, loss_rpn_bbox_fpn4: 0.003950, loss_rpn_bbox_fpn5: 0.004681, loss_rpn_bbox_fpn6: 0.000701
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step1499.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1501 / 5000]
+		loss: 0.196766, lr: 0.000040 time: 1.171226, eta: 1:08:19
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151156, loss_rpn_cls: 0.031193, loss_rpn_bbox: 0.010904
+		loss_rpn_cls_fpn2: 0.004539, loss_rpn_cls_fpn3: 0.008775, loss_rpn_cls_fpn4: 0.012770, loss_rpn_cls_fpn5: 0.004434, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000056, loss_rpn_bbox_fpn3: 0.001382, loss_rpn_bbox_fpn4: 0.003713, loss_rpn_bbox_fpn5: 0.004727, loss_rpn_bbox_fpn6: 0.000720
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1521 / 5000]
+		loss: 0.216039, lr: 0.000040 time: 1.171903, eta: 1:07:58
+		accuracy_cls: 0.942708
+		spatial_reg: 0.000000
+		image_loss_cls: 0.176624, loss_rpn_cls: 0.031052, loss_rpn_bbox: 0.010377
+		loss_rpn_cls_fpn2: 0.004024, loss_rpn_cls_fpn3: 0.009211, loss_rpn_cls_fpn4: 0.009332, loss_rpn_cls_fpn5: 0.004616, loss_rpn_cls_fpn6: 0.000178
+		loss_rpn_bbox_fpn2: 0.000105, loss_rpn_bbox_fpn3: 0.002063, loss_rpn_bbox_fpn4: 0.003411, loss_rpn_bbox_fpn5: 0.003810, loss_rpn_bbox_fpn6: 0.000659
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1541 / 5000]
+		loss: 0.203349, lr: 0.000040 time: 1.170429, eta: 1:07:29
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156520, loss_rpn_cls: 0.034732, loss_rpn_bbox: 0.010913
+		loss_rpn_cls_fpn2: 0.004052, loss_rpn_cls_fpn3: 0.009739, loss_rpn_cls_fpn4: 0.010087, loss_rpn_cls_fpn5: 0.005081, loss_rpn_cls_fpn6: 0.000194
+		loss_rpn_bbox_fpn2: 0.000418, loss_rpn_bbox_fpn3: 0.001585, loss_rpn_bbox_fpn4: 0.003643, loss_rpn_bbox_fpn5: 0.003937, loss_rpn_bbox_fpn6: 0.000564
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1561 / 5000]
+		loss: 0.200434, lr: 0.000040 time: 1.170815, eta: 1:07:07
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161988, loss_rpn_cls: 0.025509, loss_rpn_bbox: 0.010413
+		loss_rpn_cls_fpn2: 0.003463, loss_rpn_cls_fpn3: 0.007453, loss_rpn_cls_fpn4: 0.007232, loss_rpn_cls_fpn5: 0.004079, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001585, loss_rpn_bbox_fpn4: 0.003654, loss_rpn_bbox_fpn5: 0.003702, loss_rpn_bbox_fpn6: 0.000782
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1581 / 5000]
+		loss: 0.195190, lr: 0.000040 time: 1.168954, eta: 1:06:37
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152308, loss_rpn_cls: 0.031749, loss_rpn_bbox: 0.011217
+		loss_rpn_cls_fpn2: 0.004504, loss_rpn_cls_fpn3: 0.008355, loss_rpn_cls_fpn4: 0.011948, loss_rpn_cls_fpn5: 0.004868, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000287, loss_rpn_bbox_fpn3: 0.001339, loss_rpn_bbox_fpn4: 0.003484, loss_rpn_bbox_fpn5: 0.003834, loss_rpn_bbox_fpn6: 0.000797
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1601 / 5000]
+		loss: 0.190225, lr: 0.000040 time: 1.169756, eta: 1:06:17
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152920, loss_rpn_cls: 0.027564, loss_rpn_bbox: 0.012200
+		loss_rpn_cls_fpn2: 0.003388, loss_rpn_cls_fpn3: 0.008789, loss_rpn_cls_fpn4: 0.008050, loss_rpn_cls_fpn5: 0.004777, loss_rpn_cls_fpn6: 0.000200
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001938, loss_rpn_bbox_fpn4: 0.003998, loss_rpn_bbox_fpn5: 0.003964, loss_rpn_bbox_fpn6: 0.000628
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1621 / 5000]
+		loss: 0.219648, lr: 0.000040 time: 1.170246, eta: 1:05:55
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.172431, loss_rpn_cls: 0.031521, loss_rpn_bbox: 0.010971
+		loss_rpn_cls_fpn2: 0.003847, loss_rpn_cls_fpn3: 0.008465, loss_rpn_cls_fpn4: 0.012967, loss_rpn_cls_fpn5: 0.004767, loss_rpn_cls_fpn6: 0.000173
+		loss_rpn_bbox_fpn2: 0.000171, loss_rpn_bbox_fpn3: 0.001473, loss_rpn_bbox_fpn4: 0.003322, loss_rpn_bbox_fpn5: 0.004061, loss_rpn_bbox_fpn6: 0.000717
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1641 / 5000]
+		loss: 0.208840, lr: 0.000040 time: 1.168635, eta: 1:05:26
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161230, loss_rpn_cls: 0.033915, loss_rpn_bbox: 0.011199
+		loss_rpn_cls_fpn2: 0.004611, loss_rpn_cls_fpn3: 0.011132, loss_rpn_cls_fpn4: 0.011342, loss_rpn_cls_fpn5: 0.004631, loss_rpn_cls_fpn6: 0.000128
+		loss_rpn_bbox_fpn2: 0.000140, loss_rpn_bbox_fpn3: 0.002097, loss_rpn_bbox_fpn4: 0.003053, loss_rpn_bbox_fpn5: 0.004290, loss_rpn_bbox_fpn6: 0.000835
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1661 / 5000]
+		loss: 0.205185, lr: 0.000040 time: 1.168559, eta: 1:05:02
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152432, loss_rpn_cls: 0.034341, loss_rpn_bbox: 0.011018
+		loss_rpn_cls_fpn2: 0.003807, loss_rpn_cls_fpn3: 0.008373, loss_rpn_cls_fpn4: 0.011003, loss_rpn_cls_fpn5: 0.004261, loss_rpn_cls_fpn6: 0.000230
+		loss_rpn_bbox_fpn2: 0.000049, loss_rpn_bbox_fpn3: 0.001389, loss_rpn_bbox_fpn4: 0.003903, loss_rpn_bbox_fpn5: 0.003861, loss_rpn_bbox_fpn6: 0.000716
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1681 / 5000]
+		loss: 0.220953, lr: 0.000040 time: 1.168818, eta: 1:04:40
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.175205, loss_rpn_cls: 0.030493, loss_rpn_bbox: 0.011153
+		loss_rpn_cls_fpn2: 0.004192, loss_rpn_cls_fpn3: 0.010030, loss_rpn_cls_fpn4: 0.008835, loss_rpn_cls_fpn5: 0.004769, loss_rpn_cls_fpn6: 0.000183
+		loss_rpn_bbox_fpn2: 0.000241, loss_rpn_bbox_fpn3: 0.002151, loss_rpn_bbox_fpn4: 0.003664, loss_rpn_bbox_fpn5: 0.003957, loss_rpn_bbox_fpn6: 0.000739
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1701 / 5000]
+		loss: 0.188243, lr: 0.000040 time: 1.167027, eta: 1:04:11
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152210, loss_rpn_cls: 0.030873, loss_rpn_bbox: 0.010759
+		loss_rpn_cls_fpn2: 0.004099, loss_rpn_cls_fpn3: 0.008206, loss_rpn_cls_fpn4: 0.008970, loss_rpn_cls_fpn5: 0.004284, loss_rpn_cls_fpn6: 0.000168
+		loss_rpn_bbox_fpn2: 0.000226, loss_rpn_bbox_fpn3: 0.001939, loss_rpn_bbox_fpn4: 0.003206, loss_rpn_bbox_fpn5: 0.003863, loss_rpn_bbox_fpn6: 0.000750
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1721 / 5000]
+		loss: 0.211892, lr: 0.000040 time: 1.167374, eta: 1:03:48
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162844, loss_rpn_cls: 0.030015, loss_rpn_bbox: 0.012059
+		loss_rpn_cls_fpn2: 0.004108, loss_rpn_cls_fpn3: 0.009044, loss_rpn_cls_fpn4: 0.010532, loss_rpn_cls_fpn5: 0.004338, loss_rpn_cls_fpn6: 0.000233
+		loss_rpn_bbox_fpn2: 0.000242, loss_rpn_bbox_fpn3: 0.001515, loss_rpn_bbox_fpn4: 0.004279, loss_rpn_bbox_fpn5: 0.003987, loss_rpn_bbox_fpn6: 0.000628
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1741 / 5000]
+		loss: 0.188337, lr: 0.000040 time: 1.168006, eta: 1:03:27
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154622, loss_rpn_cls: 0.027943, loss_rpn_bbox: 0.009868
+		loss_rpn_cls_fpn2: 0.003303, loss_rpn_cls_fpn3: 0.008059, loss_rpn_cls_fpn4: 0.009085, loss_rpn_cls_fpn5: 0.005441, loss_rpn_cls_fpn6: 0.000251
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001168, loss_rpn_bbox_fpn4: 0.003337, loss_rpn_bbox_fpn5: 0.004443, loss_rpn_bbox_fpn6: 0.000813
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step1749.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1761 / 5000]
+		loss: 0.216030, lr: 0.000040 time: 1.166488, eta: 1:02:59
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162893, loss_rpn_cls: 0.035041, loss_rpn_bbox: 0.011114
+		loss_rpn_cls_fpn2: 0.004268, loss_rpn_cls_fpn3: 0.009758, loss_rpn_cls_fpn4: 0.010527, loss_rpn_cls_fpn5: 0.004349, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000126, loss_rpn_bbox_fpn3: 0.002048, loss_rpn_bbox_fpn4: 0.004159, loss_rpn_bbox_fpn5: 0.003944, loss_rpn_bbox_fpn6: 0.000737
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1781 / 5000]
+		loss: 0.203385, lr: 0.000040 time: 1.167232, eta: 1:02:38
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160267, loss_rpn_cls: 0.033893, loss_rpn_bbox: 0.011845
+		loss_rpn_cls_fpn2: 0.004014, loss_rpn_cls_fpn3: 0.010945, loss_rpn_cls_fpn4: 0.009005, loss_rpn_cls_fpn5: 0.004535, loss_rpn_cls_fpn6: 0.000134
+		loss_rpn_bbox_fpn2: 0.000216, loss_rpn_bbox_fpn3: 0.001973, loss_rpn_bbox_fpn4: 0.003434, loss_rpn_bbox_fpn5: 0.003968, loss_rpn_bbox_fpn6: 0.000597
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1801 / 5000]
+		loss: 0.197054, lr: 0.000040 time: 1.167755, eta: 1:02:16
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151525, loss_rpn_cls: 0.030830, loss_rpn_bbox: 0.009613
+		loss_rpn_cls_fpn2: 0.003024, loss_rpn_cls_fpn3: 0.007386, loss_rpn_cls_fpn4: 0.011457, loss_rpn_cls_fpn5: 0.004427, loss_rpn_cls_fpn6: 0.000425
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001414, loss_rpn_bbox_fpn4: 0.003321, loss_rpn_bbox_fpn5: 0.003659, loss_rpn_bbox_fpn6: 0.000810
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1821 / 5000]
+		loss: 0.218844, lr: 0.000040 time: 1.166464, eta: 1:01:49
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170868, loss_rpn_cls: 0.032624, loss_rpn_bbox: 0.011670
+		loss_rpn_cls_fpn2: 0.004042, loss_rpn_cls_fpn3: 0.010251, loss_rpn_cls_fpn4: 0.008951, loss_rpn_cls_fpn5: 0.004544, loss_rpn_cls_fpn6: 0.000178
+		loss_rpn_bbox_fpn2: 0.000274, loss_rpn_bbox_fpn3: 0.002004, loss_rpn_bbox_fpn4: 0.003804, loss_rpn_bbox_fpn5: 0.004249, loss_rpn_bbox_fpn6: 0.000789
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1841 / 5000]
+		loss: 0.199003, lr: 0.000040 time: 1.166882, eta: 1:01:27
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163441, loss_rpn_cls: 0.029752, loss_rpn_bbox: 0.009982
+		loss_rpn_cls_fpn2: 0.003641, loss_rpn_cls_fpn3: 0.009053, loss_rpn_cls_fpn4: 0.011136, loss_rpn_cls_fpn5: 0.004536, loss_rpn_cls_fpn6: 0.000089
+		loss_rpn_bbox_fpn2: 0.000051, loss_rpn_bbox_fpn3: 0.001348, loss_rpn_bbox_fpn4: 0.003151, loss_rpn_bbox_fpn5: 0.003729, loss_rpn_bbox_fpn6: 0.000644
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1861 / 5000]
+		loss: 0.202121, lr: 0.000040 time: 1.167501, eta: 1:01:05
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160780, loss_rpn_cls: 0.031555, loss_rpn_bbox: 0.010614
+		loss_rpn_cls_fpn2: 0.004179, loss_rpn_cls_fpn3: 0.009907, loss_rpn_cls_fpn4: 0.011510, loss_rpn_cls_fpn5: 0.005042, loss_rpn_cls_fpn6: 0.000166
+		loss_rpn_bbox_fpn2: 0.000032, loss_rpn_bbox_fpn3: 0.001832, loss_rpn_bbox_fpn4: 0.003429, loss_rpn_bbox_fpn5: 0.004137, loss_rpn_bbox_fpn6: 0.000861
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1881 / 5000]
+		loss: 0.191711, lr: 0.000040 time: 1.166208, eta: 1:00:38
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149013, loss_rpn_cls: 0.028800, loss_rpn_bbox: 0.011438
+		loss_rpn_cls_fpn2: 0.004097, loss_rpn_cls_fpn3: 0.006473, loss_rpn_cls_fpn4: 0.008911, loss_rpn_cls_fpn5: 0.004473, loss_rpn_cls_fpn6: 0.000164
+		loss_rpn_bbox_fpn2: 0.000213, loss_rpn_bbox_fpn3: 0.001382, loss_rpn_bbox_fpn4: 0.003565, loss_rpn_bbox_fpn5: 0.004014, loss_rpn_bbox_fpn6: 0.000855
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1901 / 5000]
+		loss: 0.204390, lr: 0.000040 time: 1.166659, eta: 1:00:16
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162536, loss_rpn_cls: 0.034138, loss_rpn_bbox: 0.011695
+		loss_rpn_cls_fpn2: 0.003994, loss_rpn_cls_fpn3: 0.009306, loss_rpn_cls_fpn4: 0.009145, loss_rpn_cls_fpn5: 0.004350, loss_rpn_cls_fpn6: 0.000155
+		loss_rpn_bbox_fpn2: 0.000162, loss_rpn_bbox_fpn3: 0.001961, loss_rpn_bbox_fpn4: 0.003443, loss_rpn_bbox_fpn5: 0.004448, loss_rpn_bbox_fpn6: 0.000632
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1921 / 5000]
+		loss: 0.182709, lr: 0.000040 time: 1.165233, eta: 0:59:48
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148351, loss_rpn_cls: 0.031127, loss_rpn_bbox: 0.010014
+		loss_rpn_cls_fpn2: 0.004232, loss_rpn_cls_fpn3: 0.009038, loss_rpn_cls_fpn4: 0.007927, loss_rpn_cls_fpn5: 0.004980, loss_rpn_cls_fpn6: 0.000223
+		loss_rpn_bbox_fpn2: 0.000145, loss_rpn_bbox_fpn3: 0.001537, loss_rpn_bbox_fpn4: 0.003399, loss_rpn_bbox_fpn5: 0.003661, loss_rpn_bbox_fpn6: 0.000677
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1941 / 5000]
+		loss: 0.211526, lr: 0.000040 time: 1.165838, eta: 0:59:27
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160749, loss_rpn_cls: 0.032562, loss_rpn_bbox: 0.011840
+		loss_rpn_cls_fpn2: 0.004433, loss_rpn_cls_fpn3: 0.011176, loss_rpn_cls_fpn4: 0.009030, loss_rpn_cls_fpn5: 0.004914, loss_rpn_cls_fpn6: 0.000217
+		loss_rpn_bbox_fpn2: 0.000313, loss_rpn_bbox_fpn3: 0.001773, loss_rpn_bbox_fpn4: 0.003654, loss_rpn_bbox_fpn5: 0.004131, loss_rpn_bbox_fpn6: 0.000725
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1961 / 5000]
+		loss: 0.183221, lr: 0.000040 time: 1.166395, eta: 0:59:05
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.147346, loss_rpn_cls: 0.024913, loss_rpn_bbox: 0.010032
+		loss_rpn_cls_fpn2: 0.003905, loss_rpn_cls_fpn3: 0.007845, loss_rpn_cls_fpn4: 0.009325, loss_rpn_cls_fpn5: 0.003994, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001366, loss_rpn_bbox_fpn4: 0.003318, loss_rpn_bbox_fpn5: 0.003765, loss_rpn_bbox_fpn6: 0.000640
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 1981 / 5000]
+		loss: 0.213290, lr: 0.000040 time: 1.165022, eta: 0:58:38
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163831, loss_rpn_cls: 0.032339, loss_rpn_bbox: 0.011296
+		loss_rpn_cls_fpn2: 0.003895, loss_rpn_cls_fpn3: 0.011102, loss_rpn_cls_fpn4: 0.011338, loss_rpn_cls_fpn5: 0.004241, loss_rpn_cls_fpn6: 0.000169
+		loss_rpn_bbox_fpn2: 0.000080, loss_rpn_bbox_fpn3: 0.001804, loss_rpn_bbox_fpn4: 0.003962, loss_rpn_bbox_fpn5: 0.004044, loss_rpn_bbox_fpn6: 0.000731
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step1999.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2001 / 5000]
+		loss: 0.198235, lr: 0.000040 time: 1.166084, eta: 0:58:18
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152638, loss_rpn_cls: 0.032238, loss_rpn_bbox: 0.011582
+		loss_rpn_cls_fpn2: 0.004048, loss_rpn_cls_fpn3: 0.009065, loss_rpn_cls_fpn4: 0.010874, loss_rpn_cls_fpn5: 0.004869, loss_rpn_cls_fpn6: 0.000191
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001588, loss_rpn_bbox_fpn4: 0.003623, loss_rpn_bbox_fpn5: 0.004660, loss_rpn_bbox_fpn6: 0.000832
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2021 / 5000]
+		loss: 0.210118, lr: 0.000040 time: 1.166482, eta: 0:57:56
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170856, loss_rpn_cls: 0.032608, loss_rpn_bbox: 0.010901
+		loss_rpn_cls_fpn2: 0.003964, loss_rpn_cls_fpn3: 0.011306, loss_rpn_cls_fpn4: 0.010619, loss_rpn_cls_fpn5: 0.004328, loss_rpn_cls_fpn6: 0.000295
+		loss_rpn_bbox_fpn2: 0.000104, loss_rpn_bbox_fpn3: 0.001671, loss_rpn_bbox_fpn4: 0.003511, loss_rpn_bbox_fpn5: 0.003788, loss_rpn_bbox_fpn6: 0.000721
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2041 / 5000]
+		loss: 0.201175, lr: 0.000040 time: 1.165531, eta: 0:57:29
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154691, loss_rpn_cls: 0.031082, loss_rpn_bbox: 0.010874
+		loss_rpn_cls_fpn2: 0.004571, loss_rpn_cls_fpn3: 0.007929, loss_rpn_cls_fpn4: 0.010001, loss_rpn_cls_fpn5: 0.004915, loss_rpn_cls_fpn6: 0.000129
+		loss_rpn_bbox_fpn2: 0.000225, loss_rpn_bbox_fpn3: 0.001648, loss_rpn_bbox_fpn4: 0.003563, loss_rpn_bbox_fpn5: 0.004593, loss_rpn_bbox_fpn6: 0.000732
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2061 / 5000]
+		loss: 0.196140, lr: 0.000040 time: 1.166223, eta: 0:57:08
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154935, loss_rpn_cls: 0.027475, loss_rpn_bbox: 0.010996
+		loss_rpn_cls_fpn2: 0.004140, loss_rpn_cls_fpn3: 0.008534, loss_rpn_cls_fpn4: 0.009478, loss_rpn_cls_fpn5: 0.004523, loss_rpn_cls_fpn6: 0.000173
+		loss_rpn_bbox_fpn2: 0.000163, loss_rpn_bbox_fpn3: 0.001313, loss_rpn_bbox_fpn4: 0.003318, loss_rpn_bbox_fpn5: 0.003825, loss_rpn_bbox_fpn6: 0.000853
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2081 / 5000]
+		loss: 0.194615, lr: 0.000040 time: 1.166838, eta: 0:56:47
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150660, loss_rpn_cls: 0.031397, loss_rpn_bbox: 0.010243
+		loss_rpn_cls_fpn2: 0.003858, loss_rpn_cls_fpn3: 0.009902, loss_rpn_cls_fpn4: 0.011017, loss_rpn_cls_fpn5: 0.004807, loss_rpn_cls_fpn6: 0.000331
+		loss_rpn_bbox_fpn2: 0.000260, loss_rpn_bbox_fpn3: 0.001327, loss_rpn_bbox_fpn4: 0.003351, loss_rpn_bbox_fpn5: 0.004122, loss_rpn_bbox_fpn6: 0.000846
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2101 / 5000]
+		loss: 0.218124, lr: 0.000040 time: 1.165737, eta: 0:56:20
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.178298, loss_rpn_cls: 0.032096, loss_rpn_bbox: 0.010890
+		loss_rpn_cls_fpn2: 0.003824, loss_rpn_cls_fpn3: 0.008248, loss_rpn_cls_fpn4: 0.010999, loss_rpn_cls_fpn5: 0.004519, loss_rpn_cls_fpn6: 0.000173
+		loss_rpn_bbox_fpn2: 0.000032, loss_rpn_bbox_fpn3: 0.001592, loss_rpn_bbox_fpn4: 0.002876, loss_rpn_bbox_fpn5: 0.004901, loss_rpn_bbox_fpn6: 0.000758
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2121 / 5000]
+		loss: 0.208252, lr: 0.000040 time: 1.166413, eta: 0:55:59
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160214, loss_rpn_cls: 0.025920, loss_rpn_bbox: 0.010410
+		loss_rpn_cls_fpn2: 0.003261, loss_rpn_cls_fpn3: 0.007097, loss_rpn_cls_fpn4: 0.007920, loss_rpn_cls_fpn5: 0.005290, loss_rpn_cls_fpn6: 0.000216
+		loss_rpn_bbox_fpn2: 0.000032, loss_rpn_bbox_fpn3: 0.001121, loss_rpn_bbox_fpn4: 0.002863, loss_rpn_bbox_fpn5: 0.003587, loss_rpn_bbox_fpn6: 0.000869
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2141 / 5000]
+		loss: 0.204452, lr: 0.000040 time: 1.166815, eta: 0:55:37
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153340, loss_rpn_cls: 0.033456, loss_rpn_bbox: 0.011697
+		loss_rpn_cls_fpn2: 0.004844, loss_rpn_cls_fpn3: 0.010286, loss_rpn_cls_fpn4: 0.012371, loss_rpn_cls_fpn5: 0.003847, loss_rpn_cls_fpn6: 0.000166
+		loss_rpn_bbox_fpn2: 0.000253, loss_rpn_bbox_fpn3: 0.002099, loss_rpn_bbox_fpn4: 0.004243, loss_rpn_bbox_fpn5: 0.003570, loss_rpn_bbox_fpn6: 0.000619
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2161 / 5000]
+		loss: 0.203072, lr: 0.000040 time: 1.166062, eta: 0:55:11
+		accuracy_cls: 0.944196
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163754, loss_rpn_cls: 0.032009, loss_rpn_bbox: 0.010832
+		loss_rpn_cls_fpn2: 0.004137, loss_rpn_cls_fpn3: 0.009324, loss_rpn_cls_fpn4: 0.010807, loss_rpn_cls_fpn5: 0.004302, loss_rpn_cls_fpn6: 0.000146
+		loss_rpn_bbox_fpn2: 0.000320, loss_rpn_bbox_fpn3: 0.001746, loss_rpn_bbox_fpn4: 0.004050, loss_rpn_bbox_fpn5: 0.003712, loss_rpn_bbox_fpn6: 0.000644
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2181 / 5000]
+		loss: 0.188533, lr: 0.000040 time: 1.166835, eta: 0:54:50
+		accuracy_cls: 0.955357
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148102, loss_rpn_cls: 0.030284, loss_rpn_bbox: 0.011414
+		loss_rpn_cls_fpn2: 0.003318, loss_rpn_cls_fpn3: 0.007772, loss_rpn_cls_fpn4: 0.011531, loss_rpn_cls_fpn5: 0.004520, loss_rpn_cls_fpn6: 0.000199
+		loss_rpn_bbox_fpn2: 0.000054, loss_rpn_bbox_fpn3: 0.001482, loss_rpn_bbox_fpn4: 0.003787, loss_rpn_bbox_fpn5: 0.004630, loss_rpn_bbox_fpn6: 0.000566
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2201 / 5000]
+		loss: 0.206533, lr: 0.000040 time: 1.165821, eta: 0:54:24
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159081, loss_rpn_cls: 0.034049, loss_rpn_bbox: 0.010871
+		loss_rpn_cls_fpn2: 0.004419, loss_rpn_cls_fpn3: 0.009407, loss_rpn_cls_fpn4: 0.011929, loss_rpn_cls_fpn5: 0.004192, loss_rpn_cls_fpn6: 0.000215
+		loss_rpn_bbox_fpn2: 0.000241, loss_rpn_bbox_fpn3: 0.001584, loss_rpn_bbox_fpn4: 0.003407, loss_rpn_bbox_fpn5: 0.004009, loss_rpn_bbox_fpn6: 0.000761
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2221 / 5000]
+		loss: 0.186042, lr: 0.000040 time: 1.166454, eta: 0:54:02
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.146844, loss_rpn_cls: 0.030396, loss_rpn_bbox: 0.010964
+		loss_rpn_cls_fpn2: 0.004082, loss_rpn_cls_fpn3: 0.007550, loss_rpn_cls_fpn4: 0.010371, loss_rpn_cls_fpn5: 0.004055, loss_rpn_cls_fpn6: 0.000326
+		loss_rpn_bbox_fpn2: 0.000182, loss_rpn_bbox_fpn3: 0.001255, loss_rpn_bbox_fpn4: 0.003276, loss_rpn_bbox_fpn5: 0.004299, loss_rpn_bbox_fpn6: 0.000728
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2241 / 5000]
+		loss: 0.213203, lr: 0.000040 time: 1.166767, eta: 0:53:40
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.175342, loss_rpn_cls: 0.032617, loss_rpn_bbox: 0.011398
+		loss_rpn_cls_fpn2: 0.003648, loss_rpn_cls_fpn3: 0.008454, loss_rpn_cls_fpn4: 0.010455, loss_rpn_cls_fpn5: 0.005002, loss_rpn_cls_fpn6: 0.000154
+		loss_rpn_bbox_fpn2: 0.000079, loss_rpn_bbox_fpn3: 0.001174, loss_rpn_bbox_fpn4: 0.003390, loss_rpn_bbox_fpn5: 0.003693, loss_rpn_bbox_fpn6: 0.000709
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step2249.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2261 / 5000]
+		loss: 0.201164, lr: 0.000040 time: 1.165861, eta: 0:53:14
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152184, loss_rpn_cls: 0.030202, loss_rpn_bbox: 0.011018
+		loss_rpn_cls_fpn2: 0.004541, loss_rpn_cls_fpn3: 0.007548, loss_rpn_cls_fpn4: 0.008736, loss_rpn_cls_fpn5: 0.005115, loss_rpn_cls_fpn6: 0.000163
+		loss_rpn_bbox_fpn2: 0.000168, loss_rpn_bbox_fpn3: 0.001561, loss_rpn_bbox_fpn4: 0.004064, loss_rpn_bbox_fpn5: 0.004292, loss_rpn_bbox_fpn6: 0.000624
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2281 / 5000]
+		loss: 0.222781, lr: 0.000040 time: 1.166215, eta: 0:52:52
+		accuracy_cls: 0.944940
+		spatial_reg: 0.000000
+		image_loss_cls: 0.175324, loss_rpn_cls: 0.029953, loss_rpn_bbox: 0.011832
+		loss_rpn_cls_fpn2: 0.003790, loss_rpn_cls_fpn3: 0.010687, loss_rpn_cls_fpn4: 0.008467, loss_rpn_cls_fpn5: 0.004243, loss_rpn_cls_fpn6: 0.000231
+		loss_rpn_bbox_fpn2: 0.000273, loss_rpn_bbox_fpn3: 0.001954, loss_rpn_bbox_fpn4: 0.003525, loss_rpn_bbox_fpn5: 0.003799, loss_rpn_bbox_fpn6: 0.000677
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2301 / 5000]
+		loss: 0.192632, lr: 0.000040 time: 1.166370, eta: 0:52:29
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154274, loss_rpn_cls: 0.027845, loss_rpn_bbox: 0.009762
+		loss_rpn_cls_fpn2: 0.004617, loss_rpn_cls_fpn3: 0.008297, loss_rpn_cls_fpn4: 0.010191, loss_rpn_cls_fpn5: 0.003942, loss_rpn_cls_fpn6: 0.000156
+		loss_rpn_bbox_fpn2: 0.000253, loss_rpn_bbox_fpn3: 0.001393, loss_rpn_bbox_fpn4: 0.003243, loss_rpn_bbox_fpn5: 0.004095, loss_rpn_bbox_fpn6: 0.000621
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2321 / 5000]
+		loss: 0.190427, lr: 0.000040 time: 1.165423, eta: 0:52:03
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148757, loss_rpn_cls: 0.031096, loss_rpn_bbox: 0.010659
+		loss_rpn_cls_fpn2: 0.003489, loss_rpn_cls_fpn3: 0.010052, loss_rpn_cls_fpn4: 0.008603, loss_rpn_cls_fpn5: 0.004598, loss_rpn_cls_fpn6: 0.000221
+		loss_rpn_bbox_fpn2: 0.000129, loss_rpn_bbox_fpn3: 0.001811, loss_rpn_bbox_fpn4: 0.003583, loss_rpn_bbox_fpn5: 0.003891, loss_rpn_bbox_fpn6: 0.000854
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2341 / 5000]
+		loss: 0.189809, lr: 0.000040 time: 1.165785, eta: 0:51:40
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160682, loss_rpn_cls: 0.027259, loss_rpn_bbox: 0.011447
+		loss_rpn_cls_fpn2: 0.003800, loss_rpn_cls_fpn3: 0.007425, loss_rpn_cls_fpn4: 0.008965, loss_rpn_cls_fpn5: 0.004297, loss_rpn_cls_fpn6: 0.000191
+		loss_rpn_bbox_fpn2: 0.000079, loss_rpn_bbox_fpn3: 0.001608, loss_rpn_bbox_fpn4: 0.003222, loss_rpn_bbox_fpn5: 0.004364, loss_rpn_bbox_fpn6: 0.000662
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2361 / 5000]
+		loss: 0.196072, lr: 0.000040 time: 1.166420, eta: 0:51:19
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160239, loss_rpn_cls: 0.026435, loss_rpn_bbox: 0.010749
+		loss_rpn_cls_fpn2: 0.003575, loss_rpn_cls_fpn3: 0.008040, loss_rpn_cls_fpn4: 0.010495, loss_rpn_cls_fpn5: 0.004376, loss_rpn_cls_fpn6: 0.000193
+		loss_rpn_bbox_fpn2: 0.000068, loss_rpn_bbox_fpn3: 0.001573, loss_rpn_bbox_fpn4: 0.003576, loss_rpn_bbox_fpn5: 0.004084, loss_rpn_bbox_fpn6: 0.000801
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2381 / 5000]
+		loss: 0.197073, lr: 0.000040 time: 1.165512, eta: 0:50:53
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.167516, loss_rpn_cls: 0.031411, loss_rpn_bbox: 0.011240
+		loss_rpn_cls_fpn2: 0.003684, loss_rpn_cls_fpn3: 0.009561, loss_rpn_cls_fpn4: 0.010159, loss_rpn_cls_fpn5: 0.004176, loss_rpn_cls_fpn6: 0.000143
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001868, loss_rpn_bbox_fpn4: 0.003680, loss_rpn_bbox_fpn5: 0.004065, loss_rpn_bbox_fpn6: 0.000600
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2401 / 5000]
+		loss: 0.190705, lr: 0.000040 time: 1.165654, eta: 0:50:30
+		accuracy_cls: 0.954613
+		spatial_reg: 0.000000
+		image_loss_cls: 0.145730, loss_rpn_cls: 0.029318, loss_rpn_bbox: 0.011807
+		loss_rpn_cls_fpn2: 0.004262, loss_rpn_cls_fpn3: 0.008413, loss_rpn_cls_fpn4: 0.009339, loss_rpn_cls_fpn5: 0.004128, loss_rpn_cls_fpn6: 0.000305
+		loss_rpn_bbox_fpn2: 0.000317, loss_rpn_bbox_fpn3: 0.001800, loss_rpn_bbox_fpn4: 0.004121, loss_rpn_bbox_fpn5: 0.003728, loss_rpn_bbox_fpn6: 0.000892
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2421 / 5000]
+		loss: 0.201242, lr: 0.000040 time: 1.165963, eta: 0:50:08
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155473, loss_rpn_cls: 0.029191, loss_rpn_bbox: 0.010642
+		loss_rpn_cls_fpn2: 0.003789, loss_rpn_cls_fpn3: 0.010348, loss_rpn_cls_fpn4: 0.010322, loss_rpn_cls_fpn5: 0.004625, loss_rpn_cls_fpn6: 0.000202
+		loss_rpn_bbox_fpn2: 0.000102, loss_rpn_bbox_fpn3: 0.001849, loss_rpn_bbox_fpn4: 0.003700, loss_rpn_bbox_fpn5: 0.004388, loss_rpn_bbox_fpn6: 0.000732
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2441 / 5000]
+		loss: 0.198450, lr: 0.000040 time: 1.164735, eta: 0:49:41
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158275, loss_rpn_cls: 0.033464, loss_rpn_bbox: 0.011957
+		loss_rpn_cls_fpn2: 0.003605, loss_rpn_cls_fpn3: 0.010225, loss_rpn_cls_fpn4: 0.010820, loss_rpn_cls_fpn5: 0.004623, loss_rpn_cls_fpn6: 0.000189
+		loss_rpn_bbox_fpn2: 0.000144, loss_rpn_bbox_fpn3: 0.001728, loss_rpn_bbox_fpn4: 0.003887, loss_rpn_bbox_fpn5: 0.004604, loss_rpn_bbox_fpn6: 0.000777
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2461 / 5000]
+		loss: 0.200224, lr: 0.000040 time: 1.164889, eta: 0:49:18
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164088, loss_rpn_cls: 0.030434, loss_rpn_bbox: 0.010205
+		loss_rpn_cls_fpn2: 0.003920, loss_rpn_cls_fpn3: 0.009002, loss_rpn_cls_fpn4: 0.009260, loss_rpn_cls_fpn5: 0.003511, loss_rpn_cls_fpn6: 0.000178
+		loss_rpn_bbox_fpn2: 0.000121, loss_rpn_bbox_fpn3: 0.001626, loss_rpn_bbox_fpn4: 0.003189, loss_rpn_bbox_fpn5: 0.003543, loss_rpn_bbox_fpn6: 0.000749
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2481 / 5000]
+		loss: 0.210598, lr: 0.000040 time: 1.165181, eta: 0:48:56
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163638, loss_rpn_cls: 0.030536, loss_rpn_bbox: 0.011617
+		loss_rpn_cls_fpn2: 0.003575, loss_rpn_cls_fpn3: 0.007239, loss_rpn_cls_fpn4: 0.009614, loss_rpn_cls_fpn5: 0.004322, loss_rpn_cls_fpn6: 0.000162
+		loss_rpn_bbox_fpn2: 0.000180, loss_rpn_bbox_fpn3: 0.001358, loss_rpn_bbox_fpn4: 0.003701, loss_rpn_bbox_fpn5: 0.004384, loss_rpn_bbox_fpn6: 0.000567
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step2499.pth
+INFO train_net_step.py: 451: Decay the learning on step 2500
+INFO net.py:  72: Changing learning rate 0.000040 -> 0.000004
+INFO net.py:  97: Scaling update history by 0.100000 (new lr / old lr)
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2501 / 5000]
+		loss: 0.198553, lr: 0.000004 time: 1.164302, eta: 0:48:30
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155264, loss_rpn_cls: 0.031357, loss_rpn_bbox: 0.011754
+		loss_rpn_cls_fpn2: 0.003992, loss_rpn_cls_fpn3: 0.009298, loss_rpn_cls_fpn4: 0.010708, loss_rpn_cls_fpn5: 0.004328, loss_rpn_cls_fpn6: 0.000274
+		loss_rpn_bbox_fpn2: 0.000183, loss_rpn_bbox_fpn3: 0.001691, loss_rpn_bbox_fpn4: 0.003852, loss_rpn_bbox_fpn5: 0.004238, loss_rpn_bbox_fpn6: 0.000797
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2521 / 5000]
+		loss: 0.196015, lr: 0.000004 time: 1.165078, eta: 0:48:09
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.144724, loss_rpn_cls: 0.031533, loss_rpn_bbox: 0.010663
+		loss_rpn_cls_fpn2: 0.003999, loss_rpn_cls_fpn3: 0.008591, loss_rpn_cls_fpn4: 0.009193, loss_rpn_cls_fpn5: 0.004636, loss_rpn_cls_fpn6: 0.000189
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001754, loss_rpn_bbox_fpn4: 0.003144, loss_rpn_bbox_fpn5: 0.004100, loss_rpn_bbox_fpn6: 0.000842
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2541 / 5000]
+		loss: 0.203166, lr: 0.000004 time: 1.164204, eta: 0:47:43
+		accuracy_cls: 0.944196
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168402, loss_rpn_cls: 0.026993, loss_rpn_bbox: 0.011049
+		loss_rpn_cls_fpn2: 0.004030, loss_rpn_cls_fpn3: 0.008647, loss_rpn_cls_fpn4: 0.009135, loss_rpn_cls_fpn5: 0.003868, loss_rpn_cls_fpn6: 0.000112
+		loss_rpn_bbox_fpn2: 0.000162, loss_rpn_bbox_fpn3: 0.001199, loss_rpn_bbox_fpn4: 0.003733, loss_rpn_bbox_fpn5: 0.003910, loss_rpn_bbox_fpn6: 0.000578
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2561 / 5000]
+		loss: 0.198690, lr: 0.000004 time: 1.164638, eta: 0:47:21
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156996, loss_rpn_cls: 0.028548, loss_rpn_bbox: 0.009604
+		loss_rpn_cls_fpn2: 0.003912, loss_rpn_cls_fpn3: 0.008083, loss_rpn_cls_fpn4: 0.010691, loss_rpn_cls_fpn5: 0.003809, loss_rpn_cls_fpn6: 0.000150
+		loss_rpn_bbox_fpn2: 0.000047, loss_rpn_bbox_fpn3: 0.001749, loss_rpn_bbox_fpn4: 0.003755, loss_rpn_bbox_fpn5: 0.003894, loss_rpn_bbox_fpn6: 0.000817
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2581 / 5000]
+		loss: 0.195415, lr: 0.000004 time: 1.165006, eta: 0:46:59
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162266, loss_rpn_cls: 0.029656, loss_rpn_bbox: 0.011602
+		loss_rpn_cls_fpn2: 0.003839, loss_rpn_cls_fpn3: 0.007414, loss_rpn_cls_fpn4: 0.009178, loss_rpn_cls_fpn5: 0.004868, loss_rpn_cls_fpn6: 0.000171
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001602, loss_rpn_bbox_fpn4: 0.004156, loss_rpn_bbox_fpn5: 0.004346, loss_rpn_bbox_fpn6: 0.000635
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2601 / 5000]
+		loss: 0.208295, lr: 0.000004 time: 1.164269, eta: 0:46:34
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.171708, loss_rpn_cls: 0.032246, loss_rpn_bbox: 0.010341
+		loss_rpn_cls_fpn2: 0.003382, loss_rpn_cls_fpn3: 0.010198, loss_rpn_cls_fpn4: 0.009770, loss_rpn_cls_fpn5: 0.004726, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000263, loss_rpn_bbox_fpn3: 0.001847, loss_rpn_bbox_fpn4: 0.003228, loss_rpn_bbox_fpn5: 0.003794, loss_rpn_bbox_fpn6: 0.000618
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2621 / 5000]
+		loss: 0.205971, lr: 0.000004 time: 1.164478, eta: 0:46:11
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156494, loss_rpn_cls: 0.033102, loss_rpn_bbox: 0.011039
+		loss_rpn_cls_fpn2: 0.004145, loss_rpn_cls_fpn3: 0.009078, loss_rpn_cls_fpn4: 0.012414, loss_rpn_cls_fpn5: 0.004361, loss_rpn_cls_fpn6: 0.000295
+		loss_rpn_bbox_fpn2: 0.000053, loss_rpn_bbox_fpn3: 0.001590, loss_rpn_bbox_fpn4: 0.003793, loss_rpn_bbox_fpn5: 0.004243, loss_rpn_bbox_fpn6: 0.000821
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2641 / 5000]
+		loss: 0.191572, lr: 0.000004 time: 1.164880, eta: 0:45:49
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154210, loss_rpn_cls: 0.027002, loss_rpn_bbox: 0.010268
+		loss_rpn_cls_fpn2: 0.003900, loss_rpn_cls_fpn3: 0.009310, loss_rpn_cls_fpn4: 0.008739, loss_rpn_cls_fpn5: 0.004047, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000229, loss_rpn_bbox_fpn3: 0.001466, loss_rpn_bbox_fpn4: 0.003179, loss_rpn_bbox_fpn5: 0.004245, loss_rpn_bbox_fpn6: 0.000685
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2661 / 5000]
+		loss: 0.215487, lr: 0.000004 time: 1.163890, eta: 0:45:23
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.167979, loss_rpn_cls: 0.030553, loss_rpn_bbox: 0.010246
+		loss_rpn_cls_fpn2: 0.003944, loss_rpn_cls_fpn3: 0.008494, loss_rpn_cls_fpn4: 0.011043, loss_rpn_cls_fpn5: 0.004015, loss_rpn_cls_fpn6: 0.000136
+		loss_rpn_bbox_fpn2: 0.000078, loss_rpn_bbox_fpn3: 0.001569, loss_rpn_bbox_fpn4: 0.003808, loss_rpn_bbox_fpn5: 0.003994, loss_rpn_bbox_fpn6: 0.000734
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2681 / 5000]
+		loss: 0.178952, lr: 0.000004 time: 1.164550, eta: 0:45:01
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.140320, loss_rpn_cls: 0.030597, loss_rpn_bbox: 0.012570
+		loss_rpn_cls_fpn2: 0.004551, loss_rpn_cls_fpn3: 0.010651, loss_rpn_cls_fpn4: 0.009192, loss_rpn_cls_fpn5: 0.003997, loss_rpn_cls_fpn6: 0.000184
+		loss_rpn_bbox_fpn2: 0.000415, loss_rpn_bbox_fpn3: 0.002150, loss_rpn_bbox_fpn4: 0.003192, loss_rpn_bbox_fpn5: 0.004371, loss_rpn_bbox_fpn6: 0.000819
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2701 / 5000]
+		loss: 0.196171, lr: 0.000004 time: 1.165022, eta: 0:44:39
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152221, loss_rpn_cls: 0.029530, loss_rpn_bbox: 0.011010
+		loss_rpn_cls_fpn2: 0.003983, loss_rpn_cls_fpn3: 0.007725, loss_rpn_cls_fpn4: 0.012399, loss_rpn_cls_fpn5: 0.004245, loss_rpn_cls_fpn6: 0.000185
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001350, loss_rpn_bbox_fpn4: 0.003755, loss_rpn_bbox_fpn5: 0.003940, loss_rpn_bbox_fpn6: 0.000636
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2721 / 5000]
+		loss: 0.213190, lr: 0.000004 time: 1.164180, eta: 0:44:14
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163210, loss_rpn_cls: 0.032621, loss_rpn_bbox: 0.011622
+		loss_rpn_cls_fpn2: 0.004827, loss_rpn_cls_fpn3: 0.008128, loss_rpn_cls_fpn4: 0.011142, loss_rpn_cls_fpn5: 0.004073, loss_rpn_cls_fpn6: 0.000113
+		loss_rpn_bbox_fpn2: 0.000326, loss_rpn_bbox_fpn3: 0.001768, loss_rpn_bbox_fpn4: 0.003337, loss_rpn_bbox_fpn5: 0.004051, loss_rpn_bbox_fpn6: 0.000562
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2741 / 5000]
+		loss: 0.189946, lr: 0.000004 time: 1.164579, eta: 0:43:51
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149294, loss_rpn_cls: 0.029687, loss_rpn_bbox: 0.009915
+		loss_rpn_cls_fpn2: 0.003357, loss_rpn_cls_fpn3: 0.008628, loss_rpn_cls_fpn4: 0.008996, loss_rpn_cls_fpn5: 0.004456, loss_rpn_cls_fpn6: 0.000193
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001797, loss_rpn_bbox_fpn4: 0.003862, loss_rpn_bbox_fpn5: 0.003129, loss_rpn_bbox_fpn6: 0.000807
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step2749.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2761 / 5000]
+		loss: 0.193426, lr: 0.000004 time: 1.164936, eta: 0:43:29
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156641, loss_rpn_cls: 0.028891, loss_rpn_bbox: 0.010964
+		loss_rpn_cls_fpn2: 0.003389, loss_rpn_cls_fpn3: 0.007159, loss_rpn_cls_fpn4: 0.010673, loss_rpn_cls_fpn5: 0.004399, loss_rpn_cls_fpn6: 0.000157
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001269, loss_rpn_bbox_fpn4: 0.003409, loss_rpn_bbox_fpn5: 0.004202, loss_rpn_bbox_fpn6: 0.000762
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2781 / 5000]
+		loss: 0.203753, lr: 0.000004 time: 1.164078, eta: 0:43:04
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156393, loss_rpn_cls: 0.030252, loss_rpn_bbox: 0.011305
+		loss_rpn_cls_fpn2: 0.003530, loss_rpn_cls_fpn3: 0.008780, loss_rpn_cls_fpn4: 0.010857, loss_rpn_cls_fpn5: 0.005185, loss_rpn_cls_fpn6: 0.000188
+		loss_rpn_bbox_fpn2: 0.000137, loss_rpn_bbox_fpn3: 0.001428, loss_rpn_bbox_fpn4: 0.003768, loss_rpn_bbox_fpn5: 0.004534, loss_rpn_bbox_fpn6: 0.000739
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2801 / 5000]
+		loss: 0.191742, lr: 0.000004 time: 1.164414, eta: 0:42:41
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.148917, loss_rpn_cls: 0.028856, loss_rpn_bbox: 0.010458
+		loss_rpn_cls_fpn2: 0.004209, loss_rpn_cls_fpn3: 0.008545, loss_rpn_cls_fpn4: 0.007976, loss_rpn_cls_fpn5: 0.004331, loss_rpn_cls_fpn6: 0.000235
+		loss_rpn_bbox_fpn2: 0.000143, loss_rpn_bbox_fpn3: 0.001901, loss_rpn_bbox_fpn4: 0.003006, loss_rpn_bbox_fpn5: 0.003300, loss_rpn_bbox_fpn6: 0.000733
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2821 / 5000]
+		loss: 0.210863, lr: 0.000004 time: 1.163681, eta: 0:42:16
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161649, loss_rpn_cls: 0.029803, loss_rpn_bbox: 0.011537
+		loss_rpn_cls_fpn2: 0.004099, loss_rpn_cls_fpn3: 0.010113, loss_rpn_cls_fpn4: 0.011572, loss_rpn_cls_fpn5: 0.005000, loss_rpn_cls_fpn6: 0.000167
+		loss_rpn_bbox_fpn2: 0.000236, loss_rpn_bbox_fpn3: 0.001629, loss_rpn_bbox_fpn4: 0.003647, loss_rpn_bbox_fpn5: 0.004084, loss_rpn_bbox_fpn6: 0.000719
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2841 / 5000]
+		loss: 0.214005, lr: 0.000004 time: 1.163863, eta: 0:41:53
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160985, loss_rpn_cls: 0.033370, loss_rpn_bbox: 0.010988
+		loss_rpn_cls_fpn2: 0.004198, loss_rpn_cls_fpn3: 0.008596, loss_rpn_cls_fpn4: 0.013824, loss_rpn_cls_fpn5: 0.004757, loss_rpn_cls_fpn6: 0.000112
+		loss_rpn_bbox_fpn2: 0.000288, loss_rpn_bbox_fpn3: 0.001567, loss_rpn_bbox_fpn4: 0.003333, loss_rpn_bbox_fpn5: 0.004188, loss_rpn_bbox_fpn6: 0.000670
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2861 / 5000]
+		loss: 0.188704, lr: 0.000004 time: 1.164228, eta: 0:41:31
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.144639, loss_rpn_cls: 0.028972, loss_rpn_bbox: 0.009371
+		loss_rpn_cls_fpn2: 0.003592, loss_rpn_cls_fpn3: 0.008396, loss_rpn_cls_fpn4: 0.009883, loss_rpn_cls_fpn5: 0.003735, loss_rpn_cls_fpn6: 0.000189
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001174, loss_rpn_bbox_fpn4: 0.003196, loss_rpn_bbox_fpn5: 0.003697, loss_rpn_bbox_fpn6: 0.000681
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2881 / 5000]
+		loss: 0.195247, lr: 0.000004 time: 1.163332, eta: 0:41:06
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149646, loss_rpn_cls: 0.032121, loss_rpn_bbox: 0.010657
+		loss_rpn_cls_fpn2: 0.004159, loss_rpn_cls_fpn3: 0.009103, loss_rpn_cls_fpn4: 0.011598, loss_rpn_cls_fpn5: 0.004540, loss_rpn_cls_fpn6: 0.000221
+		loss_rpn_bbox_fpn2: 0.000134, loss_rpn_bbox_fpn3: 0.001273, loss_rpn_bbox_fpn4: 0.004284, loss_rpn_bbox_fpn5: 0.003881, loss_rpn_bbox_fpn6: 0.000832
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2901 / 5000]
+		loss: 0.203806, lr: 0.000004 time: 1.163525, eta: 0:40:43
+		accuracy_cls: 0.944940
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164752, loss_rpn_cls: 0.031556, loss_rpn_bbox: 0.011269
+		loss_rpn_cls_fpn2: 0.003928, loss_rpn_cls_fpn3: 0.010086, loss_rpn_cls_fpn4: 0.010540, loss_rpn_cls_fpn5: 0.005305, loss_rpn_cls_fpn6: 0.000187
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001561, loss_rpn_bbox_fpn4: 0.003352, loss_rpn_bbox_fpn5: 0.004072, loss_rpn_bbox_fpn6: 0.000801
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2921 / 5000]
+		loss: 0.198358, lr: 0.000004 time: 1.163893, eta: 0:40:20
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149914, loss_rpn_cls: 0.031060, loss_rpn_bbox: 0.011585
+		loss_rpn_cls_fpn2: 0.003521, loss_rpn_cls_fpn3: 0.011605, loss_rpn_cls_fpn4: 0.010200, loss_rpn_cls_fpn5: 0.004235, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000099, loss_rpn_bbox_fpn3: 0.001991, loss_rpn_bbox_fpn4: 0.003154, loss_rpn_bbox_fpn5: 0.004211, loss_rpn_bbox_fpn6: 0.000818
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2941 / 5000]
+		loss: 0.206772, lr: 0.000004 time: 1.163271, eta: 0:39:56
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157007, loss_rpn_cls: 0.032534, loss_rpn_bbox: 0.011501
+		loss_rpn_cls_fpn2: 0.004450, loss_rpn_cls_fpn3: 0.007815, loss_rpn_cls_fpn4: 0.009468, loss_rpn_cls_fpn5: 0.004757, loss_rpn_cls_fpn6: 0.000140
+		loss_rpn_bbox_fpn2: 0.000107, loss_rpn_bbox_fpn3: 0.001226, loss_rpn_bbox_fpn4: 0.003784, loss_rpn_bbox_fpn5: 0.004154, loss_rpn_bbox_fpn6: 0.000737
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2961 / 5000]
+		loss: 0.186566, lr: 0.000004 time: 1.163716, eta: 0:39:33
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.146241, loss_rpn_cls: 0.030003, loss_rpn_bbox: 0.011145
+		loss_rpn_cls_fpn2: 0.003681, loss_rpn_cls_fpn3: 0.008046, loss_rpn_cls_fpn4: 0.011447, loss_rpn_cls_fpn5: 0.003549, loss_rpn_cls_fpn6: 0.000235
+		loss_rpn_bbox_fpn2: 0.000361, loss_rpn_bbox_fpn3: 0.001894, loss_rpn_bbox_fpn4: 0.003845, loss_rpn_bbox_fpn5: 0.004041, loss_rpn_bbox_fpn6: 0.000904
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 2981 / 5000]
+		loss: 0.191875, lr: 0.000004 time: 1.164080, eta: 0:39:11
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151333, loss_rpn_cls: 0.027556, loss_rpn_bbox: 0.009606
+		loss_rpn_cls_fpn2: 0.004663, loss_rpn_cls_fpn3: 0.009058, loss_rpn_cls_fpn4: 0.007920, loss_rpn_cls_fpn5: 0.004310, loss_rpn_cls_fpn6: 0.000126
+		loss_rpn_bbox_fpn2: 0.000190, loss_rpn_bbox_fpn3: 0.001411, loss_rpn_bbox_fpn4: 0.003151, loss_rpn_bbox_fpn5: 0.003374, loss_rpn_bbox_fpn6: 0.000639
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step2999.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3001 / 5000]
+		loss: 0.205416, lr: 0.000004 time: 1.163417, eta: 0:38:46
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161599, loss_rpn_cls: 0.032266, loss_rpn_bbox: 0.011533
+		loss_rpn_cls_fpn2: 0.003635, loss_rpn_cls_fpn3: 0.011589, loss_rpn_cls_fpn4: 0.012103, loss_rpn_cls_fpn5: 0.004281, loss_rpn_cls_fpn6: 0.000129
+		loss_rpn_bbox_fpn2: 0.000197, loss_rpn_bbox_fpn3: 0.001750, loss_rpn_bbox_fpn4: 0.003623, loss_rpn_bbox_fpn5: 0.004227, loss_rpn_bbox_fpn6: 0.000733
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3021 / 5000]
+		loss: 0.208101, lr: 0.000004 time: 1.163900, eta: 0:38:24
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166532, loss_rpn_cls: 0.028017, loss_rpn_bbox: 0.011722
+		loss_rpn_cls_fpn2: 0.004066, loss_rpn_cls_fpn3: 0.008833, loss_rpn_cls_fpn4: 0.010074, loss_rpn_cls_fpn5: 0.004109, loss_rpn_cls_fpn6: 0.000174
+		loss_rpn_bbox_fpn2: 0.000322, loss_rpn_bbox_fpn3: 0.001686, loss_rpn_bbox_fpn4: 0.003682, loss_rpn_bbox_fpn5: 0.004134, loss_rpn_bbox_fpn6: 0.000853
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3041 / 5000]
+		loss: 0.189266, lr: 0.000004 time: 1.164334, eta: 0:38:02
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154678, loss_rpn_cls: 0.028418, loss_rpn_bbox: 0.010646
+		loss_rpn_cls_fpn2: 0.003596, loss_rpn_cls_fpn3: 0.008009, loss_rpn_cls_fpn4: 0.009149, loss_rpn_cls_fpn5: 0.004741, loss_rpn_cls_fpn6: 0.000140
+		loss_rpn_bbox_fpn2: 0.000099, loss_rpn_bbox_fpn3: 0.001480, loss_rpn_bbox_fpn4: 0.003035, loss_rpn_bbox_fpn5: 0.004134, loss_rpn_bbox_fpn6: 0.000635
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3061 / 5000]
+		loss: 0.199879, lr: 0.000004 time: 1.163763, eta: 0:37:37
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151563, loss_rpn_cls: 0.029487, loss_rpn_bbox: 0.011479
+		loss_rpn_cls_fpn2: 0.003731, loss_rpn_cls_fpn3: 0.009443, loss_rpn_cls_fpn4: 0.009949, loss_rpn_cls_fpn5: 0.004616, loss_rpn_cls_fpn6: 0.000240
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001528, loss_rpn_bbox_fpn4: 0.003883, loss_rpn_bbox_fpn5: 0.004803, loss_rpn_bbox_fpn6: 0.000928
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3081 / 5000]
+		loss: 0.185736, lr: 0.000004 time: 1.163998, eta: 0:37:14
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.145188, loss_rpn_cls: 0.030817, loss_rpn_bbox: 0.011204
+		loss_rpn_cls_fpn2: 0.004085, loss_rpn_cls_fpn3: 0.008971, loss_rpn_cls_fpn4: 0.008541, loss_rpn_cls_fpn5: 0.004802, loss_rpn_cls_fpn6: 0.000191
+		loss_rpn_bbox_fpn2: 0.000277, loss_rpn_bbox_fpn3: 0.001638, loss_rpn_bbox_fpn4: 0.003533, loss_rpn_bbox_fpn5: 0.004310, loss_rpn_bbox_fpn6: 0.000646
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3101 / 5000]
+		loss: 0.187996, lr: 0.000004 time: 1.164449, eta: 0:36:52
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150481, loss_rpn_cls: 0.029177, loss_rpn_bbox: 0.010659
+		loss_rpn_cls_fpn2: 0.003808, loss_rpn_cls_fpn3: 0.008457, loss_rpn_cls_fpn4: 0.008716, loss_rpn_cls_fpn5: 0.004244, loss_rpn_cls_fpn6: 0.000155
+		loss_rpn_bbox_fpn2: 0.000162, loss_rpn_bbox_fpn3: 0.001496, loss_rpn_bbox_fpn4: 0.003703, loss_rpn_bbox_fpn5: 0.004084, loss_rpn_bbox_fpn6: 0.000811
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3121 / 5000]
+		loss: 0.197603, lr: 0.000004 time: 1.163911, eta: 0:36:28
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156337, loss_rpn_cls: 0.032583, loss_rpn_bbox: 0.010783
+		loss_rpn_cls_fpn2: 0.004014, loss_rpn_cls_fpn3: 0.008514, loss_rpn_cls_fpn4: 0.010132, loss_rpn_cls_fpn5: 0.004191, loss_rpn_cls_fpn6: 0.000178
+		loss_rpn_bbox_fpn2: 0.000047, loss_rpn_bbox_fpn3: 0.001348, loss_rpn_bbox_fpn4: 0.003887, loss_rpn_bbox_fpn5: 0.003857, loss_rpn_bbox_fpn6: 0.000750
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3141 / 5000]
+		loss: 0.191038, lr: 0.000004 time: 1.164280, eta: 0:36:05
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155606, loss_rpn_cls: 0.030543, loss_rpn_bbox: 0.010986
+		loss_rpn_cls_fpn2: 0.003771, loss_rpn_cls_fpn3: 0.010658, loss_rpn_cls_fpn4: 0.010801, loss_rpn_cls_fpn5: 0.004446, loss_rpn_cls_fpn6: 0.000164
+		loss_rpn_bbox_fpn2: 0.000389, loss_rpn_bbox_fpn3: 0.002030, loss_rpn_bbox_fpn4: 0.003245, loss_rpn_bbox_fpn5: 0.003686, loss_rpn_bbox_fpn6: 0.000758
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3161 / 5000]
+		loss: 0.215678, lr: 0.000004 time: 1.163556, eta: 0:35:40
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164393, loss_rpn_cls: 0.029963, loss_rpn_bbox: 0.010755
+		loss_rpn_cls_fpn2: 0.003618, loss_rpn_cls_fpn3: 0.008824, loss_rpn_cls_fpn4: 0.008788, loss_rpn_cls_fpn5: 0.004930, loss_rpn_cls_fpn6: 0.000301
+		loss_rpn_bbox_fpn2: 0.000179, loss_rpn_bbox_fpn3: 0.002002, loss_rpn_bbox_fpn4: 0.003854, loss_rpn_bbox_fpn5: 0.004189, loss_rpn_bbox_fpn6: 0.000770
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3181 / 5000]
+		loss: 0.196366, lr: 0.000004 time: 1.163927, eta: 0:35:18
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150106, loss_rpn_cls: 0.030871, loss_rpn_bbox: 0.011757
+		loss_rpn_cls_fpn2: 0.003920, loss_rpn_cls_fpn3: 0.008892, loss_rpn_cls_fpn4: 0.008799, loss_rpn_cls_fpn5: 0.004941, loss_rpn_cls_fpn6: 0.000202
+		loss_rpn_bbox_fpn2: 0.000087, loss_rpn_bbox_fpn3: 0.001798, loss_rpn_bbox_fpn4: 0.003743, loss_rpn_bbox_fpn5: 0.004283, loss_rpn_bbox_fpn6: 0.000913
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3201 / 5000]
+		loss: 0.204476, lr: 0.000004 time: 1.164216, eta: 0:34:55
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154798, loss_rpn_cls: 0.030927, loss_rpn_bbox: 0.009835
+		loss_rpn_cls_fpn2: 0.003885, loss_rpn_cls_fpn3: 0.009279, loss_rpn_cls_fpn4: 0.009015, loss_rpn_cls_fpn5: 0.004418, loss_rpn_cls_fpn6: 0.000139
+		loss_rpn_bbox_fpn2: 0.000099, loss_rpn_bbox_fpn3: 0.001644, loss_rpn_bbox_fpn4: 0.003072, loss_rpn_bbox_fpn5: 0.003245, loss_rpn_bbox_fpn6: 0.000689
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3221 / 5000]
+		loss: 0.190557, lr: 0.000004 time: 1.163341, eta: 0:34:30
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154562, loss_rpn_cls: 0.033108, loss_rpn_bbox: 0.011580
+		loss_rpn_cls_fpn2: 0.004062, loss_rpn_cls_fpn3: 0.008198, loss_rpn_cls_fpn4: 0.010406, loss_rpn_cls_fpn5: 0.004537, loss_rpn_cls_fpn6: 0.000196
+		loss_rpn_bbox_fpn2: 0.000162, loss_rpn_bbox_fpn3: 0.001554, loss_rpn_bbox_fpn4: 0.004021, loss_rpn_bbox_fpn5: 0.004115, loss_rpn_bbox_fpn6: 0.000908
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3241 / 5000]
+		loss: 0.200037, lr: 0.000004 time: 1.163795, eta: 0:34:08
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151112, loss_rpn_cls: 0.029444, loss_rpn_bbox: 0.010770
+		loss_rpn_cls_fpn2: 0.003656, loss_rpn_cls_fpn3: 0.008167, loss_rpn_cls_fpn4: 0.008650, loss_rpn_cls_fpn5: 0.004385, loss_rpn_cls_fpn6: 0.000158
+		loss_rpn_bbox_fpn2: 0.000053, loss_rpn_bbox_fpn3: 0.001754, loss_rpn_bbox_fpn4: 0.003214, loss_rpn_bbox_fpn5: 0.003965, loss_rpn_bbox_fpn6: 0.000626
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step3249.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3261 / 5000]
+		loss: 0.199663, lr: 0.000004 time: 1.164277, eta: 0:33:45
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158457, loss_rpn_cls: 0.027063, loss_rpn_bbox: 0.011244
+		loss_rpn_cls_fpn2: 0.003748, loss_rpn_cls_fpn3: 0.008386, loss_rpn_cls_fpn4: 0.009123, loss_rpn_cls_fpn5: 0.004270, loss_rpn_cls_fpn6: 0.000166
+		loss_rpn_bbox_fpn2: 0.000221, loss_rpn_bbox_fpn3: 0.001549, loss_rpn_bbox_fpn4: 0.003019, loss_rpn_bbox_fpn5: 0.004095, loss_rpn_bbox_fpn6: 0.000791
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3281 / 5000]
+		loss: 0.193177, lr: 0.000004 time: 1.163686, eta: 0:33:21
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156335, loss_rpn_cls: 0.028422, loss_rpn_bbox: 0.010148
+		loss_rpn_cls_fpn2: 0.003899, loss_rpn_cls_fpn3: 0.008346, loss_rpn_cls_fpn4: 0.009191, loss_rpn_cls_fpn5: 0.004547, loss_rpn_cls_fpn6: 0.000150
+		loss_rpn_bbox_fpn2: 0.000173, loss_rpn_bbox_fpn3: 0.001971, loss_rpn_bbox_fpn4: 0.003226, loss_rpn_bbox_fpn5: 0.004406, loss_rpn_bbox_fpn6: 0.000741
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3301 / 5000]
+		loss: 0.208007, lr: 0.000004 time: 1.164013, eta: 0:32:58
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157932, loss_rpn_cls: 0.034801, loss_rpn_bbox: 0.011429
+		loss_rpn_cls_fpn2: 0.004007, loss_rpn_cls_fpn3: 0.008639, loss_rpn_cls_fpn4: 0.011400, loss_rpn_cls_fpn5: 0.004283, loss_rpn_cls_fpn6: 0.000206
+		loss_rpn_bbox_fpn2: 0.000068, loss_rpn_bbox_fpn3: 0.001304, loss_rpn_bbox_fpn4: 0.003677, loss_rpn_bbox_fpn5: 0.004077, loss_rpn_bbox_fpn6: 0.000714
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3321 / 5000]
+		loss: 0.199000, lr: 0.000004 time: 1.164233, eta: 0:32:35
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163161, loss_rpn_cls: 0.027988, loss_rpn_bbox: 0.011248
+		loss_rpn_cls_fpn2: 0.003543, loss_rpn_cls_fpn3: 0.008365, loss_rpn_cls_fpn4: 0.009661, loss_rpn_cls_fpn5: 0.004306, loss_rpn_cls_fpn6: 0.000191
+		loss_rpn_bbox_fpn2: 0.000309, loss_rpn_bbox_fpn3: 0.001752, loss_rpn_bbox_fpn4: 0.003978, loss_rpn_bbox_fpn5: 0.003652, loss_rpn_bbox_fpn6: 0.000651
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3341 / 5000]
+		loss: 0.197477, lr: 0.000004 time: 1.163729, eta: 0:32:11
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151936, loss_rpn_cls: 0.030013, loss_rpn_bbox: 0.011393
+		loss_rpn_cls_fpn2: 0.003979, loss_rpn_cls_fpn3: 0.008204, loss_rpn_cls_fpn4: 0.009702, loss_rpn_cls_fpn5: 0.004562, loss_rpn_cls_fpn6: 0.000241
+		loss_rpn_bbox_fpn2: 0.000192, loss_rpn_bbox_fpn3: 0.001496, loss_rpn_bbox_fpn4: 0.003481, loss_rpn_bbox_fpn5: 0.004779, loss_rpn_bbox_fpn6: 0.000851
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3361 / 5000]
+		loss: 0.194776, lr: 0.000004 time: 1.164098, eta: 0:31:49
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152105, loss_rpn_cls: 0.032977, loss_rpn_bbox: 0.010296
+		loss_rpn_cls_fpn2: 0.003420, loss_rpn_cls_fpn3: 0.009197, loss_rpn_cls_fpn4: 0.012795, loss_rpn_cls_fpn5: 0.005103, loss_rpn_cls_fpn6: 0.000123
+		loss_rpn_bbox_fpn2: 0.000101, loss_rpn_bbox_fpn3: 0.001461, loss_rpn_bbox_fpn4: 0.003518, loss_rpn_bbox_fpn5: 0.003760, loss_rpn_bbox_fpn6: 0.000651
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3381 / 5000]
+		loss: 0.194787, lr: 0.000004 time: 1.164318, eta: 0:31:26
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152370, loss_rpn_cls: 0.030453, loss_rpn_bbox: 0.010682
+		loss_rpn_cls_fpn2: 0.004106, loss_rpn_cls_fpn3: 0.008656, loss_rpn_cls_fpn4: 0.008240, loss_rpn_cls_fpn5: 0.004621, loss_rpn_cls_fpn6: 0.000171
+		loss_rpn_bbox_fpn2: 0.000351, loss_rpn_bbox_fpn3: 0.001702, loss_rpn_bbox_fpn4: 0.003804, loss_rpn_bbox_fpn5: 0.003922, loss_rpn_bbox_fpn6: 0.000818
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3401 / 5000]
+		loss: 0.184260, lr: 0.000004 time: 1.163300, eta: 0:31:01
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.146913, loss_rpn_cls: 0.028152, loss_rpn_bbox: 0.009557
+		loss_rpn_cls_fpn2: 0.003648, loss_rpn_cls_fpn3: 0.008159, loss_rpn_cls_fpn4: 0.009382, loss_rpn_cls_fpn5: 0.004327, loss_rpn_cls_fpn6: 0.000119
+		loss_rpn_bbox_fpn2: 0.000047, loss_rpn_bbox_fpn3: 0.001720, loss_rpn_bbox_fpn4: 0.003780, loss_rpn_bbox_fpn5: 0.003742, loss_rpn_bbox_fpn6: 0.000651
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3421 / 5000]
+		loss: 0.210207, lr: 0.000004 time: 1.163335, eta: 0:30:38
+		accuracy_cls: 0.942708
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168646, loss_rpn_cls: 0.037260, loss_rpn_bbox: 0.010948
+		loss_rpn_cls_fpn2: 0.004177, loss_rpn_cls_fpn3: 0.008623, loss_rpn_cls_fpn4: 0.013601, loss_rpn_cls_fpn5: 0.005159, loss_rpn_cls_fpn6: 0.000213
+		loss_rpn_bbox_fpn2: 0.000404, loss_rpn_bbox_fpn3: 0.001511, loss_rpn_bbox_fpn4: 0.003812, loss_rpn_bbox_fpn5: 0.004168, loss_rpn_bbox_fpn6: 0.000886
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3441 / 5000]
+		loss: 0.189308, lr: 0.000004 time: 1.162571, eta: 0:30:13
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158317, loss_rpn_cls: 0.025206, loss_rpn_bbox: 0.011197
+		loss_rpn_cls_fpn2: 0.004120, loss_rpn_cls_fpn3: 0.008002, loss_rpn_cls_fpn4: 0.009287, loss_rpn_cls_fpn5: 0.004162, loss_rpn_cls_fpn6: 0.000189
+		loss_rpn_bbox_fpn2: 0.000144, loss_rpn_bbox_fpn3: 0.001472, loss_rpn_bbox_fpn4: 0.003735, loss_rpn_bbox_fpn5: 0.004059, loss_rpn_bbox_fpn6: 0.000501
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3461 / 5000]
+		loss: 0.209883, lr: 0.000004 time: 1.162976, eta: 0:29:50
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168376, loss_rpn_cls: 0.030117, loss_rpn_bbox: 0.011113
+		loss_rpn_cls_fpn2: 0.003917, loss_rpn_cls_fpn3: 0.009518, loss_rpn_cls_fpn4: 0.010247, loss_rpn_cls_fpn5: 0.004141, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000166, loss_rpn_bbox_fpn3: 0.001718, loss_rpn_bbox_fpn4: 0.004152, loss_rpn_bbox_fpn5: 0.004422, loss_rpn_bbox_fpn6: 0.000615
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3481 / 5000]
+		loss: 0.203519, lr: 0.000004 time: 1.163419, eta: 0:29:28
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166195, loss_rpn_cls: 0.030422, loss_rpn_bbox: 0.009818
+		loss_rpn_cls_fpn2: 0.003487, loss_rpn_cls_fpn3: 0.008992, loss_rpn_cls_fpn4: 0.008360, loss_rpn_cls_fpn5: 0.004733, loss_rpn_cls_fpn6: 0.000221
+		loss_rpn_bbox_fpn2: 0.000084, loss_rpn_bbox_fpn3: 0.001627, loss_rpn_bbox_fpn4: 0.003251, loss_rpn_bbox_fpn5: 0.003929, loss_rpn_bbox_fpn6: 0.000925
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step3499.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3501 / 5000]
+		loss: 0.203786, lr: 0.000004 time: 1.162901, eta: 0:29:04
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159760, loss_rpn_cls: 0.030254, loss_rpn_bbox: 0.011305
+		loss_rpn_cls_fpn2: 0.003381, loss_rpn_cls_fpn3: 0.008853, loss_rpn_cls_fpn4: 0.010916, loss_rpn_cls_fpn5: 0.004136, loss_rpn_cls_fpn6: 0.000144
+		loss_rpn_bbox_fpn2: 0.000139, loss_rpn_bbox_fpn3: 0.001868, loss_rpn_bbox_fpn4: 0.003691, loss_rpn_bbox_fpn5: 0.004487, loss_rpn_bbox_fpn6: 0.000544
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3521 / 5000]
+		loss: 0.199677, lr: 0.000004 time: 1.163163, eta: 0:28:41
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159956, loss_rpn_cls: 0.029410, loss_rpn_bbox: 0.010653
+		loss_rpn_cls_fpn2: 0.004468, loss_rpn_cls_fpn3: 0.008307, loss_rpn_cls_fpn4: 0.011793, loss_rpn_cls_fpn5: 0.004591, loss_rpn_cls_fpn6: 0.000178
+		loss_rpn_bbox_fpn2: 0.000114, loss_rpn_bbox_fpn3: 0.001672, loss_rpn_bbox_fpn4: 0.003282, loss_rpn_bbox_fpn5: 0.003749, loss_rpn_bbox_fpn6: 0.000702
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3541 / 5000]
+		loss: 0.195115, lr: 0.000004 time: 1.163633, eta: 0:28:18
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150892, loss_rpn_cls: 0.028103, loss_rpn_bbox: 0.010200
+		loss_rpn_cls_fpn2: 0.003852, loss_rpn_cls_fpn3: 0.008449, loss_rpn_cls_fpn4: 0.009337, loss_rpn_cls_fpn5: 0.004357, loss_rpn_cls_fpn6: 0.000198
+		loss_rpn_bbox_fpn2: 0.000342, loss_rpn_bbox_fpn3: 0.001283, loss_rpn_bbox_fpn4: 0.003547, loss_rpn_bbox_fpn5: 0.004033, loss_rpn_bbox_fpn6: 0.000531
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3561 / 5000]
+		loss: 0.206317, lr: 0.000004 time: 1.163155, eta: 0:27:54
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.173303, loss_rpn_cls: 0.031689, loss_rpn_bbox: 0.011070
+		loss_rpn_cls_fpn2: 0.004564, loss_rpn_cls_fpn3: 0.009989, loss_rpn_cls_fpn4: 0.010365, loss_rpn_cls_fpn5: 0.004449, loss_rpn_cls_fpn6: 0.000233
+		loss_rpn_bbox_fpn2: 0.000139, loss_rpn_bbox_fpn3: 0.001883, loss_rpn_bbox_fpn4: 0.003119, loss_rpn_bbox_fpn5: 0.003467, loss_rpn_bbox_fpn6: 0.000681
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3581 / 5000]
+		loss: 0.201294, lr: 0.000004 time: 1.163274, eta: 0:27:31
+		accuracy_cls: 0.944196
+		spatial_reg: 0.000000
+		image_loss_cls: 0.167154, loss_rpn_cls: 0.030307, loss_rpn_bbox: 0.011368
+		loss_rpn_cls_fpn2: 0.003233, loss_rpn_cls_fpn3: 0.008114, loss_rpn_cls_fpn4: 0.008882, loss_rpn_cls_fpn5: 0.004162, loss_rpn_cls_fpn6: 0.000197
+		loss_rpn_bbox_fpn2: 0.000195, loss_rpn_bbox_fpn3: 0.001202, loss_rpn_bbox_fpn4: 0.003743, loss_rpn_bbox_fpn5: 0.004429, loss_rpn_bbox_fpn6: 0.000805
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3601 / 5000]
+		loss: 0.204456, lr: 0.000004 time: 1.163587, eta: 0:27:09
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160024, loss_rpn_cls: 0.033063, loss_rpn_bbox: 0.010758
+		loss_rpn_cls_fpn2: 0.003831, loss_rpn_cls_fpn3: 0.009048, loss_rpn_cls_fpn4: 0.011048, loss_rpn_cls_fpn5: 0.004909, loss_rpn_cls_fpn6: 0.000133
+		loss_rpn_bbox_fpn2: 0.000191, loss_rpn_bbox_fpn3: 0.001880, loss_rpn_bbox_fpn4: 0.003571, loss_rpn_bbox_fpn5: 0.004183, loss_rpn_bbox_fpn6: 0.000634
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3621 / 5000]
+		loss: 0.207075, lr: 0.000004 time: 1.162911, eta: 0:26:44
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163694, loss_rpn_cls: 0.028976, loss_rpn_bbox: 0.010838
+		loss_rpn_cls_fpn2: 0.003080, loss_rpn_cls_fpn3: 0.007735, loss_rpn_cls_fpn4: 0.009099, loss_rpn_cls_fpn5: 0.004772, loss_rpn_cls_fpn6: 0.000076
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001461, loss_rpn_bbox_fpn4: 0.003475, loss_rpn_bbox_fpn5: 0.004310, loss_rpn_bbox_fpn6: 0.000579
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3641 / 5000]
+		loss: 0.206761, lr: 0.000004 time: 1.163222, eta: 0:26:21
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163193, loss_rpn_cls: 0.030998, loss_rpn_bbox: 0.011628
+		loss_rpn_cls_fpn2: 0.003794, loss_rpn_cls_fpn3: 0.007755, loss_rpn_cls_fpn4: 0.009678, loss_rpn_cls_fpn5: 0.004879, loss_rpn_cls_fpn6: 0.000143
+		loss_rpn_bbox_fpn2: 0.000167, loss_rpn_bbox_fpn3: 0.001823, loss_rpn_bbox_fpn4: 0.003365, loss_rpn_bbox_fpn5: 0.004187, loss_rpn_bbox_fpn6: 0.000692
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3661 / 5000]
+		loss: 0.195153, lr: 0.000004 time: 1.163548, eta: 0:25:59
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152683, loss_rpn_cls: 0.028890, loss_rpn_bbox: 0.009530
+		loss_rpn_cls_fpn2: 0.004087, loss_rpn_cls_fpn3: 0.007082, loss_rpn_cls_fpn4: 0.009590, loss_rpn_cls_fpn5: 0.004560, loss_rpn_cls_fpn6: 0.000205
+		loss_rpn_bbox_fpn2: 0.000280, loss_rpn_bbox_fpn3: 0.001680, loss_rpn_bbox_fpn4: 0.003407, loss_rpn_bbox_fpn5: 0.003994, loss_rpn_bbox_fpn6: 0.000725
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3681 / 5000]
+		loss: 0.184769, lr: 0.000004 time: 1.163042, eta: 0:25:35
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.144125, loss_rpn_cls: 0.029483, loss_rpn_bbox: 0.011211
+		loss_rpn_cls_fpn2: 0.003775, loss_rpn_cls_fpn3: 0.008935, loss_rpn_cls_fpn4: 0.010749, loss_rpn_cls_fpn5: 0.004492, loss_rpn_cls_fpn6: 0.000149
+		loss_rpn_bbox_fpn2: 0.000048, loss_rpn_bbox_fpn3: 0.001609, loss_rpn_bbox_fpn4: 0.003153, loss_rpn_bbox_fpn5: 0.004167, loss_rpn_bbox_fpn6: 0.000761
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3701 / 5000]
+		loss: 0.199444, lr: 0.000004 time: 1.163345, eta: 0:25:12
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162303, loss_rpn_cls: 0.031069, loss_rpn_bbox: 0.011224
+		loss_rpn_cls_fpn2: 0.003795, loss_rpn_cls_fpn3: 0.008652, loss_rpn_cls_fpn4: 0.010475, loss_rpn_cls_fpn5: 0.004645, loss_rpn_cls_fpn6: 0.000266
+		loss_rpn_bbox_fpn2: 0.000430, loss_rpn_bbox_fpn3: 0.001603, loss_rpn_bbox_fpn4: 0.003499, loss_rpn_bbox_fpn5: 0.003873, loss_rpn_bbox_fpn6: 0.000808
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3721 / 5000]
+		loss: 0.197877, lr: 0.000004 time: 1.163575, eta: 0:24:49
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156858, loss_rpn_cls: 0.030995, loss_rpn_bbox: 0.010526
+		loss_rpn_cls_fpn2: 0.003671, loss_rpn_cls_fpn3: 0.009508, loss_rpn_cls_fpn4: 0.009951, loss_rpn_cls_fpn5: 0.004804, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000182, loss_rpn_bbox_fpn3: 0.001540, loss_rpn_bbox_fpn4: 0.003483, loss_rpn_bbox_fpn5: 0.004019, loss_rpn_bbox_fpn6: 0.000575
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3741 / 5000]
+		loss: 0.205153, lr: 0.000004 time: 1.163113, eta: 0:24:25
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163494, loss_rpn_cls: 0.029928, loss_rpn_bbox: 0.010502
+		loss_rpn_cls_fpn2: 0.003836, loss_rpn_cls_fpn3: 0.009868, loss_rpn_cls_fpn4: 0.009362, loss_rpn_cls_fpn5: 0.004532, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000068, loss_rpn_bbox_fpn3: 0.002001, loss_rpn_bbox_fpn4: 0.003494, loss_rpn_bbox_fpn5: 0.003992, loss_rpn_bbox_fpn6: 0.000693
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step3749.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3761 / 5000]
+		loss: 0.198559, lr: 0.000004 time: 1.163547, eta: 0:24:02
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157140, loss_rpn_cls: 0.026148, loss_rpn_bbox: 0.011304
+		loss_rpn_cls_fpn2: 0.003389, loss_rpn_cls_fpn3: 0.007498, loss_rpn_cls_fpn4: 0.009561, loss_rpn_cls_fpn5: 0.004439, loss_rpn_cls_fpn6: 0.000221
+		loss_rpn_bbox_fpn2: 0.000180, loss_rpn_bbox_fpn3: 0.001255, loss_rpn_bbox_fpn4: 0.002700, loss_rpn_bbox_fpn5: 0.004741, loss_rpn_bbox_fpn6: 0.000841
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3781 / 5000]
+		loss: 0.203881, lr: 0.000004 time: 1.163103, eta: 0:23:38
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161157, loss_rpn_cls: 0.030699, loss_rpn_bbox: 0.011130
+		loss_rpn_cls_fpn2: 0.003915, loss_rpn_cls_fpn3: 0.008989, loss_rpn_cls_fpn4: 0.010300, loss_rpn_cls_fpn5: 0.004008, loss_rpn_cls_fpn6: 0.000145
+		loss_rpn_bbox_fpn2: 0.000079, loss_rpn_bbox_fpn3: 0.001432, loss_rpn_bbox_fpn4: 0.003824, loss_rpn_bbox_fpn5: 0.003707, loss_rpn_bbox_fpn6: 0.000588
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3801 / 5000]
+		loss: 0.193305, lr: 0.000004 time: 1.163459, eta: 0:23:16
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152764, loss_rpn_cls: 0.029166, loss_rpn_bbox: 0.011319
+		loss_rpn_cls_fpn2: 0.003996, loss_rpn_cls_fpn3: 0.008505, loss_rpn_cls_fpn4: 0.010030, loss_rpn_cls_fpn5: 0.004598, loss_rpn_cls_fpn6: 0.000190
+		loss_rpn_bbox_fpn2: 0.000245, loss_rpn_bbox_fpn3: 0.001600, loss_rpn_bbox_fpn4: 0.003598, loss_rpn_bbox_fpn5: 0.004530, loss_rpn_bbox_fpn6: 0.000719
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3821 / 5000]
+		loss: 0.205014, lr: 0.000004 time: 1.163712, eta: 0:22:53
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.167639, loss_rpn_cls: 0.034530, loss_rpn_bbox: 0.010432
+		loss_rpn_cls_fpn2: 0.004391, loss_rpn_cls_fpn3: 0.010869, loss_rpn_cls_fpn4: 0.010668, loss_rpn_cls_fpn5: 0.004306, loss_rpn_cls_fpn6: 0.000282
+		loss_rpn_bbox_fpn2: 0.000182, loss_rpn_bbox_fpn3: 0.001961, loss_rpn_bbox_fpn4: 0.003597, loss_rpn_bbox_fpn5: 0.003749, loss_rpn_bbox_fpn6: 0.000619
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3841 / 5000]
+		loss: 0.188894, lr: 0.000004 time: 1.163121, eta: 0:22:29
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151982, loss_rpn_cls: 0.028023, loss_rpn_bbox: 0.010484
+		loss_rpn_cls_fpn2: 0.003430, loss_rpn_cls_fpn3: 0.007057, loss_rpn_cls_fpn4: 0.009090, loss_rpn_cls_fpn5: 0.004727, loss_rpn_cls_fpn6: 0.000195
+		loss_rpn_bbox_fpn2: 0.000139, loss_rpn_bbox_fpn3: 0.001279, loss_rpn_bbox_fpn4: 0.003386, loss_rpn_bbox_fpn5: 0.004585, loss_rpn_bbox_fpn6: 0.000745
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3861 / 5000]
+		loss: 0.202244, lr: 0.000004 time: 1.163499, eta: 0:22:06
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161347, loss_rpn_cls: 0.029868, loss_rpn_bbox: 0.010259
+		loss_rpn_cls_fpn2: 0.003787, loss_rpn_cls_fpn3: 0.008730, loss_rpn_cls_fpn4: 0.009037, loss_rpn_cls_fpn5: 0.004617, loss_rpn_cls_fpn6: 0.000222
+		loss_rpn_bbox_fpn2: 0.000048, loss_rpn_bbox_fpn3: 0.001844, loss_rpn_bbox_fpn4: 0.003414, loss_rpn_bbox_fpn5: 0.003526, loss_rpn_bbox_fpn6: 0.000831
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3881 / 5000]
+		loss: 0.192981, lr: 0.000004 time: 1.163841, eta: 0:21:43
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153034, loss_rpn_cls: 0.029358, loss_rpn_bbox: 0.010862
+		loss_rpn_cls_fpn2: 0.004093, loss_rpn_cls_fpn3: 0.008115, loss_rpn_cls_fpn4: 0.008803, loss_rpn_cls_fpn5: 0.004385, loss_rpn_cls_fpn6: 0.000290
+		loss_rpn_bbox_fpn2: 0.000197, loss_rpn_bbox_fpn3: 0.001600, loss_rpn_bbox_fpn4: 0.003327, loss_rpn_bbox_fpn5: 0.004128, loss_rpn_bbox_fpn6: 0.000843
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3901 / 5000]
+		loss: 0.211938, lr: 0.000004 time: 1.163371, eta: 0:21:19
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149349, loss_rpn_cls: 0.029208, loss_rpn_bbox: 0.011324
+		loss_rpn_cls_fpn2: 0.003609, loss_rpn_cls_fpn3: 0.009565, loss_rpn_cls_fpn4: 0.010996, loss_rpn_cls_fpn5: 0.004901, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001709, loss_rpn_bbox_fpn4: 0.003662, loss_rpn_bbox_fpn5: 0.003510, loss_rpn_bbox_fpn6: 0.000700
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3921 / 5000]
+		loss: 0.208724, lr: 0.000004 time: 1.163769, eta: 0:20:56
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166116, loss_rpn_cls: 0.032710, loss_rpn_bbox: 0.010294
+		loss_rpn_cls_fpn2: 0.004133, loss_rpn_cls_fpn3: 0.009350, loss_rpn_cls_fpn4: 0.010106, loss_rpn_cls_fpn5: 0.004988, loss_rpn_cls_fpn6: 0.000184
+		loss_rpn_bbox_fpn2: 0.000236, loss_rpn_bbox_fpn3: 0.001337, loss_rpn_bbox_fpn4: 0.003092, loss_rpn_bbox_fpn5: 0.004186, loss_rpn_bbox_fpn6: 0.000711
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3941 / 5000]
+		loss: 0.185833, lr: 0.000004 time: 1.163999, eta: 0:20:33
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150116, loss_rpn_cls: 0.026150, loss_rpn_bbox: 0.010687
+		loss_rpn_cls_fpn2: 0.004240, loss_rpn_cls_fpn3: 0.007445, loss_rpn_cls_fpn4: 0.009853, loss_rpn_cls_fpn5: 0.003999, loss_rpn_cls_fpn6: 0.000154
+		loss_rpn_bbox_fpn2: 0.000167, loss_rpn_bbox_fpn3: 0.001857, loss_rpn_bbox_fpn4: 0.004027, loss_rpn_bbox_fpn5: 0.003392, loss_rpn_bbox_fpn6: 0.000739
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3961 / 5000]
+		loss: 0.216020, lr: 0.000004 time: 1.163432, eta: 0:20:09
+		accuracy_cls: 0.944196
+		spatial_reg: 0.000000
+		image_loss_cls: 0.168955, loss_rpn_cls: 0.031396, loss_rpn_bbox: 0.010855
+		loss_rpn_cls_fpn2: 0.004071, loss_rpn_cls_fpn3: 0.009836, loss_rpn_cls_fpn4: 0.009671, loss_rpn_cls_fpn5: 0.004180, loss_rpn_cls_fpn6: 0.000209
+		loss_rpn_bbox_fpn2: 0.000330, loss_rpn_bbox_fpn3: 0.001576, loss_rpn_bbox_fpn4: 0.002856, loss_rpn_bbox_fpn5: 0.003742, loss_rpn_bbox_fpn6: 0.000745
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 3981 / 5000]
+		loss: 0.181858, lr: 0.000004 time: 1.163753, eta: 0:19:47
+		accuracy_cls: 0.953869
+		spatial_reg: 0.000000
+		image_loss_cls: 0.142796, loss_rpn_cls: 0.028193, loss_rpn_bbox: 0.010492
+		loss_rpn_cls_fpn2: 0.003767, loss_rpn_cls_fpn3: 0.007376, loss_rpn_cls_fpn4: 0.010457, loss_rpn_cls_fpn5: 0.004258, loss_rpn_cls_fpn6: 0.000198
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001691, loss_rpn_bbox_fpn4: 0.003555, loss_rpn_bbox_fpn5: 0.003849, loss_rpn_bbox_fpn6: 0.000645
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step3999.pth
+INFO train_net_step.py: 451: Decay the learning on step 4000
+INFO net.py:  72: Changing learning rate 0.000004 -> 0.000000
+INFO net.py:  97: Scaling update history by 0.100000 (new lr / old lr)
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4001 / 5000]
+		loss: 0.216832, lr: 0.000000 time: 1.164016, eta: 0:19:24
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.172465, loss_rpn_cls: 0.033488, loss_rpn_bbox: 0.012662
+		loss_rpn_cls_fpn2: 0.003484, loss_rpn_cls_fpn3: 0.010047, loss_rpn_cls_fpn4: 0.012165, loss_rpn_cls_fpn5: 0.005866, loss_rpn_cls_fpn6: 0.000189
+		loss_rpn_bbox_fpn2: 0.000092, loss_rpn_bbox_fpn3: 0.001965, loss_rpn_bbox_fpn4: 0.004484, loss_rpn_bbox_fpn5: 0.004941, loss_rpn_bbox_fpn6: 0.000885
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4021 / 5000]
+		loss: 0.199265, lr: 0.000000 time: 1.163493, eta: 0:19:00
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156759, loss_rpn_cls: 0.029633, loss_rpn_bbox: 0.010255
+		loss_rpn_cls_fpn2: 0.003763, loss_rpn_cls_fpn3: 0.010208, loss_rpn_cls_fpn4: 0.009439, loss_rpn_cls_fpn5: 0.004118, loss_rpn_cls_fpn6: 0.000135
+		loss_rpn_bbox_fpn2: 0.000079, loss_rpn_bbox_fpn3: 0.001558, loss_rpn_bbox_fpn4: 0.003804, loss_rpn_bbox_fpn5: 0.003471, loss_rpn_bbox_fpn6: 0.000740
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4041 / 5000]
+		loss: 0.198860, lr: 0.000000 time: 1.163986, eta: 0:18:37
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158138, loss_rpn_cls: 0.030228, loss_rpn_bbox: 0.011213
+		loss_rpn_cls_fpn2: 0.004309, loss_rpn_cls_fpn3: 0.009857, loss_rpn_cls_fpn4: 0.011169, loss_rpn_cls_fpn5: 0.004090, loss_rpn_cls_fpn6: 0.000172
+		loss_rpn_bbox_fpn2: 0.000155, loss_rpn_bbox_fpn3: 0.002083, loss_rpn_bbox_fpn4: 0.003409, loss_rpn_bbox_fpn5: 0.004247, loss_rpn_bbox_fpn6: 0.000853
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4061 / 5000]
+		loss: 0.209649, lr: 0.000000 time: 1.163504, eta: 0:18:13
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.166611, loss_rpn_cls: 0.030877, loss_rpn_bbox: 0.011087
+		loss_rpn_cls_fpn2: 0.003702, loss_rpn_cls_fpn3: 0.007270, loss_rpn_cls_fpn4: 0.011009, loss_rpn_cls_fpn5: 0.004772, loss_rpn_cls_fpn6: 0.000227
+		loss_rpn_bbox_fpn2: 0.000048, loss_rpn_bbox_fpn3: 0.001353, loss_rpn_bbox_fpn4: 0.003952, loss_rpn_bbox_fpn5: 0.004390, loss_rpn_bbox_fpn6: 0.000670
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4081 / 5000]
+		loss: 0.193875, lr: 0.000000 time: 1.163820, eta: 0:17:50
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157109, loss_rpn_cls: 0.029954, loss_rpn_bbox: 0.010935
+		loss_rpn_cls_fpn2: 0.003524, loss_rpn_cls_fpn3: 0.009921, loss_rpn_cls_fpn4: 0.008730, loss_rpn_cls_fpn5: 0.005030, loss_rpn_cls_fpn6: 0.000261
+		loss_rpn_bbox_fpn2: 0.000196, loss_rpn_bbox_fpn3: 0.001923, loss_rpn_bbox_fpn4: 0.003603, loss_rpn_bbox_fpn5: 0.003842, loss_rpn_bbox_fpn6: 0.000630
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4101 / 5000]
+		loss: 0.195237, lr: 0.000000 time: 1.164239, eta: 0:17:27
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150222, loss_rpn_cls: 0.029620, loss_rpn_bbox: 0.011504
+		loss_rpn_cls_fpn2: 0.003517, loss_rpn_cls_fpn3: 0.006618, loss_rpn_cls_fpn4: 0.009742, loss_rpn_cls_fpn5: 0.004442, loss_rpn_cls_fpn6: 0.000224
+		loss_rpn_bbox_fpn2: 0.000294, loss_rpn_bbox_fpn3: 0.001506, loss_rpn_bbox_fpn4: 0.003498, loss_rpn_bbox_fpn5: 0.003821, loss_rpn_bbox_fpn6: 0.000721
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4121 / 5000]
+		loss: 0.206800, lr: 0.000000 time: 1.163727, eta: 0:17:04
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162790, loss_rpn_cls: 0.031089, loss_rpn_bbox: 0.009331
+		loss_rpn_cls_fpn2: 0.003932, loss_rpn_cls_fpn3: 0.008121, loss_rpn_cls_fpn4: 0.010806, loss_rpn_cls_fpn5: 0.004528, loss_rpn_cls_fpn6: 0.000156
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001382, loss_rpn_bbox_fpn4: 0.003836, loss_rpn_bbox_fpn5: 0.003794, loss_rpn_bbox_fpn6: 0.000570
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4141 / 5000]
+		loss: 0.211834, lr: 0.000000 time: 1.164161, eta: 0:16:41
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157023, loss_rpn_cls: 0.031630, loss_rpn_bbox: 0.012567
+		loss_rpn_cls_fpn2: 0.003966, loss_rpn_cls_fpn3: 0.010078, loss_rpn_cls_fpn4: 0.011624, loss_rpn_cls_fpn5: 0.004492, loss_rpn_cls_fpn6: 0.000188
+		loss_rpn_bbox_fpn2: 0.000158, loss_rpn_bbox_fpn3: 0.001388, loss_rpn_bbox_fpn4: 0.003158, loss_rpn_bbox_fpn5: 0.004389, loss_rpn_bbox_fpn6: 0.000742
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4161 / 5000]
+		loss: 0.197433, lr: 0.000000 time: 1.164563, eta: 0:16:18
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157377, loss_rpn_cls: 0.028283, loss_rpn_bbox: 0.010180
+		loss_rpn_cls_fpn2: 0.003903, loss_rpn_cls_fpn3: 0.009351, loss_rpn_cls_fpn4: 0.010738, loss_rpn_cls_fpn5: 0.004561, loss_rpn_cls_fpn6: 0.000222
+		loss_rpn_bbox_fpn2: 0.000143, loss_rpn_bbox_fpn3: 0.001298, loss_rpn_bbox_fpn4: 0.003452, loss_rpn_bbox_fpn5: 0.003232, loss_rpn_bbox_fpn6: 0.000685
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4181 / 5000]
+		loss: 0.199616, lr: 0.000000 time: 1.164031, eta: 0:15:54
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157934, loss_rpn_cls: 0.027091, loss_rpn_bbox: 0.011046
+		loss_rpn_cls_fpn2: 0.003955, loss_rpn_cls_fpn3: 0.008545, loss_rpn_cls_fpn4: 0.008282, loss_rpn_cls_fpn5: 0.004869, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000099, loss_rpn_bbox_fpn3: 0.001784, loss_rpn_bbox_fpn4: 0.002942, loss_rpn_bbox_fpn5: 0.004341, loss_rpn_bbox_fpn6: 0.000696
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4201 / 5000]
+		loss: 0.195524, lr: 0.000000 time: 1.164397, eta: 0:15:31
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154631, loss_rpn_cls: 0.028880, loss_rpn_bbox: 0.010171
+		loss_rpn_cls_fpn2: 0.004164, loss_rpn_cls_fpn3: 0.008871, loss_rpn_cls_fpn4: 0.009989, loss_rpn_cls_fpn5: 0.004451, loss_rpn_cls_fpn6: 0.000183
+		loss_rpn_bbox_fpn2: 0.000107, loss_rpn_bbox_fpn3: 0.001912, loss_rpn_bbox_fpn4: 0.003646, loss_rpn_bbox_fpn5: 0.004015, loss_rpn_bbox_fpn6: 0.000556
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4221 / 5000]
+		loss: 0.205959, lr: 0.000000 time: 1.164879, eta: 0:15:08
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.161542, loss_rpn_cls: 0.028239, loss_rpn_bbox: 0.010252
+		loss_rpn_cls_fpn2: 0.003687, loss_rpn_cls_fpn3: 0.008502, loss_rpn_cls_fpn4: 0.008220, loss_rpn_cls_fpn5: 0.004589, loss_rpn_cls_fpn6: 0.000144
+		loss_rpn_bbox_fpn2: 0.000182, loss_rpn_bbox_fpn3: 0.001266, loss_rpn_bbox_fpn4: 0.003148, loss_rpn_bbox_fpn5: 0.004406, loss_rpn_bbox_fpn6: 0.000836
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4241 / 5000]
+		loss: 0.204402, lr: 0.000000 time: 1.164290, eta: 0:14:44
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155728, loss_rpn_cls: 0.030001, loss_rpn_bbox: 0.010483
+		loss_rpn_cls_fpn2: 0.003870, loss_rpn_cls_fpn3: 0.009677, loss_rpn_cls_fpn4: 0.011125, loss_rpn_cls_fpn5: 0.004894, loss_rpn_cls_fpn6: 0.000170
+		loss_rpn_bbox_fpn2: 0.000344, loss_rpn_bbox_fpn3: 0.001515, loss_rpn_bbox_fpn4: 0.003494, loss_rpn_bbox_fpn5: 0.004415, loss_rpn_bbox_fpn6: 0.000810
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step4249.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4261 / 5000]
+		loss: 0.201690, lr: 0.000000 time: 1.164537, eta: 0:14:21
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.158488, loss_rpn_cls: 0.031362, loss_rpn_bbox: 0.012144
+		loss_rpn_cls_fpn2: 0.004143, loss_rpn_cls_fpn3: 0.008170, loss_rpn_cls_fpn4: 0.012233, loss_rpn_cls_fpn5: 0.004902, loss_rpn_cls_fpn6: 0.000155
+		loss_rpn_bbox_fpn2: 0.000261, loss_rpn_bbox_fpn3: 0.002153, loss_rpn_bbox_fpn4: 0.003924, loss_rpn_bbox_fpn5: 0.004247, loss_rpn_bbox_fpn6: 0.000870
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4281 / 5000]
+		loss: 0.205339, lr: 0.000000 time: 1.164787, eta: 0:13:58
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160549, loss_rpn_cls: 0.029528, loss_rpn_bbox: 0.010314
+		loss_rpn_cls_fpn2: 0.003893, loss_rpn_cls_fpn3: 0.010746, loss_rpn_cls_fpn4: 0.007930, loss_rpn_cls_fpn5: 0.004185, loss_rpn_cls_fpn6: 0.000128
+		loss_rpn_bbox_fpn2: 0.000158, loss_rpn_bbox_fpn3: 0.001750, loss_rpn_bbox_fpn4: 0.002899, loss_rpn_bbox_fpn5: 0.003647, loss_rpn_bbox_fpn6: 0.000734
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4301 / 5000]
+		loss: 0.181566, lr: 0.000000 time: 1.164319, eta: 0:13:35
+		accuracy_cls: 0.953125
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149532, loss_rpn_cls: 0.027058, loss_rpn_bbox: 0.010103
+		loss_rpn_cls_fpn2: 0.003657, loss_rpn_cls_fpn3: 0.008022, loss_rpn_cls_fpn4: 0.008079, loss_rpn_cls_fpn5: 0.004824, loss_rpn_cls_fpn6: 0.000139
+		loss_rpn_bbox_fpn2: 0.000095, loss_rpn_bbox_fpn3: 0.001083, loss_rpn_bbox_fpn4: 0.003082, loss_rpn_bbox_fpn5: 0.004417, loss_rpn_bbox_fpn6: 0.000762
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4321 / 5000]
+		loss: 0.225103, lr: 0.000000 time: 1.164631, eta: 0:13:11
+		accuracy_cls: 0.941964
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170032, loss_rpn_cls: 0.033379, loss_rpn_bbox: 0.010620
+		loss_rpn_cls_fpn2: 0.003706, loss_rpn_cls_fpn3: 0.009591, loss_rpn_cls_fpn4: 0.014736, loss_rpn_cls_fpn5: 0.004847, loss_rpn_cls_fpn6: 0.000114
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001578, loss_rpn_bbox_fpn4: 0.003382, loss_rpn_bbox_fpn5: 0.003877, loss_rpn_bbox_fpn6: 0.000698
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4341 / 5000]
+		loss: 0.204866, lr: 0.000000 time: 1.164949, eta: 0:12:48
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159822, loss_rpn_cls: 0.032701, loss_rpn_bbox: 0.010949
+		loss_rpn_cls_fpn2: 0.005101, loss_rpn_cls_fpn3: 0.008498, loss_rpn_cls_fpn4: 0.009672, loss_rpn_cls_fpn5: 0.004500, loss_rpn_cls_fpn6: 0.000225
+		loss_rpn_bbox_fpn2: 0.000373, loss_rpn_bbox_fpn3: 0.001716, loss_rpn_bbox_fpn4: 0.003787, loss_rpn_bbox_fpn5: 0.004178, loss_rpn_bbox_fpn6: 0.000740
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4361 / 5000]
+		loss: 0.201494, lr: 0.000000 time: 1.164612, eta: 0:12:25
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153480, loss_rpn_cls: 0.026889, loss_rpn_bbox: 0.011648
+		loss_rpn_cls_fpn2: 0.004004, loss_rpn_cls_fpn3: 0.008323, loss_rpn_cls_fpn4: 0.010097, loss_rpn_cls_fpn5: 0.004714, loss_rpn_cls_fpn6: 0.000207
+		loss_rpn_bbox_fpn2: 0.000048, loss_rpn_bbox_fpn3: 0.001679, loss_rpn_bbox_fpn4: 0.003633, loss_rpn_bbox_fpn5: 0.004642, loss_rpn_bbox_fpn6: 0.000808
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4381 / 5000]
+		loss: 0.190057, lr: 0.000000 time: 1.164909, eta: 0:12:02
+		accuracy_cls: 0.943452
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157156, loss_rpn_cls: 0.027888, loss_rpn_bbox: 0.010695
+		loss_rpn_cls_fpn2: 0.003397, loss_rpn_cls_fpn3: 0.007367, loss_rpn_cls_fpn4: 0.010734, loss_rpn_cls_fpn5: 0.004603, loss_rpn_cls_fpn6: 0.000166
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001576, loss_rpn_bbox_fpn4: 0.003985, loss_rpn_bbox_fpn5: 0.003729, loss_rpn_bbox_fpn6: 0.000623
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4401 / 5000]
+		loss: 0.198081, lr: 0.000000 time: 1.164469, eta: 0:11:38
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156425, loss_rpn_cls: 0.028052, loss_rpn_bbox: 0.010739
+		loss_rpn_cls_fpn2: 0.003325, loss_rpn_cls_fpn3: 0.009497, loss_rpn_cls_fpn4: 0.008409, loss_rpn_cls_fpn5: 0.004576, loss_rpn_cls_fpn6: 0.000146
+		loss_rpn_bbox_fpn2: 0.000264, loss_rpn_bbox_fpn3: 0.001809, loss_rpn_bbox_fpn4: 0.003257, loss_rpn_bbox_fpn5: 0.003782, loss_rpn_bbox_fpn6: 0.000725
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4421 / 5000]
+		loss: 0.207815, lr: 0.000000 time: 1.164703, eta: 0:11:15
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164804, loss_rpn_cls: 0.030499, loss_rpn_bbox: 0.011520
+		loss_rpn_cls_fpn2: 0.004135, loss_rpn_cls_fpn3: 0.007580, loss_rpn_cls_fpn4: 0.012092, loss_rpn_cls_fpn5: 0.004604, loss_rpn_cls_fpn6: 0.000182
+		loss_rpn_bbox_fpn2: 0.000100, loss_rpn_bbox_fpn3: 0.001873, loss_rpn_bbox_fpn4: 0.003875, loss_rpn_bbox_fpn5: 0.004264, loss_rpn_bbox_fpn6: 0.000566
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4441 / 5000]
+		loss: 0.194271, lr: 0.000000 time: 1.164835, eta: 0:10:52
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153382, loss_rpn_cls: 0.031479, loss_rpn_bbox: 0.011513
+		loss_rpn_cls_fpn2: 0.003737, loss_rpn_cls_fpn3: 0.008625, loss_rpn_cls_fpn4: 0.009570, loss_rpn_cls_fpn5: 0.004785, loss_rpn_cls_fpn6: 0.000202
+		loss_rpn_bbox_fpn2: 0.000122, loss_rpn_bbox_fpn3: 0.001557, loss_rpn_bbox_fpn4: 0.003639, loss_rpn_bbox_fpn5: 0.003994, loss_rpn_bbox_fpn6: 0.000811
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4461 / 5000]
+		loss: 0.195960, lr: 0.000000 time: 1.164221, eta: 0:10:28
+		accuracy_cls: 0.949405
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156920, loss_rpn_cls: 0.027681, loss_rpn_bbox: 0.011419
+		loss_rpn_cls_fpn2: 0.003655, loss_rpn_cls_fpn3: 0.007323, loss_rpn_cls_fpn4: 0.006914, loss_rpn_cls_fpn5: 0.004302, loss_rpn_cls_fpn6: 0.000146
+		loss_rpn_bbox_fpn2: 0.000047, loss_rpn_bbox_fpn3: 0.001497, loss_rpn_bbox_fpn4: 0.003433, loss_rpn_bbox_fpn5: 0.004127, loss_rpn_bbox_fpn6: 0.000729
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4481 / 5000]
+		loss: 0.190988, lr: 0.000000 time: 1.164501, eta: 0:10:05
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.151988, loss_rpn_cls: 0.029454, loss_rpn_bbox: 0.011212
+		loss_rpn_cls_fpn2: 0.004078, loss_rpn_cls_fpn3: 0.009827, loss_rpn_cls_fpn4: 0.009291, loss_rpn_cls_fpn5: 0.004434, loss_rpn_cls_fpn6: 0.000158
+		loss_rpn_bbox_fpn2: 0.000120, loss_rpn_bbox_fpn3: 0.001736, loss_rpn_bbox_fpn4: 0.003429, loss_rpn_bbox_fpn5: 0.003606, loss_rpn_bbox_fpn6: 0.000554
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step4499.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4501 / 5000]
+		loss: 0.195012, lr: 0.000000 time: 1.164782, eta: 0:09:42
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152439, loss_rpn_cls: 0.033219, loss_rpn_bbox: 0.011695
+		loss_rpn_cls_fpn2: 0.003292, loss_rpn_cls_fpn3: 0.007365, loss_rpn_cls_fpn4: 0.013794, loss_rpn_cls_fpn5: 0.004649, loss_rpn_cls_fpn6: 0.000198
+		loss_rpn_bbox_fpn2: 0.000173, loss_rpn_bbox_fpn3: 0.001325, loss_rpn_bbox_fpn4: 0.004143, loss_rpn_bbox_fpn5: 0.004570, loss_rpn_bbox_fpn6: 0.000852
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4521 / 5000]
+		loss: 0.204487, lr: 0.000000 time: 1.164175, eta: 0:09:18
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162496, loss_rpn_cls: 0.026773, loss_rpn_bbox: 0.010644
+		loss_rpn_cls_fpn2: 0.004065, loss_rpn_cls_fpn3: 0.007430, loss_rpn_cls_fpn4: 0.010365, loss_rpn_cls_fpn5: 0.004166, loss_rpn_cls_fpn6: 0.000127
+		loss_rpn_bbox_fpn2: 0.000047, loss_rpn_bbox_fpn3: 0.001759, loss_rpn_bbox_fpn4: 0.002911, loss_rpn_bbox_fpn5: 0.003724, loss_rpn_bbox_fpn6: 0.000729
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4541 / 5000]
+		loss: 0.193032, lr: 0.000000 time: 1.164539, eta: 0:08:55
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.156909, loss_rpn_cls: 0.034486, loss_rpn_bbox: 0.010524
+		loss_rpn_cls_fpn2: 0.004024, loss_rpn_cls_fpn3: 0.010414, loss_rpn_cls_fpn4: 0.008792, loss_rpn_cls_fpn5: 0.004978, loss_rpn_cls_fpn6: 0.000200
+		loss_rpn_bbox_fpn2: 0.000143, loss_rpn_bbox_fpn3: 0.001802, loss_rpn_bbox_fpn4: 0.003500, loss_rpn_bbox_fpn5: 0.004405, loss_rpn_bbox_fpn6: 0.000541
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4561 / 5000]
+		loss: 0.195825, lr: 0.000000 time: 1.164834, eta: 0:08:32
+		accuracy_cls: 0.952381
+		spatial_reg: 0.000000
+		image_loss_cls: 0.152271, loss_rpn_cls: 0.028134, loss_rpn_bbox: 0.010895
+		loss_rpn_cls_fpn2: 0.003584, loss_rpn_cls_fpn3: 0.007595, loss_rpn_cls_fpn4: 0.011127, loss_rpn_cls_fpn5: 0.004012, loss_rpn_cls_fpn6: 0.000169
+		loss_rpn_bbox_fpn2: 0.000256, loss_rpn_bbox_fpn3: 0.001861, loss_rpn_bbox_fpn4: 0.003504, loss_rpn_bbox_fpn5: 0.004190, loss_rpn_bbox_fpn6: 0.000767
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4581 / 5000]
+		loss: 0.197416, lr: 0.000000 time: 1.164531, eta: 0:08:09
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.153912, loss_rpn_cls: 0.029754, loss_rpn_bbox: 0.010178
+		loss_rpn_cls_fpn2: 0.003860, loss_rpn_cls_fpn3: 0.009088, loss_rpn_cls_fpn4: 0.007721, loss_rpn_cls_fpn5: 0.004034, loss_rpn_cls_fpn6: 0.000117
+		loss_rpn_bbox_fpn2: 0.000106, loss_rpn_bbox_fpn3: 0.001427, loss_rpn_bbox_fpn4: 0.003492, loss_rpn_bbox_fpn5: 0.003466, loss_rpn_bbox_fpn6: 0.000804
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4601 / 5000]
+		loss: 0.191682, lr: 0.000000 time: 1.164866, eta: 0:07:45
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.147557, loss_rpn_cls: 0.032249, loss_rpn_bbox: 0.009877
+		loss_rpn_cls_fpn2: 0.002766, loss_rpn_cls_fpn3: 0.009043, loss_rpn_cls_fpn4: 0.010348, loss_rpn_cls_fpn5: 0.004369, loss_rpn_cls_fpn6: 0.000196
+		loss_rpn_bbox_fpn2: 0.000000, loss_rpn_bbox_fpn3: 0.001840, loss_rpn_bbox_fpn4: 0.003430, loss_rpn_bbox_fpn5: 0.003602, loss_rpn_bbox_fpn6: 0.000693
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4621 / 5000]
+		loss: 0.208530, lr: 0.000000 time: 1.165147, eta: 0:07:22
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.170906, loss_rpn_cls: 0.029987, loss_rpn_bbox: 0.011219
+		loss_rpn_cls_fpn2: 0.004122, loss_rpn_cls_fpn3: 0.008745, loss_rpn_cls_fpn4: 0.009899, loss_rpn_cls_fpn5: 0.004530, loss_rpn_cls_fpn6: 0.000234
+		loss_rpn_bbox_fpn2: 0.000298, loss_rpn_bbox_fpn3: 0.001580, loss_rpn_bbox_fpn4: 0.003596, loss_rpn_bbox_fpn5: 0.004712, loss_rpn_bbox_fpn6: 0.000855
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4641 / 5000]
+		loss: 0.211513, lr: 0.000000 time: 1.164791, eta: 0:06:59
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163380, loss_rpn_cls: 0.032248, loss_rpn_bbox: 0.010464
+		loss_rpn_cls_fpn2: 0.003524, loss_rpn_cls_fpn3: 0.009415, loss_rpn_cls_fpn4: 0.011862, loss_rpn_cls_fpn5: 0.004777, loss_rpn_cls_fpn6: 0.000219
+		loss_rpn_bbox_fpn2: 0.000079, loss_rpn_bbox_fpn3: 0.001481, loss_rpn_bbox_fpn4: 0.003554, loss_rpn_bbox_fpn5: 0.004361, loss_rpn_bbox_fpn6: 0.000667
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4661 / 5000]
+		loss: 0.193821, lr: 0.000000 time: 1.165302, eta: 0:06:36
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.150948, loss_rpn_cls: 0.029290, loss_rpn_bbox: 0.011151
+		loss_rpn_cls_fpn2: 0.003390, loss_rpn_cls_fpn3: 0.008756, loss_rpn_cls_fpn4: 0.009463, loss_rpn_cls_fpn5: 0.003839, loss_rpn_cls_fpn6: 0.000157
+		loss_rpn_bbox_fpn2: 0.000052, loss_rpn_bbox_fpn3: 0.001501, loss_rpn_bbox_fpn4: 0.004096, loss_rpn_bbox_fpn5: 0.004185, loss_rpn_bbox_fpn6: 0.000839
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4681 / 5000]
+		loss: 0.206924, lr: 0.000000 time: 1.164866, eta: 0:06:12
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.159646, loss_rpn_cls: 0.029643, loss_rpn_bbox: 0.010418
+		loss_rpn_cls_fpn2: 0.004035, loss_rpn_cls_fpn3: 0.009362, loss_rpn_cls_fpn4: 0.009295, loss_rpn_cls_fpn5: 0.004433, loss_rpn_cls_fpn6: 0.000140
+		loss_rpn_bbox_fpn2: 0.000233, loss_rpn_bbox_fpn3: 0.001609, loss_rpn_bbox_fpn4: 0.003319, loss_rpn_bbox_fpn5: 0.003853, loss_rpn_bbox_fpn6: 0.000779
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4701 / 5000]
+		loss: 0.202259, lr: 0.000000 time: 1.165260, eta: 0:05:49
+		accuracy_cls: 0.947917
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160432, loss_rpn_cls: 0.027447, loss_rpn_bbox: 0.010171
+		loss_rpn_cls_fpn2: 0.003804, loss_rpn_cls_fpn3: 0.009466, loss_rpn_cls_fpn4: 0.007485, loss_rpn_cls_fpn5: 0.003760, loss_rpn_cls_fpn6: 0.000176
+		loss_rpn_bbox_fpn2: 0.000167, loss_rpn_bbox_fpn3: 0.001494, loss_rpn_bbox_fpn4: 0.003195, loss_rpn_bbox_fpn5: 0.003462, loss_rpn_bbox_fpn6: 0.000857
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4721 / 5000]
+		loss: 0.199174, lr: 0.000000 time: 1.165540, eta: 0:05:26
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160510, loss_rpn_cls: 0.031919, loss_rpn_bbox: 0.011658
+		loss_rpn_cls_fpn2: 0.004060, loss_rpn_cls_fpn3: 0.006588, loss_rpn_cls_fpn4: 0.013467, loss_rpn_cls_fpn5: 0.004616, loss_rpn_cls_fpn6: 0.000142
+		loss_rpn_bbox_fpn2: 0.000155, loss_rpn_bbox_fpn3: 0.001453, loss_rpn_bbox_fpn4: 0.003638, loss_rpn_bbox_fpn5: 0.004720, loss_rpn_bbox_fpn6: 0.000606
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4741 / 5000]
+		loss: 0.199115, lr: 0.000000 time: 1.165044, eta: 0:05:02
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155147, loss_rpn_cls: 0.030632, loss_rpn_bbox: 0.010439
+		loss_rpn_cls_fpn2: 0.003401, loss_rpn_cls_fpn3: 0.010681, loss_rpn_cls_fpn4: 0.010202, loss_rpn_cls_fpn5: 0.003673, loss_rpn_cls_fpn6: 0.000146
+		loss_rpn_bbox_fpn2: 0.000151, loss_rpn_bbox_fpn3: 0.002033, loss_rpn_bbox_fpn4: 0.003746, loss_rpn_bbox_fpn5: 0.003723, loss_rpn_bbox_fpn6: 0.000671
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step4749.pth
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4761 / 5000]
+		loss: 0.211451, lr: 0.000000 time: 1.165460, eta: 0:04:39
+		accuracy_cls: 0.950149
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154853, loss_rpn_cls: 0.028001, loss_rpn_bbox: 0.010701
+		loss_rpn_cls_fpn2: 0.004312, loss_rpn_cls_fpn3: 0.008709, loss_rpn_cls_fpn4: 0.009930, loss_rpn_cls_fpn5: 0.004670, loss_rpn_cls_fpn6: 0.000158
+		loss_rpn_bbox_fpn2: 0.000358, loss_rpn_bbox_fpn3: 0.001854, loss_rpn_bbox_fpn4: 0.003492, loss_rpn_bbox_fpn5: 0.004013, loss_rpn_bbox_fpn6: 0.000608
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4781 / 5000]
+		loss: 0.208820, lr: 0.000000 time: 1.165768, eta: 0:04:16
+		accuracy_cls: 0.944940
+		spatial_reg: 0.000000
+		image_loss_cls: 0.163765, loss_rpn_cls: 0.027992, loss_rpn_bbox: 0.010751
+		loss_rpn_cls_fpn2: 0.003547, loss_rpn_cls_fpn3: 0.008385, loss_rpn_cls_fpn4: 0.008078, loss_rpn_cls_fpn5: 0.004458, loss_rpn_cls_fpn6: 0.000220
+		loss_rpn_bbox_fpn2: 0.000031, loss_rpn_bbox_fpn3: 0.001807, loss_rpn_bbox_fpn4: 0.003046, loss_rpn_bbox_fpn5: 0.004170, loss_rpn_bbox_fpn6: 0.000793
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4801 / 5000]
+		loss: 0.195212, lr: 0.000000 time: 1.165436, eta: 0:03:53
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157669, loss_rpn_cls: 0.028819, loss_rpn_bbox: 0.011098
+		loss_rpn_cls_fpn2: 0.003296, loss_rpn_cls_fpn3: 0.008398, loss_rpn_cls_fpn4: 0.009777, loss_rpn_cls_fpn5: 0.004657, loss_rpn_cls_fpn6: 0.000147
+		loss_rpn_bbox_fpn2: 0.000123, loss_rpn_bbox_fpn3: 0.001273, loss_rpn_bbox_fpn4: 0.004005, loss_rpn_bbox_fpn5: 0.004325, loss_rpn_bbox_fpn6: 0.000680
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4821 / 5000]
+		loss: 0.204309, lr: 0.000000 time: 1.165639, eta: 0:03:29
+		accuracy_cls: 0.945685
+		spatial_reg: 0.000000
+		image_loss_cls: 0.157564, loss_rpn_cls: 0.029337, loss_rpn_bbox: 0.010618
+		loss_rpn_cls_fpn2: 0.003593, loss_rpn_cls_fpn3: 0.008141, loss_rpn_cls_fpn4: 0.011368, loss_rpn_cls_fpn5: 0.004699, loss_rpn_cls_fpn6: 0.000203
+		loss_rpn_bbox_fpn2: 0.000155, loss_rpn_bbox_fpn3: 0.001387, loss_rpn_bbox_fpn4: 0.003372, loss_rpn_bbox_fpn5: 0.003981, loss_rpn_bbox_fpn6: 0.000798
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4841 / 5000]
+		loss: 0.188067, lr: 0.000000 time: 1.165885, eta: 0:03:06
+		accuracy_cls: 0.951637
+		spatial_reg: 0.000000
+		image_loss_cls: 0.149072, loss_rpn_cls: 0.027362, loss_rpn_bbox: 0.012190
+		loss_rpn_cls_fpn2: 0.004071, loss_rpn_cls_fpn3: 0.007362, loss_rpn_cls_fpn4: 0.009785, loss_rpn_cls_fpn5: 0.003781, loss_rpn_cls_fpn6: 0.000338
+		loss_rpn_bbox_fpn2: 0.000243, loss_rpn_bbox_fpn3: 0.001631, loss_rpn_bbox_fpn4: 0.003871, loss_rpn_bbox_fpn5: 0.004020, loss_rpn_bbox_fpn6: 0.000845
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4861 / 5000]
+		loss: 0.198356, lr: 0.000000 time: 1.165456, eta: 0:02:43
+		accuracy_cls: 0.950893
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154458, loss_rpn_cls: 0.033537, loss_rpn_bbox: 0.010849
+		loss_rpn_cls_fpn2: 0.003537, loss_rpn_cls_fpn3: 0.012449, loss_rpn_cls_fpn4: 0.009455, loss_rpn_cls_fpn5: 0.004289, loss_rpn_cls_fpn6: 0.000138
+		loss_rpn_bbox_fpn2: 0.000139, loss_rpn_bbox_fpn3: 0.001610, loss_rpn_bbox_fpn4: 0.004034, loss_rpn_bbox_fpn5: 0.004287, loss_rpn_bbox_fpn6: 0.000707
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4881 / 5000]
+		loss: 0.207813, lr: 0.000000 time: 1.165706, eta: 0:02:19
+		accuracy_cls: 0.944941
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164366, loss_rpn_cls: 0.033447, loss_rpn_bbox: 0.010546
+		loss_rpn_cls_fpn2: 0.005179, loss_rpn_cls_fpn3: 0.009437, loss_rpn_cls_fpn4: 0.011423, loss_rpn_cls_fpn5: 0.004285, loss_rpn_cls_fpn6: 0.000223
+		loss_rpn_bbox_fpn2: 0.000316, loss_rpn_bbox_fpn3: 0.001686, loss_rpn_bbox_fpn4: 0.003132, loss_rpn_bbox_fpn5: 0.004435, loss_rpn_bbox_fpn6: 0.000575
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4901 / 5000]
+		loss: 0.201766, lr: 0.000000 time: 1.166049, eta: 0:01:56
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.155727, loss_rpn_cls: 0.026192, loss_rpn_bbox: 0.011331
+		loss_rpn_cls_fpn2: 0.003557, loss_rpn_cls_fpn3: 0.008586, loss_rpn_cls_fpn4: 0.009764, loss_rpn_cls_fpn5: 0.004087, loss_rpn_cls_fpn6: 0.000141
+		loss_rpn_bbox_fpn2: 0.000078, loss_rpn_bbox_fpn3: 0.001776, loss_rpn_bbox_fpn4: 0.004321, loss_rpn_bbox_fpn5: 0.003795, loss_rpn_bbox_fpn6: 0.000786
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4921 / 5000]
+		loss: 0.194682, lr: 0.000000 time: 1.165798, eta: 0:01:33
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.154271, loss_rpn_cls: 0.029684, loss_rpn_bbox: 0.010644
+		loss_rpn_cls_fpn2: 0.003936, loss_rpn_cls_fpn3: 0.007493, loss_rpn_cls_fpn4: 0.010926, loss_rpn_cls_fpn5: 0.004561, loss_rpn_cls_fpn6: 0.000235
+		loss_rpn_bbox_fpn2: 0.000078, loss_rpn_bbox_fpn3: 0.001299, loss_rpn_bbox_fpn4: 0.003595, loss_rpn_bbox_fpn5: 0.004488, loss_rpn_bbox_fpn6: 0.000892
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4941 / 5000]
+		loss: 0.197289, lr: 0.000000 time: 1.166085, eta: 0:01:09
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.162040, loss_rpn_cls: 0.031806, loss_rpn_bbox: 0.011234
+		loss_rpn_cls_fpn2: 0.004223, loss_rpn_cls_fpn3: 0.011532, loss_rpn_cls_fpn4: 0.009331, loss_rpn_cls_fpn5: 0.003903, loss_rpn_cls_fpn6: 0.000126
+		loss_rpn_bbox_fpn2: 0.000408, loss_rpn_bbox_fpn3: 0.001884, loss_rpn_bbox_fpn4: 0.003417, loss_rpn_bbox_fpn5: 0.004006, loss_rpn_bbox_fpn6: 0.000547
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4961 / 5000]
+		loss: 0.201311, lr: 0.000000 time: 1.166177, eta: 0:00:46
+		accuracy_cls: 0.947173
+		spatial_reg: 0.000000
+		image_loss_cls: 0.164941, loss_rpn_cls: 0.027871, loss_rpn_bbox: 0.011318
+		loss_rpn_cls_fpn2: 0.003481, loss_rpn_cls_fpn3: 0.007604, loss_rpn_cls_fpn4: 0.009048, loss_rpn_cls_fpn5: 0.004301, loss_rpn_cls_fpn6: 0.000226
+		loss_rpn_bbox_fpn2: 0.000078, loss_rpn_bbox_fpn3: 0.001734, loss_rpn_bbox_fpn4: 0.003555, loss_rpn_bbox_fpn5: 0.004594, loss_rpn_bbox_fpn6: 0.000772
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 4981 / 5000]
+		loss: 0.205644, lr: 0.000000 time: 1.165889, eta: 0:00:23
+		accuracy_cls: 0.946429
+		spatial_reg: 0.000000
+		image_loss_cls: 0.160268, loss_rpn_cls: 0.032558, loss_rpn_bbox: 0.010693
+		loss_rpn_cls_fpn2: 0.004068, loss_rpn_cls_fpn3: 0.009229, loss_rpn_cls_fpn4: 0.009120, loss_rpn_cls_fpn5: 0.004023, loss_rpn_cls_fpn6: 0.000139
+		loss_rpn_bbox_fpn2: 0.000267, loss_rpn_bbox_fpn3: 0.001421, loss_rpn_bbox_fpn4: 0.003228, loss_rpn_bbox_fpn5: 0.004132, loss_rpn_bbox_fpn6: 0.000682
+[Nov13-18-57-35_ip-172-31-8-158_step][e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv.yaml][Step 5000 / 5000]
+		loss: 0.213889, lr: 0.000000 time: 1.166169, eta: 0:00:01
+		accuracy_cls: 0.948661
+		spatial_reg: 0.000000
+		image_loss_cls: 0.167544, loss_rpn_cls: 0.031326, loss_rpn_bbox: 0.011633
+		loss_rpn_cls_fpn2: 0.003992, loss_rpn_cls_fpn3: 0.008524, loss_rpn_cls_fpn4: 0.010107, loss_rpn_cls_fpn5: 0.005020, loss_rpn_cls_fpn6: 0.000151
+		loss_rpn_bbox_fpn2: 0.000195, loss_rpn_bbox_fpn3: 0.001484, loss_rpn_bbox_fpn4: 0.004360, loss_rpn_bbox_fpn5: 0.004370, loss_rpn_bbox_fpn6: 0.000766
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step4999.pth
+INFO train_net_step.py: 149: save model: Outputs/e2e_faster_rcnn_R-101-FPN_clipart_weakly_1stream_noreg_freeze-boxhead-conv/Nov13-18-57-35_ip-172-31-8-158_step/ckpt/model_step4999.pth
