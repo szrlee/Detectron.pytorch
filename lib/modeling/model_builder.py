@@ -74,6 +74,7 @@ class Generalized_RCNN(nn.Module):
 
         # Weakly supervision
         self.weak_supervise = cfg.TRAIN.WEAK_SUPERVISE
+        self.pseudo_label = cfg.TRAIN.OL_PSEUDO_LABEL
         self.BCELoss = nn.BCELoss()
         self.BCEWithLogitsLoss = nn.BCEWithLogitsLoss()
         self.MLSoftMarginLoss = nn.MultiLabelSoftMarginLoss()
@@ -264,19 +265,20 @@ class Generalized_RCNN(nn.Module):
         elif self.training and self.weak_supervise:
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
-            # rpn loss
-            rpn_kwargs.update(dict(
-                (k, rpn_ret[k]) for k in rpn_ret.keys()
-                if (k.startswith('rpn_cls_logits') or k.startswith('rpn_bbox_pred'))
-            ))
-            loss_rpn_cls, loss_rpn_bbox = rpn_heads.generic_rpn_losses(**rpn_kwargs)
-            if cfg.FPN.FPN_ON:
-                for i, lvl in enumerate(range(cfg.FPN.RPN_MIN_LEVEL, cfg.FPN.RPN_MAX_LEVEL + 1)):
-                    return_dict['losses']['loss_rpn_cls_fpn%d' % lvl] = loss_rpn_cls[i]
-                    return_dict['losses']['loss_rpn_bbox_fpn%d' % lvl] = loss_rpn_bbox[i]
-            else:
-                return_dict['losses']['loss_rpn_cls'] = loss_rpn_cls
-                return_dict['losses']['loss_rpn_bbox'] = loss_rpn_bbox
+            if self.pseudo_label:
+                # rpn loss
+                rpn_kwargs.update(dict(
+                    (k, rpn_ret[k]) for k in rpn_ret.keys()
+                    if (k.startswith('rpn_cls_logits') or k.startswith('rpn_bbox_pred'))
+                ))
+                loss_rpn_cls, loss_rpn_bbox = rpn_heads.generic_rpn_losses(**rpn_kwargs)
+                if cfg.FPN.FPN_ON:
+                    for i, lvl in enumerate(range(cfg.FPN.RPN_MIN_LEVEL, cfg.FPN.RPN_MAX_LEVEL + 1)):
+                        return_dict['losses']['loss_rpn_cls_fpn%d' % lvl] = loss_rpn_cls[i]
+                        return_dict['losses']['loss_rpn_bbox_fpn%d' % lvl] = loss_rpn_bbox[i]
+                else:
+                    return_dict['losses']['loss_rpn_cls'] = loss_rpn_cls
+                    return_dict['losses']['loss_rpn_bbox'] = loss_rpn_bbox
 
             # Weak supervision image-level loss
             if self.streams == 2:

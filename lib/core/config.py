@@ -39,6 +39,8 @@ __C.TRAIN.WEAK_SUPERVISE = False
 __C.TRAIN.WEAK_SUPERVISE_WITH_PRETRAIN = False
 __C.TRAIN.COPY_CLS_TO_DET = False
 __C.TRAIN.SPATIAL_REG = False
+__C.TRAIN.OL_PSEUDO_LABEL = False
+
 
 # Datasets to train on
 # Available dataset list: datasets.dataset_catalog.DATASETS.keys()
