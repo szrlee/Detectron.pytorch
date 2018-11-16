@@ -179,6 +179,7 @@ class Generalized_RCNN(nn.Module):
         \n {rpn_ret['rois'][:, 0]}")
         logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
         image_for_full = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' in v]
+        image_for_weak = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' not in v]
         logging.info(f"image for fully supervision: {image_for_full}")
         # input()
         # if self.training:
@@ -291,13 +292,18 @@ class Generalized_RCNN(nn.Module):
             rois_all = rpn_ret['rois']
             image_labels_vec_all = rpn_ret['image_labels_vec']
             full_idx = []
+            weak_idx = []
             for i in image_for_full:
                 full_idx.append(np.where(rois_all[:, 0] == i)[0])
             full_idx = np.concatenate(full_idx)
-            logging.info(f"full idx is {full_idx}")
-            logging.info(f"full idx shape is {full_idx.shape}")
 
+            for i in image_for_weak:
+                weak_idx.append(np.where(rois_all[:, 0] == i)[0])
+            weak_idx = np.concatenate(weak_idx)
+            logging.info(f"weak idx is {full_idx}")
+            logging.info(f"weak idx shape is {full_idx.shape}")
             input()
+            
             # Weak supervision image-level loss
             if self.streams == 2:
                 image_loss_cls, acc_score, reg = fast_rcnn_heads.s2_image_level_loss(
