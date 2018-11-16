@@ -180,7 +180,7 @@ class Generalized_RCNN(nn.Module):
         # logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
         image_for_full = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' in v]
         image_for_weak = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' not in v]
-        logging.info(f"image for fully supervision: {image_for_full}")
+        # logging.info(f"image for fully supervision: {image_for_full}")
         # input()
         # if self.training:
         #     # can be used to infer fg/bg ratio
