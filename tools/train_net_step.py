@@ -176,11 +176,11 @@ def main():
     elif args.dataset == "voc0712+dt_clipart_voc0712+clipart":
         cfg.TRAIN.DATASETS = ('voc_2007_trainval', 'voc_2012_trainval', \
          'cross_dt-clipart-VOC2007_trainval', 'cross_dt-clipart-VOC2012_trainval', \
-         'clipart',)
+         'cross_clipart_train',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "dt_clipart_voc0712+clipart":
         cfg.TRAIN.DATASETS = ('cross_dt-clipart-VOC2007_trainval', 'cross_dt-clipart-VOC2012_trainval', \
-         'clipart',)
+         'cross_clipart_train',)
         cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "voc2007":
         cfg.TRAIN.DATASETS = ('voc_2007_train',)
