@@ -118,7 +118,7 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
             blobs[k].append(v)
     # Concat the training blob lists into tensors
     for k, v in blobs.items():
-        if isinstance(v, list) and len(v) > 0:
+        if isinstance(v, list) and len(v) > 0 and k is not 'dataset_name':
             blobs[k] = np.concatenate(v)
             # print(f"blobs[{k}] : {blobs[k]}\n blobs[{k}] shape {blobs[k].shape}")
 
@@ -139,6 +139,21 @@ def _sample_rois(roidb, im_scale, batch_idx):
     """Generate a random sample of RoIs comprising foreground and background
     examples.
     """
+    if 'clipart' in roidb['name'] or 'watercolor' in roidb['name'] or 'comic' in roidb['name']:
+        # Base Fast R-CNN blobs for target domain
+        # print(f"roidb keys :{roidb.keys()}")
+        sampled_boxes = roidb['boxes']
+        sampled_rois = sampled_boxes * im_scale
+
+        blob_dict = dict(
+            image_labels_vec=roidb['gt_labels_vec'],
+            dataset_name=roidb['name'],
+            rois=sampled_rois)
+        
+        return blob_dict
+
+        
+
     rois_per_image = int(cfg.TRAIN.BATCH_SIZE_PER_IM)
     fg_rois_per_image = int(np.round(cfg.TRAIN.FG_FRACTION * rois_per_image))
     max_overlaps = roidb['max_overlaps']
@@ -196,20 +211,21 @@ def _sample_rois(roidb, im_scale, batch_idx):
     blob_dict = dict(
         labels_int32=sampled_labels.astype(np.int32, copy=False),
         image_labels_vec=roidb['gt_labels_vec'],
+        dataset_name=roidb['name'],
         rois=sampled_rois,
         bbox_targets=bbox_targets,
         bbox_inside_weights=bbox_inside_weights,
         bbox_outside_weights=bbox_outside_weights)
 
-    # Optionally add Mask R-CNN blobs
-    if cfg.MODEL.MASK_ON:
-        roi_data.mask_rcnn.add_mask_rcnn_blobs(blob_dict, sampled_boxes, roidb,
-                                               im_scale, batch_idx)
+    # # Optionally add Mask R-CNN blobs
+    # if cfg.MODEL.MASK_ON:
+    #     roi_data.mask_rcnn.add_mask_rcnn_blobs(blob_dict, sampled_boxes, roidb,
+    #                                            im_scale, batch_idx)
 
-    # Optionally add Keypoint R-CNN blobs
-    if cfg.MODEL.KEYPOINTS_ON:
-        roi_data.keypoint_rcnn.add_keypoint_rcnn_blobs(
-            blob_dict, roidb, fg_rois_per_image, fg_inds, im_scale, batch_idx)
+    # # Optionally add Keypoint R-CNN blobs
+    # if cfg.MODEL.KEYPOINTS_ON:
+    #     roi_data.keypoint_rcnn.add_keypoint_rcnn_blobs(
+    #         blob_dict, roidb, fg_rois_per_image, fg_inds, im_scale, batch_idx)
 
     return blob_dict
 

@@ -172,8 +172,10 @@ class Generalized_RCNN(nn.Module):
         blob_conv = self.Conv_Body(im_data)
 
         rpn_ret = self.RPN(blob_conv, im_info, roidb)
-        # logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
-        #  \n {rpn_ret['rois'][:, 0]}")
+        logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
+        \n {rpn_ret['rois'][:, 0]}")
+        logging.info(f"image belong to which dataset: {rpn_ret['name']}")
+        input()
         # if self.training:
         #     # can be used to infer fg/bg ratio
         #     return_dict['rois_label'] = rpn_ret['labels_int32']
