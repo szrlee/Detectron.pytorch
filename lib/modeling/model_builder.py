@@ -2,6 +2,9 @@ from functools import wraps
 import importlib
 import logging
 
+
+import numpy as np
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -175,7 +178,9 @@ class Generalized_RCNN(nn.Module):
         logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
         \n {rpn_ret['rois'][:, 0]}")
         logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
-        input()
+        image_for_full = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' in v]
+        logging.info(f"image for fully supervision: {image_for_full}")
+        # input()
         # if self.training:
         #     # can be used to infer fg/bg ratio
         #     return_dict['rois_label'] = rpn_ret['labels_int32']
@@ -282,6 +287,14 @@ class Generalized_RCNN(nn.Module):
                     return_dict['losses']['loss_rpn_cls'] = loss_rpn_cls
                     return_dict['losses']['loss_rpn_bbox'] = loss_rpn_bbox
 
+
+            rois_all = rpn_ret['rois']
+            image_labels_vec_all = rpn_ret['image_levels_vec']
+            full_idx = []
+            for i in image_for_full:
+                full_idx.append(np.where(rois_all[:, 0] == i)[0])
+            logging.info(f"full idx is {full_idx}")
+            input()
             # Weak supervision image-level loss
             if self.streams == 2:
                 image_loss_cls, acc_score, reg = fast_rcnn_heads.s2_image_level_loss(
