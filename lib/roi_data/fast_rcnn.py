@@ -122,7 +122,7 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
     for k, v in blobs.items():
         if isinstance(v, list) and len(v) > 0 and k is not 'dataset_name':
             blobs[k] = np.concatenate(v)
-            print(f"blobs[{k}] : {blobs[k]}")
+    print(f"blobs[dataset_name] : {blobs['dataset_name']}")
     input()
 
     # Add FPN multilevel training RoIs, if configured
