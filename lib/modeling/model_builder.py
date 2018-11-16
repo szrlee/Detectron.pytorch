@@ -289,7 +289,7 @@ class Generalized_RCNN(nn.Module):
 
 
             rois_all = rpn_ret['rois']
-            image_labels_vec_all = rpn_ret['image_levels_vec']
+            image_labels_vec_all = rpn_ret['image_labels_vec']
             full_idx = []
             for i in image_for_full:
                 full_idx.append(np.where(rois_all[:, 0] == i)[0])
