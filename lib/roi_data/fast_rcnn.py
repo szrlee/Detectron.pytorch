@@ -39,6 +39,8 @@ def get_fast_rcnn_blob_names(is_training=True):
     # (batch_idx, x1, y1, x2, y2) specifying an image batch index and a
     # rectangle (x1, y1, x2, y2)
     blob_names = ['rois']
+    blob_names += ['dataset_name']
+
 
     if is_training:
         # labels_int32 blob: R categorical labels in [0, ..., K] for K
