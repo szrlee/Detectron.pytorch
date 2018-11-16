@@ -175,9 +175,9 @@ class Generalized_RCNN(nn.Module):
         blob_conv = self.Conv_Body(im_data)
 
         rpn_ret = self.RPN(blob_conv, im_info, roidb)
-        logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
-        \n {rpn_ret['rois'][:, 0]}")
-        logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
+        # logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
+        # \n {rpn_ret['rois'][:, 0]}")
+        # logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
         image_for_full = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' in v]
         image_for_weak = [i for i, v in enumerate(rpn_ret['dataset_name']) if 'VOC' not in v]
         logging.info(f"image for fully supervision: {image_for_full}")
@@ -309,6 +309,8 @@ class Generalized_RCNN(nn.Module):
                     full_idx.append(np.where(rois_all[:, 0] == i)[0])
                 full_idx = np.concatenate(full_idx)
                 # bbox loss
+                logging.info(f"labels_int32: {rpn_ret['labels_int32']}")
+                logging.info(f"bbox_targets: {rpn_ret['bbox_targets']}")
                 loss_cls, loss_bbox, accuracy_cls = fast_rcnn_heads.fast_rcnn_losses(
                     cls_score[full_idx], bbox_pred[full_idx],
                     rpn_ret['labels_int32'][full_idx], rpn_ret['bbox_targets'][full_idx],
