@@ -293,7 +293,10 @@ class Generalized_RCNN(nn.Module):
             full_idx = []
             for i in image_for_full:
                 full_idx.append(np.where(rois_all[:, 0] == i)[0])
+            full_idx = np.concatenate(full_idx)
             logging.info(f"full idx is {full_idx}")
+            logging.info(f"full idx shape is {full_idx.shape}")
+
             input()
             # Weak supervision image-level loss
             if self.streams == 2:
