@@ -145,7 +145,13 @@ def _sample_rois(roidb, im_scale, batch_idx):
     if 'VOC' not in roidb['name']:
         # Base Fast R-CNN blobs for target domain
         # print(f"roidb keys :{roidb.keys()}")
-        sampled_boxes = roidb['boxes']
+        rois_per_image = int(cfg.TRAIN.BATCH_SIZE_PER_IM)
+        max_overlaps = roidb['max_overlaps']
+        # Generate ind list
+        inds = np.where(max_overlaps >= 0)[0]
+        inds = npr.choice(
+            inds, size=rois_per_image, replace=False)            
+        sampled_boxes = roidb['boxes'][inds]
         sampled_rois = sampled_boxes * im_scale
         repeated_batch_idx = batch_idx * blob_utils.ones((sampled_rois.shape[0], 1))
         sampled_rois = np.hstack((repeated_batch_idx, sampled_rois))
