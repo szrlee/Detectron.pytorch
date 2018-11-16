@@ -308,8 +308,8 @@ class Generalized_RCNN(nn.Module):
                 for i in image_for_full:
                     full_idx.append(np.where(rois_all[:, 0] == i)[0])
                 full_idx = np.concatenate(full_idx)
-                logging.info(f"full_idx : {rpn_ret['full_idx']}")
-                logging.info(f"full_idx shape: {rpn_ret['full_idx'].shape}")
+                logging.info(f"full_idx : {full_idx}")
+                logging.info(f"full_idx shape: {full_idx.shape}")
                 # bbox loss
                 logging.info(f"labels_int32 shape: {rpn_ret['labels_int32'].shape}")
                 logging.info(f"bbox_targets shape: {rpn_ret['bbox_targets'].shape}")
