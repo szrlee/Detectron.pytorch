@@ -273,6 +273,17 @@ class Generalized_RCNN(nn.Module):
         elif self.training and self.weak_supervise:
             return_dict['losses'] = {}
             return_dict['metrics'] = {}
+
+            # init loss and metrics
+            return_dict['losses']['loss_cls'] = torch.tensor(0.0).cuda(device_id)
+            return_dict['losses']['loss_bbox'] = torch.tensor(0.0).cuda(device_id)
+            return_dict['metrics']['accuracy_cls'] = torch.tensor(0.0).cuda(device_id)
+            return_dict['losses']['image_loss_cls'] = torch.tensor(0.0).cuda(device_id)
+            return_dict['losses']['spatial_reg'] = torch.tensor(0.0).cuda(device_id)
+            return_dict['metrics']['ml_accuracy_cls'] = torch.tensor(0.0).cuda(device_id)
+
+            # Start loss       
+
             if self.pseudo_label:
                 # rpn loss
                 rpn_kwargs.update(dict(
