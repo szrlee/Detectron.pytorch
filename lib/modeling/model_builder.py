@@ -311,8 +311,12 @@ class Generalized_RCNN(nn.Module):
                 logging.info(f"full_idx : {full_idx}")
                 logging.info(f"full_idx shape: {full_idx.shape}")
                 # bbox loss
+                logging.info(f"cls_score shape: {cls_score.shape}")
+                logging.info(f"bbox_pred shape: {bbox_pred.shape}")
                 logging.info(f"labels_int32 shape: {rpn_ret['labels_int32'].shape}")
                 logging.info(f"bbox_targets shape: {rpn_ret['bbox_targets'].shape}")
+                logging.info(f"bbox_inside_weights shape: {rpn_ret['bbox_inside_weights'].shape}")
+                logging.info(f"bbox_outside_weights shape: {rpn_ret['bbox_outside_weights'].shape}")
                 loss_cls, loss_bbox, accuracy_cls = fast_rcnn_heads.fast_rcnn_losses(
                     cls_score[full_idx], bbox_pred[full_idx],
                     rpn_ret['labels_int32'][full_idx], rpn_ret['bbox_targets'][full_idx],
