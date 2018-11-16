@@ -122,8 +122,8 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
     for k, v in blobs.items():
         if isinstance(v, list) and len(v) > 0 and k is not 'dataset_name':
             blobs[k] = np.concatenate(v)
-    print(f"blobs[dataset_name] : {blobs['dataset_name']}")
-    input()
+    # print(f"blobs[dataset_name] : {blobs['dataset_name']}")
+    # input()
 
     # Add FPN multilevel training RoIs, if configured
     if cfg.FPN.FPN_ON and cfg.FPN.MULTILEVEL_ROIS:
@@ -142,11 +142,13 @@ def _sample_rois(roidb, im_scale, batch_idx):
     """Generate a random sample of RoIs comprising foreground and background
     examples.
     """
-    if 'clipart' in roidb['name'] or 'watercolor' in roidb['name'] or 'comic' in roidb['name']:
+    if 'VOC' not in roidb['name']:
         # Base Fast R-CNN blobs for target domain
         # print(f"roidb keys :{roidb.keys()}")
         sampled_boxes = roidb['boxes']
         sampled_rois = sampled_boxes * im_scale
+        repeated_batch_idx = batch_idx * blob_utils.ones((sampled_rois.shape[0], 1))
+        sampled_rois = np.hstack((repeated_batch_idx, sampled_rois))
 
         blob_dict = dict(
             image_labels_vec=roidb['gt_labels_vec'],
