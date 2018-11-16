@@ -116,13 +116,14 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
     for im_i, entry in enumerate(roidb):
         frcn_blobs = _sample_rois(entry, im_scales[im_i], im_i)
         for k, v in frcn_blobs.items():
-            print(f"frcn_blobs {k} : {v}\n")
+            # print(f"frcn_blobs {k} : {v}\n")
             blobs[k].append(v)
     # Concat the training blob lists into tensors
     for k, v in blobs.items():
         if isinstance(v, list) and len(v) > 0 and k is not 'dataset_name':
             blobs[k] = np.concatenate(v)
-            # print(f"blobs[{k}] : {blobs[k]}\n blobs[{k}] shape {blobs[k].shape}")
+            print(f"blobs[{k}] : {blobs[k]}")
+    input()
 
     # Add FPN multilevel training RoIs, if configured
     if cfg.FPN.FPN_ON and cfg.FPN.MULTILEVEL_ROIS:
