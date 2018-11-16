@@ -308,19 +308,11 @@ class Generalized_RCNN(nn.Module):
                 for i in image_for_full:
                     full_idx.append(np.where(rois_all[:, 0] == i)[0])
                 full_idx = np.concatenate(full_idx)
-                logging.info(f"full_idx : {full_idx}")
-                logging.info(f"full_idx shape: {full_idx.shape}")
                 # bbox loss
-                logging.info(f"cls_score shape: {cls_score.shape}")
-                logging.info(f"bbox_pred shape: {bbox_pred.shape}")
-                logging.info(f"labels_int32 shape: {rpn_ret['labels_int32'].shape}")
-                logging.info(f"bbox_targets shape: {rpn_ret['bbox_targets'].shape}")
-                logging.info(f"bbox_inside_weights shape: {rpn_ret['bbox_inside_weights'].shape}")
-                logging.info(f"bbox_outside_weights shape: {rpn_ret['bbox_outside_weights'].shape}")
                 loss_cls, loss_bbox, accuracy_cls = fast_rcnn_heads.fast_rcnn_losses(
                     cls_score[full_idx], bbox_pred[full_idx],
-                    rpn_ret['labels_int32'][full_idx], rpn_ret['bbox_targets'][full_idx],
-                    rpn_ret['bbox_inside_weights'][full_idx], rpn_ret['bbox_outside_weights'][full_idx])
+                    rpn_ret['labels_int32'], rpn_ret['bbox_targets'],
+                    rpn_ret['bbox_inside_weights'], rpn_ret['bbox_outside_weights'])
                 
                 return_dict['losses']['loss_cls'] = loss_cls
                 return_dict['losses']['loss_bbox'] = loss_bbox
