@@ -116,7 +116,7 @@ def add_fast_rcnn_blobs(blobs, im_scales, roidb):
     for im_i, entry in enumerate(roidb):
         frcn_blobs = _sample_rois(entry, im_scales[im_i], im_i)
         for k, v in frcn_blobs.items():
-            # print(f"frcn_blobs {k} : {v}\n frcn_blobs {k} shape {v.shape}")
+            print(f"frcn_blobs {k} : {v}\n")
             blobs[k].append(v)
     # Concat the training blob lists into tensors
     for k, v in blobs.items():
