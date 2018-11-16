@@ -149,6 +149,7 @@ def _sample_rois(roidb, im_scale, batch_idx):
         max_overlaps = roidb['max_overlaps']
         # Generate ind list
         inds = np.where(max_overlaps >= 0)[0]
+        rois_per_image = np.minimum(rois_per_image, inds.size)
         inds = npr.choice(
             inds, size=rois_per_image, replace=False)            
         sampled_boxes = roidb['boxes'][inds]
