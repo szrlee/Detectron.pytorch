@@ -147,7 +147,7 @@ def _sample_rois(roidb, im_scale, batch_idx):
 
         blob_dict = dict(
             image_labels_vec=roidb['gt_labels_vec'],
-            dataset_name=roidb['dataset_name'],
+            dataset_name=roidb['name'],
             rois=sampled_rois)
         
         return blob_dict

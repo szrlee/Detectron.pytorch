@@ -174,7 +174,7 @@ class Generalized_RCNN(nn.Module):
         rpn_ret = self.RPN(blob_conv, im_info, roidb)
         logging.info(f"roi belong to which image: shape {rpn_ret['rois'][:, 0:1].shape}\
         \n {rpn_ret['rois'][:, 0]}")
-        logging.info(f"image belong to which dataset: {rpn_ret['name']}")
+        logging.info(f"image belong to which dataset: {rpn_ret['dataset_name']}")
         input()
         # if self.training:
         #     # can be used to infer fg/bg ratio
