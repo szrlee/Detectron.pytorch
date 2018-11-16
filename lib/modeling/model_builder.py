@@ -309,8 +309,8 @@ class Generalized_RCNN(nn.Module):
                     full_idx.append(np.where(rois_all[:, 0] == i)[0])
                 full_idx = np.concatenate(full_idx)
                 # bbox loss
-                logging.info(f"labels_int32: {rpn_ret['labels_int32']}")
-                logging.info(f"bbox_targets: {rpn_ret['bbox_targets']}")
+                logging.info(f"labels_int32 shape: {rpn_ret['labels_int32'].shape}")
+                logging.info(f"bbox_targets shape: {rpn_ret['bbox_targets'].shape}")
                 loss_cls, loss_bbox, accuracy_cls = fast_rcnn_heads.fast_rcnn_losses(
                     cls_score[full_idx], bbox_pred[full_idx],
                     rpn_ret['labels_int32'][full_idx], rpn_ret['bbox_targets'][full_idx],
