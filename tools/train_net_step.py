@@ -182,6 +182,10 @@ def main():
         cfg.TRAIN.DATASETS = ('cross_dt-clipart-VOC2007_trainval', 'cross_dt-clipart-VOC2012_trainval', \
          'cross_clipart_train',)
         cfg.MODEL.NUM_CLASSES = 21
+    elif args.dataset == "dt_clipart_voc0712+clipart4":
+        cfg.TRAIN.DATASETS = ('cross_dt-clipart-VOC2007_trainval', 'cross_dt-clipart-VOC2012_trainval', \
+         'cross_clipart_train', 'cross_clipart_train', 'cross_clipart_train', 'cross_clipart_train',)
+        cfg.MODEL.NUM_CLASSES = 21
     elif args.dataset == "voc2007":
         cfg.TRAIN.DATASETS = ('voc_2007_train',)
         cfg.MODEL.NUM_CLASSES = 21
